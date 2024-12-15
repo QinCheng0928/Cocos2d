@@ -100,7 +100,7 @@ AssetsManager::AssetsManager(const char* packageUrl/* =nullptr */, const char* v
         
         int percent = totalBytesExpected ? int(totalBytesReceived * 100 / totalBytesExpected) : 0;
         _delegate->onProgress(percent);
-        CCLOG("downloading... %d%%", percent);
+        cocos2d::log("downloading... %d%%", percent);
     };
     
     // get version from version file when get data success
@@ -117,7 +117,7 @@ AssetsManager::AssetsManager(const char* packageUrl/* =nullptr */, const char* v
             {
                 _delegate->onError(ErrorCode::NO_NEW_VERSION);
             }
-            CCLOG("there is not new version");
+            cocos2d::log("there is not new version");
             // Set resource search path.
             setSearchPath();
             _isDownloading = false;
@@ -132,7 +132,7 @@ AssetsManager::AssetsManager(const char* packageUrl/* =nullptr */, const char* v
             || FileUtils::getInstance()->getFileExtension(_packageUrl) != ".zip"
             )
         {
-            CCLOG("no version file url, or no package url, or the package is not a zip file");
+            cocos2d::log("no version file url, or no package url, or the package is not a zip file");
             _isDownloading = false;
             return;
         }
@@ -239,7 +239,7 @@ void AssetsManager::downloadAndUncompress()
                 string zipfileName = this->_storagePath + TEMP_PACKAGE_FILE_NAME;
                 if (remove(zipfileName.c_str()) != 0)
                 {
-                    CCLOG("can not remove downloaded zip file %s", zipfileName.c_str());
+                    cocos2d::log("can not remove downloaded zip file %s", zipfileName.c_str());
                 }
                 
                 if (this->_delegate) this->_delegate->onSuccess();
@@ -265,7 +265,7 @@ bool AssetsManager::uncompress()
     unzFile zipfile = unzOpen(FileUtils::getInstance()->getSuitableFOpen(outFileName).c_str());
     if (! zipfile)
     {
-        CCLOG("can not open downloaded zip file %s", outFileName.c_str());
+        cocos2d::log("can not open downloaded zip file %s", outFileName.c_str());
         return false;
     }
     
@@ -273,7 +273,7 @@ bool AssetsManager::uncompress()
     unz_global_info global_info;
     if (unzGetGlobalInfo(zipfile, &global_info) != UNZ_OK)
     {
-        CCLOG("can not read file global info of %s", outFileName.c_str());
+        cocos2d::log("can not read file global info of %s", outFileName.c_str());
         unzClose(zipfile);
         return false;
     }
@@ -281,7 +281,7 @@ bool AssetsManager::uncompress()
     // Buffer to hold data read from the zip file
     char readBuffer[BUFFER_SIZE];
     
-    CCLOG("start uncompressing");
+    cocos2d::log("start uncompressing");
     
     // Loop to extract all files.
     uLong i;
@@ -299,7 +299,7 @@ bool AssetsManager::uncompress()
                                   nullptr,
                                   0) != UNZ_OK)
         {
-            CCLOG("can not read file info");
+            cocos2d::log("can not read file info");
             unzClose(zipfile);
             return false;
         }
@@ -314,7 +314,7 @@ bool AssetsManager::uncompress()
             // If the directory exists, it will failed silently.
             if (!FileUtils::getInstance()->createDirectory(fullPath))
             {
-                CCLOG("can not create directory %s", fullPath.c_str());
+                cocos2d::log("can not create directory %s", fullPath.c_str());
                 unzClose(zipfile);
                 return false;
             }
@@ -340,13 +340,13 @@ bool AssetsManager::uncompress()
                 {
                     if (!FileUtils::getInstance()->createDirectory(dir))
                     {
-                        CCLOG("can not create directory %s", dir.c_str());
+                        cocos2d::log("can not create directory %s", dir.c_str());
                         unzClose(zipfile);
                         return false;
                     }
                     else
                     {
-                        CCLOG("create directory %s",dir.c_str());
+                        cocos2d::log("create directory %s",dir.c_str());
                     }
                 }
                 else
@@ -365,7 +365,7 @@ bool AssetsManager::uncompress()
             // Open current file.
             if (unzOpenCurrentFile(zipfile) != UNZ_OK)
             {
-                CCLOG("can not open file %s", fileName);
+                cocos2d::log("can not open file %s", fileName);
                 unzClose(zipfile);
                 return false;
             }
@@ -374,7 +374,7 @@ bool AssetsManager::uncompress()
             FILE *out = fopen(FileUtils::getInstance()->getSuitableFOpen(fullPath).c_str(), "wb");
             if (! out)
             {
-                CCLOG("can not open destination file %s", fullPath.c_str());
+                cocos2d::log("can not open destination file %s", fullPath.c_str());
                 unzCloseCurrentFile(zipfile);
                 unzClose(zipfile);
                 return false;
@@ -387,7 +387,7 @@ bool AssetsManager::uncompress()
                 error = unzReadCurrentFile(zipfile, readBuffer, BUFFER_SIZE);
                 if (error < 0)
                 {
-                    CCLOG("can not read zip file %s, error code is %d", fileName, error);
+                    cocos2d::log("can not read zip file %s, error code is %d", fileName, error);
                     unzCloseCurrentFile(zipfile);
                     unzClose(zipfile);
                     return false;
@@ -409,14 +409,14 @@ bool AssetsManager::uncompress()
         {
             if (unzGoToNextFile(zipfile) != UNZ_OK)
             {
-                CCLOG("can not read next file");
+                cocos2d::log("can not read next file");
                 unzClose(zipfile);
                 return false;
             }
         }
     }
     
-    CCLOG("end uncompressing");
+    cocos2d::log("end uncompressing");
     unzClose(zipfile);
     
     return true;

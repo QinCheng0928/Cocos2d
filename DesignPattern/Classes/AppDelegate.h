@@ -24,6 +24,10 @@
 
 #ifndef  _APP_DELEGATE_H_
 #define  _APP_DELEGATE_H_
+#define RELEASE "RELEASE"
+#define JWC "JWC"
+#define ZZY "ZZY"
+#define QC "QC"
 
 #include "cocos2d.h"
 

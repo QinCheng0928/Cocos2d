@@ -1047,7 +1047,7 @@ CC_DEPRECATED_ATTRIBUTE const ResolutionPolicy kResolutionUnKnown       = Resolu
 
 
 /** use log() instead */
-CC_DEPRECATED_ATTRIBUTE void CC_DLL CCLog(const char * pszFormat, ...) CC_FORMAT_PRINTF(1, 2);
+CC_DEPRECATED_ATTRIBUTE void CC_DLL CCLog(const char * pszFormat, ...);
 
 CC_DEPRECATED_ATTRIBUTE void CC_DLL ccDrawInit();
 CC_DEPRECATED_ATTRIBUTE void CC_DLL ccDrawFree();
