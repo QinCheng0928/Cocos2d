@@ -1,0 +1,17 @@
+D:\Desktop\Cocos2d\DesignPattern\cocos2d\external\recast\DebugUtils\DebugDraw.cpp;D:\Desktop\Cocos2d\DesignPattern\proj.win32\engine\external\recast\ext_recast.dir\Debug\DebugDraw.obj
+D:\Desktop\Cocos2d\DesignPattern\cocos2d\external\recast\DebugUtils\DetourDebugDraw.cpp;D:\Desktop\Cocos2d\DesignPattern\proj.win32\engine\external\recast\ext_recast.dir\Debug\DetourDebugDraw.obj
+D:\Desktop\Cocos2d\DesignPattern\cocos2d\external\recast\Detour\DetourAlloc.cpp;D:\Desktop\Cocos2d\DesignPattern\proj.win32\engine\external\recast\ext_recast.dir\Debug\DetourAlloc.obj
+D:\Desktop\Cocos2d\DesignPattern\cocos2d\external\recast\Detour\DetourCommon.cpp;D:\Desktop\Cocos2d\DesignPattern\proj.win32\engine\external\recast\ext_recast.dir\Debug\DetourCommon.obj
+D:\Desktop\Cocos2d\DesignPattern\cocos2d\external\recast\Detour\DetourNavMesh.cpp;D:\Desktop\Cocos2d\DesignPattern\proj.win32\engine\external\recast\ext_recast.dir\Debug\DetourNavMesh.obj
+D:\Desktop\Cocos2d\DesignPattern\cocos2d\external\recast\Detour\DetourNavMeshBuilder.cpp;D:\Desktop\Cocos2d\DesignPattern\proj.win32\engine\external\recast\ext_recast.dir\Debug\DetourNavMeshBuilder.obj
+D:\Desktop\Cocos2d\DesignPattern\cocos2d\external\recast\Detour\DetourNavMeshQuery.cpp;D:\Desktop\Cocos2d\DesignPattern\proj.win32\engine\external\recast\ext_recast.dir\Debug\DetourNavMeshQuery.obj
+D:\Desktop\Cocos2d\DesignPattern\cocos2d\external\recast\Detour\DetourNode.cpp;D:\Desktop\Cocos2d\DesignPattern\proj.win32\engine\external\recast\ext_recast.dir\Debug\DetourNode.obj
+D:\Desktop\Cocos2d\DesignPattern\cocos2d\external\recast\DetourCrowd\DetourCrowd.cpp;D:\Desktop\Cocos2d\DesignPattern\proj.win32\engine\external\recast\ext_recast.dir\Debug\DetourCrowd.obj
+D:\Desktop\Cocos2d\DesignPattern\cocos2d\external\recast\DetourCrowd\DetourLocalBoundary.cpp;D:\Desktop\Cocos2d\DesignPattern\proj.win32\engine\external\recast\ext_recast.dir\Debug\DetourLocalBoundary.obj
+D:\Desktop\Cocos2d\DesignPattern\cocos2d\external\recast\DetourCrowd\DetourObstacleAvoidance.cpp;D:\Desktop\Cocos2d\DesignPattern\proj.win32\engine\external\recast\ext_recast.dir\Debug\DetourObstacleAvoidance.obj
+D:\Desktop\Cocos2d\DesignPattern\cocos2d\external\recast\DetourCrowd\DetourPathCorridor.cpp;D:\Desktop\Cocos2d\DesignPattern\proj.win32\engine\external\recast\ext_recast.dir\Debug\DetourPathCorridor.obj
+D:\Desktop\Cocos2d\DesignPattern\cocos2d\external\recast\DetourCrowd\DetourPathQueue.cpp;D:\Desktop\Cocos2d\DesignPattern\proj.win32\engine\external\recast\ext_recast.dir\Debug\DetourPathQueue.obj
+D:\Desktop\Cocos2d\DesignPattern\cocos2d\external\recast\DetourCrowd\DetourProximityGrid.cpp;D:\Desktop\Cocos2d\DesignPattern\proj.win32\engine\external\recast\ext_recast.dir\Debug\DetourProximityGrid.obj
+D:\Desktop\Cocos2d\DesignPattern\cocos2d\external\recast\DetourTileCache\DetourTileCache.cpp;D:\Desktop\Cocos2d\DesignPattern\proj.win32\engine\external\recast\ext_recast.dir\Debug\DetourTileCache.obj
+D:\Desktop\Cocos2d\DesignPattern\cocos2d\external\recast\DetourTileCache\DetourTileCacheBuilder.cpp;D:\Desktop\Cocos2d\DesignPattern\proj.win32\engine\external\recast\ext_recast.dir\Debug\DetourTileCacheBuilder.obj
+D:\Desktop\Cocos2d\DesignPattern\cocos2d\external\recast\fastlz\fastlz.c;D:\Desktop\Cocos2d\DesignPattern\proj.win32\engine\external\recast\ext_recast.dir\Debug\fastlz.obj

@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CMakePredefinedTargets", "CMakePredefinedTargets", "{2185A746-22AF-362C-8B09-2B9B9076D716}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{92FECDAC-0CC2-3B83-9DB6-C16373D6E8E9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ALL_BUILD", "ALL_BUILD.vcxproj", "{94E94BC5-06A4-3622-82EC-3DD14ACDA537}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2152A6EE-DBCB-3686-B342-C1B966AEEDC2} = {2152A6EE-DBCB-3686-B342-C1B966AEEDC2}
+		{82E14A0D-BAA6-3D8E-BE1C-286B5497BDFE} = {82E14A0D-BAA6-3D8E-BE1C-286B5497BDFE}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZERO_CHECK", "..\..\..\\ZERO_CHECK.vcxproj", "{2152A6EE-DBCB-3686-B342-C1B966AEEDC2}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ext_edtaa3func", "ext_edtaa3func.vcxproj", "{82E14A0D-BAA6-3D8E-BE1C-286B5497BDFE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2152A6EE-DBCB-3686-B342-C1B966AEEDC2} = {2152A6EE-DBCB-3686-B342-C1B966AEEDC2}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{94E94BC5-06A4-3622-82EC-3DD14ACDA537}.Debug|Win32.ActiveCfg = Debug|Win32
+		{94E94BC5-06A4-3622-82EC-3DD14ACDA537}.Release|Win32.ActiveCfg = Release|Win32
+		{2152A6EE-DBCB-3686-B342-C1B966AEEDC2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2152A6EE-DBCB-3686-B342-C1B966AEEDC2}.Debug|Win32.Build.0 = Debug|Win32
+		{2152A6EE-DBCB-3686-B342-C1B966AEEDC2}.Release|Win32.ActiveCfg = Release|Win32
+		{2152A6EE-DBCB-3686-B342-C1B966AEEDC2}.Release|Win32.Build.0 = Release|Win32
+		{82E14A0D-BAA6-3D8E-BE1C-286B5497BDFE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{82E14A0D-BAA6-3D8E-BE1C-286B5497BDFE}.Debug|Win32.Build.0 = Debug|Win32
+		{82E14A0D-BAA6-3D8E-BE1C-286B5497BDFE}.Release|Win32.ActiveCfg = Release|Win32
+		{82E14A0D-BAA6-3D8E-BE1C-286B5497BDFE}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{94E94BC5-06A4-3622-82EC-3DD14ACDA537} = {2185A746-22AF-362C-8B09-2B9B9076D716}
+		{2152A6EE-DBCB-3686-B342-C1B966AEEDC2} = {2185A746-22AF-362C-8B09-2B9B9076D716}
+		{82E14A0D-BAA6-3D8E-BE1C-286B5497BDFE} = {92FECDAC-0CC2-3B83-9DB6-C16373D6E8E9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F27BA500-1ADF-3AF0-8F86-83E120B1B044}
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
