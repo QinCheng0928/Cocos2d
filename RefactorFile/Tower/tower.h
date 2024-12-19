@@ -28,7 +28,7 @@ public:
     void running_act();
     virtual void attack_act();
     enemy* search();
-    Vector<enemy*> multiSearch(); // 将被重写
+    Vector<enemy*> multiSearch();
     void set(int new_level, int new_cost, float new_speed, int new_damage, int new_range);
     int get_level();
     float get_distance(enemy* enemy, Tower* tower);
@@ -44,12 +44,12 @@ public:
     void update(Subject* subject) override {
         Enemy* enemy = dynamic_cast<Enemy*>(subject);
         if (enemy) {
-            multiSearch(enemy);
+            handleEnemyUpdate(enemy);
         }
     }
 
-    // 重载的multiSearch方法，接收被通知的敌人
-    void multiSearch(Enemy* enemy);
+private:
+    void handleEnemyUpdate(Enemy* enemy);
 };
 
 #endif // __TOWER_H__

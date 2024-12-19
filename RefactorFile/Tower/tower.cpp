@@ -291,34 +291,22 @@ Vector<enemy*> tower::multiSearch()
 	return temp;
 }
 
-// 新的multiSearch方法，接收被通知的敌人
-void Tower::multiSearch(Enemy* enemy) {
+// 处理敌人更新
+void Tower::handleEnemyUpdate(Enemy* enemy) {
     if (!enemy) return;
 
-    // 计算敌人与塔的距离
     float distance = this->get_distance(enemy, this);
-    
-    // 如果距离在范围内，并且未达到最大锁定数
-    if (distance <= this->range && atk_enemies.size() < this->maxLockNum) {
-        // 检查是否已经在攻击列表中
-        bool alreadyAttacking = false;
-        for(auto& atkEnemy : atk_enemies) {
-            if(atkEnemy == enemy) {
-                alreadyAttacking = true;
-                break;
-            }
-        }
 
-        if(!alreadyAttacking) {
+    if (distance <= this->range) {
+        if (atk_enemies.size() < this->maxLockNum && !atk_enemies.contains(enemy)) {
             atk_enemies.pushBack(enemy);
-            // 可以在这里启动攻击行为
             this->attack_act();
         }
     } else {
-        // 如果敌人离开范围，移除攻击目标
         atk_enemies.eraseObject(enemy);
     }
 }
+
 
 void tower::update(float dt)
 {
