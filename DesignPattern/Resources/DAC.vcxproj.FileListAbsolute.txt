@@ -1,2 +1,0 @@
-C:\Users\zzy\Desktop\code\dac\DAC\proj.win32\Release.win32\DAC.exe
-D:\c_cpp_project\the_DAC_project\DAC\proj.win32\Release.win32\DAC.exe
