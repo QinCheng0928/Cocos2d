@@ -3,9 +3,11 @@
 #include "cocos2d.h"
 #include "MoveStrategy.h"
 
+#include "Subject.h"
+
 USING_NS_CC;
 
-class Enemy : public Sprite {
+class Enemy : public Sprite, public Subject {
 protected:
     int value;                  // Value of the enemy
     float speed;                // Speed of the enemy

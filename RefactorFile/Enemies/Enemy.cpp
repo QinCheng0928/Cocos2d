@@ -65,6 +65,8 @@ void Enemy::onEnter() {
 void Enemy::move(float dt) {
     if (moveStrategy) {
         moveStrategy->move(this, this->speed);
+        
+        notifyObservers();
     }
 }
 
