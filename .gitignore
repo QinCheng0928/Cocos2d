@@ -2,3 +2,57 @@
 
 *.ipch
 *.VC.db
+
+# Cocos2d-x build directories
+/build
+/bin
+/tmp
+/CMakeCache.txt
+/CMakeFiles
+/Docker
+/compile_commands.json
+
+# Cocos2d-x specific IDE files
+/.idea
+*.user
+*.userprefs
+*.suo
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.xcuserstate
+*.xcodeproj
+
+# Cocos2d-x generated folders and files
+proj.android/.cocos
+proj.android/assets/*
+proj.android/obj
+proj.android/bin
+proj.ios_mac/.cocos
+proj.ios_mac/*.xcodeproj
+proj.win32/.cocos
+
+# Visual Studio
+.vs
+.vscode
+
+# macOS specific files
+.DS_Store
+
+# Android specific files
+*.apk
+*.dex
+*.keystore
+local.properties
+
+# NDK specific files
+local.properties
+.gradle
+.idea/
+# Android Studio related files
+/cocos2d/cocos/../../proj.android/.cocos
+DesignPatternGame/proj.win32/Debug.win32/
+DesignPatternGame/proj.ios_mac/
+DesignPatternGame/proj.android/
+DesignPatternGame/cocos2d/cmake/
+DesignPatternGame/cocos2d/
