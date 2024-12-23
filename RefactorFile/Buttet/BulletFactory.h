@@ -17,10 +17,10 @@ public:
         return instance;
     }
 
-    BulletType* getBulletType(int speed, int damage, int boomDamage, const std::string& texture) {
-        std::string key = texture + std::to_string(speed) + std::to_string(damage) + std::to_string(boomDamage);
+    BulletType* getBulletType(int speed, int damage, int boomDamage) {
+        std::string key = std::to_string(speed) + std::to_string(damage) + std::to_string(boomDamage);
         if (bulletTypes.find(key) == bulletTypes.end()) {
-            bulletTypes[key] = new BulletType(speed, damage, boomDamage, texture);
+            bulletTypes[key] = new BulletType(speed, damage, boomDamage);
         }
         return bulletTypes[key];
     }

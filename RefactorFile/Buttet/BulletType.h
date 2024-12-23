@@ -8,14 +8,13 @@ public:
     int speed;           // Bullet speed
     int damage;          // Bullet damage
     int boomDamage;      // Explosion damage
-    std::string texture; // Bullet texture (appearance)
 
-    BulletType(int spd, int dmg, int boomDmg, const std::string& tex)
-        : speed(spd), damage(dmg), boomDamage(boomDmg), texture(tex) {}
+    BulletType(int spd, int dmg, int boomDmg)
+        : speed(spd), damage(dmg), boomDamage(boomDmg) {}
 
     // Get the sprite for the bullet
     cocos2d::Sprite* createSprite() {
-        return cocos2d::Sprite::create(texture);
+        return cocos2d::Sprite::create();
     }
 };
 
