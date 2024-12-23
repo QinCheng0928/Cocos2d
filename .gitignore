@@ -12,16 +12,6 @@
 /Docker
 /compile_commands.json
 
-# Cocos2d-x specific IDE files
-/.idea
-*.user
-*.userprefs
-*.suo
-*.sln
-*.vcxproj
-*.vcxproj.filters
-*.xcuserstate
-*.xcodeproj
 
 # Cocos2d-x generated folders and files
 proj.android/.cocos
