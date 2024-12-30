@@ -63,7 +63,7 @@ void dianmei::levelup(int key)
     }
 }
 
-void dianmei::attackOneEnemy(enemy* attack_enemy)
+void dianmei::attackOneEnemy(Enemy* attack_enemy)
 {
     CCLOG("dianmei::attackOneEnemy()is running..");
 
@@ -86,7 +86,7 @@ void dianmei::attackOneEnemy(enemy* attack_enemy)
 
     this->runAction(seqf);
 
-    attack_enemy->get_hit(damage);
+    attack_enemy->getHit(damage);
     
 }
 

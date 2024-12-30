@@ -38,7 +38,7 @@ bullet* bullet::create(const std::string& filename)
 }
 
 //设置锁敌
-void bullet::setTrack(enemy* trackIt)
+void bullet::setTrack(Enemy* trackIt)
 {
     trackEnemy = trackIt;
 }
@@ -77,7 +77,7 @@ void bullet::trackAndAttack(float dt)
 
         if (fabs(bulletX - enemyX) < 100 && fabs(bulletY - enemyY) < 100)//计算范围
         {
-            trackEnemy->get_hit(damage);//获取r99的子弹伤害
+            trackEnemy->getHit(damage);//获取r99的子弹伤害
             this->removeFromParent();//移除
             state = 1;//记录状态
             CCLOG("bullet boom!");
@@ -104,10 +104,10 @@ void bullet::booom(float dt)
     if (pn != nullptr)
     {
         boomDamage = pn->getBooomDamage();
-        Vector<enemy*>hitEnemy = this->multiSearch();//搜索范围内所有敌人
+        Vector<Enemy*>hitEnemy = this->multiSearch();//搜索范围内所有敌人
         for (auto i = hitEnemy.begin(); i != hitEnemy.end(); i++)
         {
-            (*i)->get_hit(boomDamage);//造成爆炸伤害
+            (*i)->getHit(boomDamage);//造成爆炸伤害
         }
 
         auto boom = ParticleExplosion::create();//爆炸特效
@@ -120,7 +120,7 @@ void bullet::booom(float dt)
 
 }
 //距离计算函数
-float bullet::get_distance(enemy* enemy, bullet* bullet)
+float bullet::get_distance(Enemy* enemy, bullet* bullet)
 {
     Vec2 enemyPosition = convertToWorldSpaceAR(enemy->getPosition());
     Vec2 bulletPosition = convertToWorldSpaceAR(bullet->getParent()->getPosition());
@@ -133,9 +133,9 @@ float bullet::get_distance(enemy* enemy, bullet* bullet)
     return distance;
 }
 //爆炸子弹搜索函数
-Vector<enemy*> bullet::multiSearch()
+Vector<Enemy*> bullet::multiSearch()
 {
-    Vector<enemy*> temp;
+    Vector<Enemy*> temp;
 
     auto cur_baseLevel = dynamic_cast<baseLevel*>(this->getParent()->getParent());
     if (cur_baseLevel != nullptr)

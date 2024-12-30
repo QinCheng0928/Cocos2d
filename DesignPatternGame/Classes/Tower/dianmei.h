@@ -11,7 +11,7 @@ public:
 	static dianmei* create();
 	void onEnter();
 	virtual void levelup(int key);
-	void dianmei::attackOneEnemy(enemy* attack_enemy);
+	void dianmei::attackOneEnemy(Enemy* attack_enemy);
 	virtual void attack_act();
 	virtual std::string getPicName();
 };

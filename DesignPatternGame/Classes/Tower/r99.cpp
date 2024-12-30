@@ -142,7 +142,7 @@ float calculateRotationAngle(const Vec2& turretPosition, const Vec2& monsterPosi
     return angle;
 }
 
-void r99::attackOneEnemy(enemy* attack_enemy)
+void r99::attackOneEnemy(Enemy* attack_enemy)
 {
     if(counter < level * 10)//子弹没有打空
     {

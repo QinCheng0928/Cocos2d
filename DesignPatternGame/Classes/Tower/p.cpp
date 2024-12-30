@@ -64,7 +64,7 @@ void p::levelup(int key)
     }
 }
 
-void p::attackOneEnemy(enemy* attack_enemy)
+void p::attackOneEnemy(Enemy* attack_enemy)
 {
     CCLOG("p::attackOneEnemy()is running..");
     //毒气弹
@@ -80,10 +80,10 @@ void p::attackOneEnemy(enemy* attack_enemy)
     attack_enemy->addChild(emitter, 10);
 
     //计时器每秒怪物身上就受伤
-    attack_enemy->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&enemy::noxHit), 0.5f);
+    attack_enemy->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&Enemy::noxHit), 0.5f);
     //计时器6秒之后解除减速并且爆炸
     nox->scheduleOnce(static_cast<cocos2d::SEL_SCHEDULE>(&p::remove_zidan), 2.5f);
-    attack_enemy->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&enemy::noxDown), 2.0f);
+    attack_enemy->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&Enemy::noxDown), 2.0f);
     nox->scheduleOnce(static_cast<cocos2d::SEL_SCHEDULE>(&bullet::booom), 2.0f);
 
     

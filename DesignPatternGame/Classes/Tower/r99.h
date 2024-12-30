@@ -17,7 +17,7 @@ public:
 	void load();//装载相关
 	void start(float dt);//初始化子弹数目，启动侦测函数
 	void bulletCounter(float dt);//子弹数目侦测
-	void attackOneEnemy(enemy* attack_enemy);//攻击一个敌人相关
+	void attackOneEnemy(Enemy* attack_enemy);//攻击一个敌人相关
 	virtual void attack_act();//攻击动作相关
 	virtual std::string getPicName();//获取升级图片
 };

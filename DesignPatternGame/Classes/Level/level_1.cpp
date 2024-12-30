@@ -3,15 +3,18 @@
 #include "../Level/baseLevel.h"
 #include "SimpleAudioEngine.h"
 #include "ui/CocosGUI.h"
-#include "../Enemies/enemy.h"
-#include "../Enemies/enemy1.h"
-#include "../Enemies/enemy2.h"
-#include "../Enemies/enemy3.h"
+
 
 USING_NS_CC;
 
 bool Level_1::init()
 {
+	/*enemyFactories["Soldier"] = new SoldierEnemyFactory();
+	enemyFactories["Tank"] = new TankEnemyFactory();
+	enemyFactories["Boss"] = new BossEnemyFactory();*/
+	/*enemyFactories.insert("Soldier", new SoldierEnemyFactory);
+	enemyFactories.insert("Tank", new TankEnemyFactory);
+	enemyFactories.insert("Boss", new BossEnemyFactory);*/
 	return baseLevel::init();
 }
 
@@ -44,7 +47,7 @@ void Level_1::waveSet()
 	WaveList wave1;
 	wave1.spawnInterval = 0.7;
 	for (int i = 0; i < 5; i++) {
-		auto enemy = mike::create();
+		auto enemy = this->soldierEnemyFactory.createEnemy();
 		enemy->setPosition(path.front()->getPosition());
 		wave1.sequence.pushBack(enemy);
 	}
@@ -53,7 +56,7 @@ void Level_1::waveSet()
 	WaveList wave2;
 	wave2.spawnInterval = 0.5;
 	for (int i = 0; i < 10; i++) {
-		auto enemy = nongp::create();
+		auto enemy = this->tankEnemyFactory.createEnemy();
 		enemy->setPosition(path.front()->getPosition());
 		wave2.sequence.pushBack(enemy);
 	}
@@ -62,7 +65,7 @@ void Level_1::waveSet()
 	WaveList wave3;
 	wave3.spawnInterval = 1;
 	for (int i = 0; i < 3; i++) {
-		auto enemy = zy::create();
+		auto enemy = this->bossEnemyFactory.createEnemy();
 		enemy->setPosition(path.front()->getPosition());
 		wave3.sequence.pushBack(enemy);
 	}

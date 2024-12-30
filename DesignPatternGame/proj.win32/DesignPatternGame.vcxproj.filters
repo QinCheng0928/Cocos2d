@@ -84,20 +84,29 @@
     <ClCompile Include="..\Classes\Level\level_2.cpp">
       <Filter>src\Level</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Enemies\enemy.cpp">
-      <Filter>src\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Enemies\enemy1.cpp">
-      <Filter>src\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Enemies\enemy2.cpp">
-      <Filter>src\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Enemies\enemy3.cpp">
-      <Filter>src\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Bullet\bullet.cpp">
       <Filter>src\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Enemies\Factories\BossEnemyFactory.cpp">
+      <Filter>src\Enemies\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Enemies\Factories\SoldierEnemyFactory.cpp">
+      <Filter>src\Enemies\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Enemies\Factories\TankEnemyFactory.cpp">
+      <Filter>src\Enemies\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Enemies\BossEnemy.cpp">
+      <Filter>src\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Enemies\Enemy.cpp">
+      <Filter>src\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Enemies\SoldierEnemy.cpp">
+      <Filter>src\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Enemies\TankEnemy.cpp">
+      <Filter>src\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -143,20 +152,32 @@
     <ClInclude Include="..\Classes\Level\level_2.h">
       <Filter>src\Level</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Enemies\enemy.h">
-      <Filter>src\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Enemies\enemy1.h">
-      <Filter>src\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Enemies\enemy2.h">
-      <Filter>src\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Enemies\enemy3.h">
-      <Filter>src\Enemies</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Bullet\bullet.h">
       <Filter>src\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enemies\Factories\BossEnemyFactory.h">
+      <Filter>src\Enemies\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enemies\Factories\EnemyFactory.h">
+      <Filter>src\Enemies\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enemies\Factories\SoldierEnemyFactory.h">
+      <Filter>src\Enemies\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enemies\Factories\TankEnemyFactory.h">
+      <Filter>src\Enemies\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enemies\BossEnemy.h">
+      <Filter>src\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enemies\Enemy.h">
+      <Filter>src\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enemies\SoldierEnemy.h">
+      <Filter>src\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enemies\TankEnemy.h">
+      <Filter>src\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

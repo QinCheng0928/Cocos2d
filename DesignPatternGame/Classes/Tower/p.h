@@ -17,7 +17,7 @@ public:
 	int getNoxDamage();//获取毒气伤害
 	int getBooomDamage();//获取毒气弹爆炸伤害
 	virtual void levelup(int key);
-	void attackOneEnemy(enemy* attack_enemy);
+	void attackOneEnemy(Enemy* attack_enemy);
 	virtual void attack_act();
 	virtual std::string getPicName();
 	void remove_zidan(float dt);

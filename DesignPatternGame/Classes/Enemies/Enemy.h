@@ -1,31 +1,35 @@
 #ifndef __ENEMY_H__
 #define __ENEMY_H__
 #include "cocos2d.h"
-#include "../Block/baseBlock.h"
-USING_NS_CC;
-class enemy :public cocos2d::Sprite
-{
-protected:
-	int value;//价值
-	float speed;//移动速度
-	int hp;//血量
-	int maxnhp;//最大血量
-	float speedScale;//速度倍数
-	PathBlock* nextPosition;//要移动到的下一个格子
-public:
-	enemy();
-	virtual bool init();
-	static enemy* create(const std::string& filename);
-	void set_hp_scale(int key);//设置血量倍数
-	void onEnter();
-	void get_hit(int damage);//受击函数
-	void move(float dt);//移动函数
-	void update(float dt);   //每一帧更新
-	virtual void show();//调试信息，控制台输出
-	void showhp();//显示血量以及血条
-	void setSpeedScale(float s);//设置速度倍数
-	void noxHit(float dt);//遭到毒气伤害
-	void noxDown(float dt);//毒气弹爆炸
-};
 
+#include "../Utils/Subject/subject.h"
+#include "../Block/baseBlock.h"
+
+USING_NS_CC;
+
+class Enemy : public Sprite, public Subject {
+protected:
+    int value;                  // Value of the enemy
+    float speed;                // Speed of the enemy
+    int hp;                     // Health points
+    int maxHp;                  // Maximum health points
+    float speedScale;           // Strategy for movement
+    PathBlock* nextPosition;    // Next block to move
+
+public:
+    Enemy();
+    virtual bool init();
+    static Enemy* create(const std::string& filename);
+    void setHpScale(int key);       // Set the hp
+    void onEnter();
+    void getHit(int damage);
+    void move(float dt);            // Move the enemy
+    void update(float dt);
+    virtual void show();            // Debug information, output to console
+    void showhp();                  // Display health and health bar
+    void setSpeedScale(float s);    // Set speed multiplier
+    void noxHit(float dt);          // Take poison gas damage
+    void noxDown(float dt);         // Poison gas grenade explosion
+
+};
 #endif

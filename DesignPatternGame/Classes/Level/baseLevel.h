@@ -3,8 +3,11 @@
 
 #include "cocos2d.h"
 #include "../Block/baseBlock.h"
-#include "../Enemies/enemy.h"
 #include "../Tower/tower.h"
+#include "../Enemies/Factories/EnemyFactory.h"
+#include "../Enemies/Factories/SoldierEnemyFactory.h"
+#include "../Enemies/Factories/TankEnemyFactory.h"
+#include "../Enemies/Factories/BossEnemyFactory.h"
 
 /*
 关卡基类
@@ -32,6 +35,10 @@ public:
 	int maxWave;
 	bool stop;
 
+	SoldierEnemyFactory soldierEnemyFactory;
+	TankEnemyFactory tankEnemyFactory;
+	BossEnemyFactory bossEnemyFactory;
+
 	struct Spawn
 	{
 		int x;
@@ -44,7 +51,7 @@ public:
 		//出怪间隔时间
 		float spawnInterval;
 		//出怪顺序
-		Vector<enemy*> sequence;
+		Vector<Enemy*> sequence;
 	};
 
 	Vector<PathBlock*> path;
@@ -54,7 +61,7 @@ public:
 	//指向当前波次的迭代器
 	std::vector<WaveList>::iterator waveIter;
 	//指向即将生成的怪物的迭代器
-	Vector<enemy*>::iterator currentIter;
+	Vector<Enemy*>::iterator currentIter;
 
 	Vector<tower*> currentTowers;
 
@@ -79,7 +86,7 @@ public:
 	void switchToPauseMenu();
 	//对波次信息进行设置
 	void waveInit();
-	virtual void waveSet();
+	virtual void waveSet(){}
 	//对每帧更新的内容进行设置
 	void scheduleInit();
 	//自动增加一个怪物路径

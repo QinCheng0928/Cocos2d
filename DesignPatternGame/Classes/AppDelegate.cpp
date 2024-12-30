@@ -1,10 +1,8 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
-#include"testScene.h"
-#include"baseLevel.h"
-#include "zzytestscene.h"
-#include"level_1.h"
-#include "GameSaveManager.h"//´æµµ
+#include "Level/baseLevel.h"
+#include "Level/level_1.h"
+#include "GameSaveManager/GameSaveManager.h"//´æµµ
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1

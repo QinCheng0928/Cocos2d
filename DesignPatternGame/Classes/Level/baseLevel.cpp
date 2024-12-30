@@ -2,8 +2,8 @@
 #include "../Level/baseLevel.h"
 #include "SimpleAudioEngine.h"
 #include "ui/CocosGUI.h"
-#include "../Enemies/enemy.h"
-#include "../Enemies/enemy1.h"
+#include "../Enemies/Enemy.h"
+#include "../Enemies/SoldierEnemy.h"
 #include "../Tower/dianmei.h"
 #include "../GameSaveManager/GameSaveManager.h"
 #include "../HelloWorldScene.h"
@@ -247,32 +247,6 @@ void baseLevel::waveInit()
 	currentIter = waveIter->sequence.begin();
 }
 
-void baseLevel::waveSet()
-{
-	WaveList wave1;
-	wave1.spawnInterval = 0.5;
-	for (int i = 0; i < 3; i++) {
-		auto enemy = enemy::create("mike.png");
-		enemy->setScale(0.2);
-		enemy->setPosition(path.front()->getPosition());
-		wave1.sequence.pushBack(enemy);
-	}
-	wave.push_back(wave1);
-
-	WaveList wave2;
-	wave2.spawnInterval = 0.1;
-	for (int i = 0; i < 3; i++) {
-		auto enemy = enemy::create("mike.png");
-		enemy->setScale(0.2);
-		enemy->setPosition(path.front()->getPosition());
-		wave2.sequence.pushBack(enemy);
-	}
-	wave.push_back(wave2);
-
-	maxWave = wave.size();
-	waveIter = wave.begin();
-	currentIter = waveIter->sequence.begin();
-}
 
 void baseLevel::scheduleInit()
 {

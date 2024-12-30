@@ -86,7 +86,7 @@ void tower::attack_act()
 
 }
 
-float tower::get_distance(enemy* enemy,tower* tower)
+float tower::get_distance(Enemy* enemy,tower* tower)
 {
 	float enemy_x = enemy->getPosition().x;
 	float enemy_y = enemy->getPosition().y;
@@ -238,7 +238,7 @@ bool tower::judgeListenerCallback(cocos2d::Touch* touch, cocos2d::Event* event)
 	return false;
 }
 //搜索单个敌人（弃用）
-enemy* tower::search()
+Enemy* tower::search()
 {
 	auto cur_baseLevel = dynamic_cast<baseLevel*>(this->getParent());
 	if(cur_baseLevel!=nullptr)
@@ -262,9 +262,9 @@ enemy* tower::search()
 	return nullptr;
 }
 //搜索一至多个敌人
-Vector<enemy*> tower::multiSearch()
+Vector<Enemy*> tower::multiSearch()
 {
-	Vector<enemy*> temp;
+	Vector<Enemy*> temp;
 	//获取当前波次所有怪物
 	auto cur_baseLevel = dynamic_cast<baseLevel*>(this->getParent());
 	if(cur_baseLevel!=nullptr)
@@ -317,7 +317,7 @@ void tower::update(float dt)
 	if (state == 1)
 	{
 		CCLOG("enemy::state==1 searching...\n");
-		Vector<enemy*> cur_enemy = this->multiSearch();//搜索怪物
+		Vector<Enemy*> cur_enemy = this->multiSearch();//搜索怪物
 		if (cur_enemy.size()!=0)
 		{
 			state = 2;
@@ -333,7 +333,7 @@ void tower::update(float dt)
 	{
 		if (atk_eny.size() < maxLockNum)
 		{
-			Vector<enemy*> cur_enemy = this->multiSearch();//更新敌人列表
+			Vector<Enemy*> cur_enemy = this->multiSearch();//更新敌人列表
 			atk_eny = cur_enemy;
 		}
 		CCLOG("attack %d enemy...\n", atk_eny.size());
