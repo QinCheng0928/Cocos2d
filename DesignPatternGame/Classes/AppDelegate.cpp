@@ -1,29 +1,10 @@
-/****************************************************************************
- Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
- http://www.cocos2d-x.org
- 
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
- 
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
- 
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- THE SOFTWARE.
- ****************************************************************************/
-
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
+#include"testScene.h"
+#include"baseLevel.h"
+#include "zzytestscene.h"
+#include"level_1.h"
+#include "GameSaveManager.h"//存档
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -42,10 +23,10 @@ using namespace CocosDenshion;
 
 USING_NS_CC;
 
-static cocos2d::Size designResolutionSize = cocos2d::Size(480, 320);
-static cocos2d::Size smallResolutionSize = cocos2d::Size(480, 320);
-static cocos2d::Size mediumResolutionSize = cocos2d::Size(1024, 768);
-static cocos2d::Size largeResolutionSize = cocos2d::Size(2048, 1536);
+static cocos2d::Size designResolutionSize = cocos2d::Size(1920, 1080);
+static cocos2d::Size smallResolutionSize = cocos2d::Size(1920, 1080);
+static cocos2d::Size mediumResolutionSize = cocos2d::Size(1920, 1080);
+static cocos2d::Size largeResolutionSize = cocos2d::Size(1920, 1080);
 
 AppDelegate::AppDelegate()
 {
@@ -77,15 +58,19 @@ static int register_all_packages()
     return 0; //flag for packages manager
 }
 
+
 bool AppDelegate::applicationDidFinishLaunching() {
+
+    
+
     // initialize director
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-        glview = GLViewImpl::createWithRect("DesignPatternGame", cocos2d::Rect(0, 0, designResolutionSize.width, designResolutionSize.height));
+        glview = GLViewImpl::createWithRect("DAC", cocos2d::Rect(0, 0, designResolutionSize.width, designResolutionSize.height));
 #else
-        glview = GLViewImpl::create("DesignPatternGame");
+        glview = GLViewImpl::create("DAC");
 #endif
         director->setOpenGLView(glview);
     }
@@ -117,11 +102,31 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     register_all_packages();
 
-    // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
+    // 在这里把runmode更改为自己名字的缩写,并在对应的分支内进行运行调试(RELEASE代表最终成果)
+    std::string runmode = JWC;
 
-    // run
-    director->runWithScene(scene);
+    if (runmode == JWC) {
+     
+        auto scene = HelloWorld::createScene();
+
+        // run
+        director->runWithScene(scene);
+    }
+    else if (runmode == QC) {
+        auto scene = HelloWorld::createScene();
+
+        // run
+        director->runWithScene(scene);
+    }
+    else if (runmode == ZZY) {
+        //auto scene = zzytest::createScene();
+        auto scene = baseLevel::createScene();
+        director->runWithScene(scene);
+    }
+    else if (runmode == RELEASE) {
+
+    }
+
 
     return true;
 }
