@@ -9,9 +9,6 @@ USING_NS_CC;
 
 bool Level_1::init()
 {
-	/*enemyFactories["Soldier"] = new SoldierEnemyFactory();
-	enemyFactories["Tank"] = new TankEnemyFactory();
-	enemyFactories["Boss"] = new BossEnemyFactory();*/
 	enemyFactories.insert("Soldier", new SoldierEnemyFactory);
 	enemyFactories.insert("Tank", new TankEnemyFactory);
 	enemyFactories.insert("Boss", new BossEnemyFactory);
