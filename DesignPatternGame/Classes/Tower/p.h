@@ -3,7 +3,7 @@
 #include "cocos2d.h"
 #include "tower.h"
 #include "../Enemies/enemy.h"
-#include "../Buttet/bullet.h"
+#include "../Bullet/bullet.h"
 USING_NS_CC;
 class p :public tower {
 private:

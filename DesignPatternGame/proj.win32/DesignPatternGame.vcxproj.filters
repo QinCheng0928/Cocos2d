@@ -19,9 +19,6 @@
     <Filter Include="src\Block">
       <UniqueIdentifier>{e1accc14-13db-43ba-ae60-3b48fe6eaf54}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Buttet">
-      <UniqueIdentifier>{e6d495c3-eec7-4b63-a0c9-8adfa61f5057}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\GameSaveManager">
       <UniqueIdentifier>{86199364-b51d-4bf8-b30b-3df47abfa92b}</UniqueIdentifier>
     </Filter>
@@ -39,6 +36,9 @@
     </Filter>
     <Filter Include="src\Utils\Subject">
       <UniqueIdentifier>{afea041e-150d-483d-9cd2-941de78d6bd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Bullet">
+      <UniqueIdentifier>{e6d495c3-eec7-4b63-a0c9-8adfa61f5057}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -62,9 +62,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Block\baseBlock.cpp">
       <Filter>src\Block</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Buttet\bullet.cpp">
-      <Filter>src\Buttet</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Tower\dianmei.cpp">
       <Filter>src\Tower</Filter>
@@ -99,6 +96,9 @@
     <ClCompile Include="..\Classes\Enemies\enemy3.cpp">
       <Filter>src\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Bullet\bullet.cpp">
+      <Filter>src\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -121,9 +121,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Block\baseBlock.h">
       <Filter>src\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Buttet\bullet.h">
-      <Filter>src\Buttet</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Tower\dianmei.h">
       <Filter>src\Tower</Filter>
@@ -157,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Enemies\enemy3.h">
       <Filter>src\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Bullet\bullet.h">
+      <Filter>src\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 #include "level_2.h"
 #include "../Block/baseBlock.h"
-#include "../Level/baseLevel.h"
+#include "baseLevel.h"
 #include "SimpleAudioEngine.h"
 #include "ui/CocosGUI.h"
 #include "../Enemies/enemy.h"

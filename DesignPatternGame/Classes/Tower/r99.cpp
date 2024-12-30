@@ -1,7 +1,7 @@
 #include"r99.h"
 #include"cocos2d.h"
 #include "../Enemies/enemy.h"
-#include "../Buttet/bullet.h"
+#include "../Bullet/bullet.h"
 USING_NS_CC;
 r99::r99()
 {
