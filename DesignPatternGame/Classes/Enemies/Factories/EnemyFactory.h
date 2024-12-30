@@ -3,7 +3,7 @@
 #include "cocos2d.h"
 #include "../Enemy.h"
 
-class EnemyFactory {
+class EnemyFactory : public cocos2d::Ref {
 public:
     virtual Enemy* createEnemy() = 0; 
     virtual ~EnemyFactory() {}

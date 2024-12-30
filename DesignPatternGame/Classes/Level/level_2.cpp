@@ -9,6 +9,9 @@ USING_NS_CC;
 
 bool Level_2::init()
 {
+	enemyFactories.insert("Soldier", new SoldierEnemyFactory);
+	enemyFactories.insert("Tank", new TankEnemyFactory);
+	enemyFactories.insert("Boss", new BossEnemyFactory);
 	return baseLevel::init();
 }
 
@@ -41,10 +44,10 @@ void Level_2::waveSet()
 	WaveList wave1;
 	wave1.spawnInterval = 1;
 	for (int i = 0; i < 6; i++) {
-		auto soldier = this->soldierEnemyFactory.createEnemy();
+		auto soldier = enemyFactories.at("Soldier")->createEnemy();
 		soldier->setPosition(path.front()->getPosition());
 		wave1.sequence.pushBack(soldier);
-		auto tank = this->tankEnemyFactory.createEnemy();
+		auto tank = enemyFactories.at("Tank")->createEnemy();
 		tank->setPosition(path.front()->getPosition());
 		wave1.sequence.pushBack(tank);
 	}
@@ -54,10 +57,10 @@ void Level_2::waveSet()
 	WaveList wave2;
 	wave2.spawnInterval = 0.7;
 	for (int i = 0; i < 20; i++) {
-		auto soldier = this->soldierEnemyFactory.createEnemy();
+		auto soldier = enemyFactories.at("Soldier")->createEnemy();
 		soldier->setPosition(path.front()->getPosition());
 		wave2.sequence.pushBack(soldier);
-		auto boss = this->bossEnemyFactory.createEnemy();
+		auto boss = enemyFactories.at("Boss")->createEnemy();
 		boss->setPosition(path.front()->getPosition());
 		wave2.sequence.pushBack(boss);
 	}

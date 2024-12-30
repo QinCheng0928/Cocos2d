@@ -35,9 +35,10 @@ public:
 	int maxWave;
 	bool stop;
 
-	SoldierEnemyFactory soldierEnemyFactory;
+	/*SoldierEnemyFactory soldierEnemyFactory;
 	TankEnemyFactory tankEnemyFactory;
-	BossEnemyFactory bossEnemyFactory;
+	BossEnemyFactory bossEnemyFactory;*/
+	cocos2d::Map<std::string, EnemyFactory*> enemyFactories;
 
 	struct Spawn
 	{
