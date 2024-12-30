@@ -2,9 +2,9 @@
 #define _BASE_LEVEL
 
 #include "cocos2d.h"
-#include "../Block/baseBlock.h"
-#include "../Enemies/Enemy.h"
-#include "../Tower/tower.h"
+#include"baseBlock.h"
+#include"enemy.h"
+#include"tower.h"
 
 /*
 关卡基类
@@ -44,7 +44,7 @@ public:
 		//出怪间隔时间
 		float spawnInterval;
 		//出怪顺序
-		Vector<Enemy*> sequence;
+		Vector<enemy*> sequence;
 	};
 
 	Vector<PathBlock*> path;
@@ -54,7 +54,7 @@ public:
 	//指向当前波次的迭代器
 	std::vector<WaveList>::iterator waveIter;
 	//指向即将生成的怪物的迭代器
-	Vector<Enemy*>::iterator currentIter;
+	Vector<enemy*>::iterator currentIter;
 
 	Vector<tower*> currentTowers;
 

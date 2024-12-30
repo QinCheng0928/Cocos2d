@@ -1,56 +1,46 @@
 #ifndef __TOWER_H__
 #define __TOWER_H__
-
 #include "cocos2d.h"
-#include "../Enemies/Enemy.h"
-#include "../Utils/Observer/observer.h"
-#include "../Utils/Subject/subject.h"
+#include "enemy.h"
 #include <vector>
-
 USING_NS_CC;
-
-class Tower : public Sprite, public Observer {
+class tower :public cocos2d::Sprite
+{
 protected:
-    int level; // ç­‰çº§
-    int cost; // æˆæœ¬
-    int upgradeCost; // å‡çº§è´¹ç”¨
-    float speed; // æ”»å‡»é€Ÿåº¦
-    int damage; // ä¼¤å®³
-    float range; // æ”»å‡»èŒƒå›´
-    int state; // çŠ¶æ€
-    double squart;
-    Vector<Enemy*> atk_enemies; // æ”»å‡»ç›®æ ‡åˆ—è¡¨
-    int maxLockNum; // æœ€å¤§é”å®šæ•°
+	int level;//µÈ¼¶
+	int cost;//»¨·Ñ
+	int upgradeCost;//Éı¼¶»¨·Ñ
+	float speed;//Ã¿´Î¹¥»÷µÄ¼ä¸ôÊ±¼ä
+	int damage;//ÉËº¦
+	float squart;//¹¥»÷·¶Î§
+	int state;//×´Ì¬£¬ÓĞËÑË÷ºÍËøµĞ×´Ì¬
+	//enemy* attack_enemy;
+	Vector<enemy*>atk_eny;//´æ´¢ËøµĞµÄÁĞ±í
+	int maxLockNum;//×î´óËøµĞÈËÊı
 public:
-    Tower();
-    virtual bool init();
-    void onEnter();
-    void onExit();
-    void running_act();
-    virtual void attack_act();
-    Enemy* search();
-    Vector<Enemy*> multiSearch();
-    void set(int new_level, int new_cost, float new_speed, int new_damage, int new_range);
-    int get_level();
-    float get_distance(Enemy* enemy, Tower* tower);
-    virtual int getCost();
-    virtual void levelup(int) = 0;
-    virtual std::string getPicName() = 0;
-    void clickCallback();
-    bool judgeListenerCallback(Touch* touch, Event* event);
-    void remove_zidan(float dt);
-    void update(float dt);
-
-    // Observeræ–¹æ³•
-    void update(Subject* subject) override {
-        Enemy* enemy = dynamic_cast<Enemy*>(subject);
-        if (enemy) {
-            handleEnemyUpdate(enemy);
-        }
-    }
-
-private:
-    void handleEnemyUpdate(Enemy* enemy);
+	tower();
+	virtual bool init();
+	//static tower* create(const std::string& filename);
+	void onEnter();
+	void onExit();
+	void running_act();//´ı»ú¶¯×÷
+	virtual void attack_act();//¹¥»÷¶¯×÷
+	enemy* search();//¶Ôµ¥¸öµĞÈË½øĞĞËÑË÷²¢Ëø¶¨£¨ÒÑÆúÓÃ£©
+	Vector<enemy*>multiSearch();//¶ÔÒ»ÖÁ¶à¸öµĞÈËËø¶¨
+	void set(int new_level, int new_cost, float new_speed, int new_damage,int new_squart);//ÉèÖÃ²ÎÊı
+	int got_level();//»ñÈ¡µÈ¼¶
+	float get_distance(enemy* enemy,tower* tower);//»ñÈ¡¾àÀë
+	virtual int getCost();//»ñÈ¡¼Û¸ñ
+	virtual void levelup(int) = 0;
+	//»ñÈ¡¶ÔÓ¦µÄÉı¼¶Í¼Æ¬
+	virtual std::string getPicName() = 0;
+	//Éı¼¶¡¢´İ»ÙÅÚËşµÄ¶ş¼¶²Ëµ¥
+	void clickCallback();
+	//ÅĞ¶ÏÊÇ·ñÒª´¥·¢»Øµ÷º¯Êı
+	bool judgeListenerCallback(cocos2d::Touch* touch, cocos2d::Event* event);
+	void remove_zidan(float dt);//ÒÆ³ı×Óµ¯
+	void update(float dt);
 };
 
-#endif // __TOWER_H__
+
+#endif

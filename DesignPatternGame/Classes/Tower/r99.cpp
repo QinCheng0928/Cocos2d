@@ -1,7 +1,7 @@
 #include"r99.h"
 #include"cocos2d.h"
-#include "../Enemies/Enemy.h"
-#include "../Buttet/Bullet.h"
+#include"enemy.h"
+#include"bullet.h"
 USING_NS_CC;
 r99::r99()
 {
@@ -39,7 +39,7 @@ r99* r99::create()
 
 void r99::onEnter()
 {
-    Tower::onEnter();
+    tower::onEnter();
     this->setTag(1);//设置标签为1
     this->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&r99::bulletCounter));
     auto numOfBullet = Label::createWithTTF(std::to_string(level*10-counter) , "fonts/Marker Felt.ttf", 100);//子弹数目显示
@@ -54,7 +54,7 @@ void r99::levelup(int key)
 
     if (key == 2)
     {
-        another = Tower::create("r991.png")->getTexture();
+        another = tower::create("r991.png")->getTexture();
         this->set(2, cost + upgradeCost, 0.1f, 40, 300.0f);
         this->setTexture(another);
         auto numOfBullet = dynamic_cast<Label*>(getChildByName("numOfBullet"));
@@ -62,7 +62,7 @@ void r99::levelup(int key)
     }
     else if (key == 3)
     {
-        another = Tower::create("r97.png")->getTexture();
+        another = tower::create("r97.png")->getTexture();
         this->set(3, cost + upgradeCost, 0.1f, 40, 300.0f);
         this->setTexture(another);
         auto numOfBullet = dynamic_cast<Label*>(getChildByName("numOfBullet"));
@@ -73,7 +73,7 @@ void r99::levelup(int key)
 
 void r99::dadada()
 {
-    auto attack_enemy = atk_enemies.front();//获取序列中的第一个敌人
+    auto attack_enemy = atk_eny.front();//获取序列中的第一个敌人
 
     CCLOG("r99::dadada is running...\n");
     auto bullet = bullet::create("shuiguai.png");//子弹创建
@@ -121,7 +121,7 @@ void r99::start(float dt)
 {
     auto numOfBullet = dynamic_cast<Label*>(getChildByName("numOfBullet"));
     numOfBullet->setString(std::to_string(level * 10 - counter));//更新子弹数量
-    this->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&Tower::update), speed);//打开侦测函数
+    this->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&tower::update), speed);//打开侦测函数
 }
 
 void r99::bulletCounter(float dt)
@@ -129,7 +129,7 @@ void r99::bulletCounter(float dt)
     if (counter >= level * 10)
     {
         counter = 0;
-        this->unschedule(static_cast<cocos2d::SEL_SCHEDULE>(&Tower::update));//子弹为0关闭搜索计数器
+        this->unschedule(static_cast<cocos2d::SEL_SCHEDULE>(&tower::update));//子弹为0关闭搜索计数器
         load();//装弹
     }
 }
@@ -142,7 +142,7 @@ float calculateRotationAngle(const Vec2& turretPosition, const Vec2& monsterPosi
     return angle;
 }
 
-void r99::attackOneEnemy(Enemy* attack_enemy)
+void r99::attackOneEnemy(enemy* attack_enemy)
 {
     if(counter < level * 10)//子弹没有打空
     {
@@ -170,7 +170,7 @@ void r99::attackOneEnemy(Enemy* attack_enemy)
 
 void r99::attack_act()
 {
-    for (auto i = atk_enemies.begin(); i != atk_enemies.end(); i++)
+    for (auto i = atk_eny.begin(); i != atk_eny.end(); i++)
         attackOneEnemy(*i);
 }
 

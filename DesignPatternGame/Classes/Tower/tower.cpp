@@ -1,21 +1,21 @@
 #include "SimpleAudioEngine.h"
 #include "tower.h"
-#include "../Enemies/Enemy.h"
-#include "../Level/baseLevel.h"
-#include <cmath>
+#include"baseLevel.h"
+#include<cmath>
 USING_NS_CC;
 using namespace std;
-inline bool Tower::init()
+inline bool tower::init()
 {
 	return true;
 }
 
-Tower::Tower()
+tower::tower()
 {
 	level = 1;
 	cost = 1;
-	speed = 1.0f;
+	speed = 1.0f;//¹¥»÷¼ä¸ô
 	damage = 60;
+	squart = 500.0f;
 	state = 1;
 	//attack_enemy = nullptr;
 	maxLockNum = 1;
@@ -23,36 +23,36 @@ Tower::Tower()
 
 
 
-void Tower::onEnter()
+void tower::onEnter()
 {
 	Sprite::onEnter();
 
-	//ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
+	//»ñµÃÊÂ¼þ·Ö·¢Æ÷
 	auto* disp = Director::getInstance()->getEventDispatcher();
 
-	//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//´´½¨Ò»¸ö¼àÌýÆ÷
 	auto listener = EventListenerTouchOneByOne::create();
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Â¼ï¿½
+	//²»»áÍÌÃ»ÊÂ¼þ
 	listener->setSwallowTouches(false);
 
 	listener->onTouchBegan = [](Touch* touch, Event* event) {
 		return true;
 		};
-	listener->onTouchEnded = CC_CALLBACK_2(Tower::judgeListenerCallback, this); //ï¿½ï¿½ï¿½ï¿½Ì§ï¿½ï¿½Å»á´¥ï¿½ï¿½
+	listener->onTouchEnded = CC_CALLBACK_2(tower::judgeListenerCallback, this); //°´¼üÌ§Æð²Å»á´¥·¢
 
-	//ï¿½Ñ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½BaseBlockï¿½ï¿½
+	//°Ñ¼àÌýÆ÷Ìí¼Óµ½BaseBlockÖÐ
 	disp->addEventListenerWithSceneGraphPriority(listener, this);
-	this->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&Tower::update), speed);
+	this->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&tower::update), speed);
 }
-void Tower::onExit()
+void tower::onExit()
 {
 	Sprite::onExit();
 
-	//ï¿½Æ³ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ¼ï¿½ï¿½ï¿½
+	//ÒÆ³ý¸Ã¶ÔÏóËùÓÐµÄ¼àÌý
 	auto* disp = Director::getInstance()->getEventDispatcher();
 	disp->removeEventListenersForTarget(this);
 }
-void Tower::set(int new_level, int new_cost, float new_speed, int new_damage,int new_squart)
+void tower::set(int new_level, int new_cost, float new_speed, int new_damage,int new_squart) 
 {
 	level = new_level;
 	cost = new_cost;
@@ -61,14 +61,14 @@ void Tower::set(int new_level, int new_cost, float new_speed, int new_damage,int
 	squart = new_squart;
 }
 
-int Tower::get_level()
+int tower::got_level()
 {
 	return level;
 }
 
-void Tower::running_act()
+void tower::running_act()
 {
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//´ý»ú¶¯×÷
 	auto rotateTo1 = RotateTo::create(0.6f, 5.0f);
 	auto rotateTo2 = RotateTo::create(0.6f, -5.0f);
 	//auto moveBy1 = MoveBy::create(0.3f, Vec2(0, 10));
@@ -81,12 +81,12 @@ void Tower::running_act()
 	this->runAction(seqf);
 }
 
-void Tower::attack_act()
+void tower::attack_act()
 {
 
 }
 
-float Tower::get_distance(Enemy* enemy, Tower* tower)
+float tower::get_distance(enemy* enemy,tower* tower)
 {
 	float enemy_x = enemy->getPosition().x;
 	float enemy_y = enemy->getPosition().y;
@@ -96,19 +96,19 @@ float Tower::get_distance(Enemy* enemy, Tower* tower)
 	return distance;
 }
 
-int Tower::getCost()
+int tower::getCost()
 {
 	return cost;
 }
 
-void Tower::clickCallback()
+void tower::clickCallback()
 {
-	// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½DrawNode
+	// ´´½¨Ò»¸öDrawNode
 	auto drawNode = cocos2d::DrawNode::create();
 	this->getParent()->addChild(drawNode);
 	drawNode->setName("yuan");
 
-	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô²ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î§
+	// »­¿ÕÐÄÔ²±íÊ¾¹¥»÷·¶Î§
 	//drawNode->drawDot(this->getPosition(), this->squart, cocos2d::Color4F::WHITE);
 	//drawNode->drawCircle(this->getPosition(), this->squart, 0, segments, false, lineWidth, cocos2d::Color4F::WHITE);
 	drawNode->drawCircle(this->getPosition(), this->squart, 0, 100, false, cocos2d::Color4F::WHITE);
@@ -217,28 +217,28 @@ void Tower::clickCallback()
 	this->getParent()->addChild(layer);
 }
 
-bool Tower::judgeListenerCallback(cocos2d::Touch* touch, cocos2d::Event* event)
+bool tower::judgeListenerCallback(cocos2d::Touch* touch, cocos2d::Event* event)
 {
-	//ï¿½ï¿½È¡ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ó£¨¾ï¿½ï¿½ï¿½Blockï¿½Ô¼ï¿½ï¿½ï¿½
+	//»ñÈ¡ÊÂ¼þ¶ÔÏó£¨¾ÍÊÇBlock×Ô¼º£©
 	auto target = static_cast<Sprite*>(event->getCurrentTarget());
-	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
+	//»ñÈ¡µã»÷µÄÊÀ½çÎ»ÖÃ
 	Vec2 tworld = touch->getLocation();
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½×ªï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½Î»ï¿½Ã£ï¿½Blockï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ã£ï¿½
+	//½«ÊÀ½çÎ»ÖÃ×ª»»Îª±¾µØÎ»ÖÃ£¨BlockµÄÏà¶ÔÎ»ÖÃ£©
 	Vec2 tlocal = target->convertToNodeSpace(tworld);
 
-	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ä³ß´ï¿½
+	//»ñÈ¡¶ÔÏóµÄ³ß´ç
 	auto size = target->getContentSize();
 	auto rect = Rect(0, 0, size.width, size.height);
 
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Blockï¿½Ï£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½
+	//Èç¹ûµã»÷µÄÎ»ÖÃÊÇÔÚBlockÉÏ£¬Ôò»áÕæÕý´¥·¢»Øµ÷
 	if (rect.containsPoint(tlocal)) {
 		clickCallback();
 		return true;
 	}
 	return false;
 }
-//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½Ã£ï¿½
-Enemy* Tower::search()
+//ËÑË÷µ¥¸öµÐÈË£¨ÆúÓÃ£©
+enemy* tower::search()
 {
 	auto cur_baseLevel = dynamic_cast<baseLevel*>(this->getParent());
 	if(cur_baseLevel!=nullptr)
@@ -251,7 +251,7 @@ Enemy* Tower::search()
 				for (auto i = cur_enemy; i != cur_baseLevel->waveIter->sequence.end(); i++)
 				{
 					float distance = this->get_distance((*i), this);
-					if (distance <= Tower::squart)
+					if (distance <= tower::squart)
 					{
 						return (*i);
 					}
@@ -261,11 +261,11 @@ Enemy* Tower::search()
 	}
 	return nullptr;
 }
-//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-Vector<Enemy*> Tower::multiSearch()
+//ËÑË÷Ò»ÖÁ¶à¸öµÐÈË
+Vector<enemy*> tower::multiSearch()
 {
-	Vector<Enemy*> temp;
-	//ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¹ï¿½ï¿½ï¿½
+	Vector<enemy*> temp;
+	//»ñÈ¡µ±Ç°²¨´ÎËùÓÐ¹ÖÎï
 	auto cur_baseLevel = dynamic_cast<baseLevel*>(this->getParent());
 	if(cur_baseLevel!=nullptr)
 	{
@@ -274,11 +274,11 @@ Vector<Enemy*> Tower::multiSearch()
 			auto cur_enemy = cur_baseLevel->waveIter->sequence.begin();
 			if ((*cur_enemy) != nullptr)
 			{
-				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
+				//½«·ûºÏÌõ¼þµÄ¹ÖÎï¼ÓÈëÁÐ±í
 				for (auto i = cur_enemy; i != cur_baseLevel->waveIter->sequence.end(); i++)
 				{
 					float distance = this->get_distance((*i), this);
-					if (distance <= Tower::squart && temp.size()<maxLockNum)
+					if (distance <= tower::squart && temp.size()<maxLockNum)
 					{
 						temp.pushBack(*i);
 						CCLOG("temp.size()==%d", temp.size());
@@ -290,55 +290,38 @@ Vector<Enemy*> Tower::multiSearch()
 	return temp;
 }
 
-// å¤„ç†æ•Œäººæ›´æ–°
-void Tower::handleEnemyUpdate(Enemy* enemy) {
-    if (!enemy) return;
-
-    float distance = this->get_distance(enemy, this);
-
-    if (distance <= this->range) {
-        if (atk_enemies.size() < this->maxLockNum && !atk_enemies.contains(enemy)) {
-            atk_enemies.pushBack(enemy);
-            this->attack_act();
-        }
-    } else {
-        atk_enemies.eraseObject(enemy);
-    }
-}
-
-
-void Tower::update(float dt)
+void tower::update(float dt)
 {
-	//ï¿½Ð¶Ïµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê²Ã´×´Ì¬
+	//ÅÐ¶Ïµ±Ç°ÅÚËþÊÇÊ²Ã´×´Ì¬
 	//if (attack_enemy == nullptr || attack_enemy->getParent() == nullptr || get_distance(attack_enemy, this) > this->squart)//
 	//	state = 1;
 	int flag1 = 0, flag2 = 0;
-	for (auto i = atk_enemies.begin(); i != atk_enemies.end(); i++)
+	for (auto i = atk_eny.begin(); i != atk_eny.end(); i++)
 	{
 		if ((*i)->getParent() != nullptr)
-			flag1 = 1;//ï¿½ï¿½ï¿½Ú¹ï¿½ï¿½ï¿½
+			flag1 = 1;//´æÔÚ¹ÖÎï
 	}
 	if (flag1 == 0)
 		state = 1;
-	for (auto i = atk_enemies.begin(); i != atk_enemies.end(); i++)
+	for (auto i = atk_eny.begin(); i != atk_eny.end(); i++)
 	{
 		if (get_distance((*i), this) > this->squart)
-			flag2 = 1;//ï¿½ï¿½ï¿½Ú·ï¿½Î§ï¿½Ú¹ï¿½ï¿½ï¿½
+			flag2 = 1;//´æÔÚ·¶Î§ÄÚ¹ÖÎï
 	}
 	if (flag2 == 0)
 		state = 1;
 
-	if ((atk_enemies.empty() == 1) || flag1 == 0 || flag2 == 0)//ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Î´ï¿½ï¿½Ú¹ï¿½ï¿½ï£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
+	if ((atk_eny.empty() == 1) || flag1 == 0 || flag2 == 0)//Èç¹ûµ±Ç°²¨´Î´æÔÚ¹ÖÎï£¬Ôò½øÈëËÑË÷×´Ì¬
 		state = 1;
 
 	if (state == 1)
 	{
 		CCLOG("enemy::state==1 searching...\n");
-		Vector<Enemy*> cur_enemy = this->multiSearch();//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		Vector<enemy*> cur_enemy = this->multiSearch();//ËÑË÷¹ÖÎï
 		if (cur_enemy.size()!=0)
 		{
 			state = 2;
-			atk_enemies = cur_enemy;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
+			atk_eny = cur_enemy;//¸üÐÂÅÚËþËøµÐÁÐ±í
 		}
 		else
 		{
@@ -348,19 +331,19 @@ void Tower::update(float dt)
 	}
 	if (state == 2)
 	{
-		if (atk_enemies.size() < maxLockNum)
+		if (atk_eny.size() < maxLockNum)
 		{
-			Vector<Enemy*> cur_enemy = this->multiSearch();//ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½Ð±ï¿½
-			atk_enemies = cur_enemy;
+			Vector<enemy*> cur_enemy = this->multiSearch();//¸üÐÂµÐÈËÁÐ±í
+			atk_eny = cur_enemy;
 		}
-		CCLOG("attack %d enemy...\n", atk_enemies.size());
+		CCLOG("attack %d enemy...\n", atk_eny.size());
 		this->stopAllActions();
 		this->attack_act();
-		atk_enemies.clear();//Ã¿ï¿½Î¹ï¿½ï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½ï¿½
+		atk_eny.clear();//Ã¿´Î¹¥»÷Ö®ºóÇå¿Õ
 	}
 }
 
-void Tower::remove_zidan(float dt)
+void tower::remove_zidan(float dt)
 {
 	this->removeFromParent();
 }

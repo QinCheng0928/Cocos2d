@@ -1,6 +1,6 @@
 #include"p.h"
-#include "cocos2d.h"
-#include "../Enemies/Enemy.h"
+#include"cocos2d.h"
+#include"enemy.h"
 
 USING_NS_CC;
 p::p()
@@ -34,7 +34,7 @@ p* p::create()
 
 void p::onEnter()
 {
-    Tower::onEnter();
+    tower::onEnter();
     this->setTag(2);//设置Tag==2
 }
 
@@ -44,7 +44,7 @@ void p::levelup(int key)
 
     if (key == 2)
     {
-        another = Tower::create("p2.png")->getTexture();
+        another = tower::create("p2.png")->getTexture();
         this->set(2, cost + upgradeCost, 0.5, 50, 600.0f);
         /*this->stopAllActions();*/
         this->setTexture(another);
@@ -54,7 +54,7 @@ void p::levelup(int key)
     }
     else if (key == 3)
     {
-        another = Tower::create("p3.png")->getTexture();
+        another = tower::create("p3.png")->getTexture();
         this->set(3, cost + upgradeCost, 0.5, 50, 900.0f);
         //this->stopAllActions();
         this->setTexture(another);
@@ -64,7 +64,7 @@ void p::levelup(int key)
     }
 }
 
-void p::attackOneEnemy(Enemy* attack_enemy)
+void p::attackOneEnemy(enemy* attack_enemy)
 {
     CCLOG("p::attackOneEnemy()is running..");
     //毒气弹
@@ -80,10 +80,10 @@ void p::attackOneEnemy(Enemy* attack_enemy)
     attack_enemy->addChild(emitter, 10);
 
     //计时器每秒怪物身上就受伤
-    attack_enemy->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&Enemy::noxHit), 0.5f);
+    attack_enemy->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&enemy::noxHit), 0.5f);
     //计时器6秒之后解除减速并且爆炸
     nox->scheduleOnce(static_cast<cocos2d::SEL_SCHEDULE>(&p::remove_zidan), 2.5f);
-    attack_enemy->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&Enemy::noxDown), 2.0f);
+    attack_enemy->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&enemy::noxDown), 2.0f);
     nox->scheduleOnce(static_cast<cocos2d::SEL_SCHEDULE>(&bullet::booom), 2.0f);
 
     
@@ -96,14 +96,14 @@ int p::getBooomDamage()
 
 void p::remove_zidan(float dt)
 {
-    Tower::remove_zidan(dt);
+    tower::remove_zidan(dt);
 }
 
 
 void p::attack_act()
 {
     CCLOG("p::attack_act()is running..");
-    for (auto i = atk_enemies.begin(); i != atk_enemies.end(); i++)
+    for (auto i = atk_eny.begin(); i != atk_eny.end(); i++)
         attackOneEnemy(*i);
 }
 

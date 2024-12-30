@@ -1,13 +1,13 @@
-#include "../Block/baseBlock.h"
+#include"baseBlock.h"
 #include "baseLevel.h"
 #include "SimpleAudioEngine.h"
 #include "ui/CocosGUI.h"
-#include "../Enemies/Enemy.h"
-#include "../Enemies/BossEnemy.h"
-#include "../Tower/dianmei.h"
-#include "../GameSaveManager/GameSaveManager.h"
-#include "../HelloWorldScene.h"
-#include "../Tower/r99.h"
+#include"enemy.h"
+#include"enemy1.h"
+#include"dianmei.h"
+#include"GameSaveManager.h"
+#include"HelloWorldScene.h"
+#include"r99.h"
 USING_NS_CC;
 
 extern bool levelpass;
@@ -252,7 +252,7 @@ void baseLevel::waveSet()
 	WaveList wave1;
 	wave1.spawnInterval = 0.5;
 	for (int i = 0; i < 3; i++) {
-		auto enemy = Enemy::create("mike.png");
+		auto enemy = enemy::create("mike.png");
 		enemy->setScale(0.2);
 		enemy->setPosition(path.front()->getPosition());
 		wave1.sequence.pushBack(enemy);
@@ -262,7 +262,7 @@ void baseLevel::waveSet()
 	WaveList wave2;
 	wave2.spawnInterval = 0.1;
 	for (int i = 0; i < 3; i++) {
-		auto enemy = Enemy::create("mike.png");
+		auto enemy = enemy::create("mike.png");
 		enemy->setScale(0.2);
 		enemy->setPosition(path.front()->getPosition());
 		wave2.sequence.pushBack(enemy);
