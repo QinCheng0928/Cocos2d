@@ -1,7 +1,7 @@
 #ifndef __TOWER_H__
 #define __TOWER_H__
 #include "cocos2d.h"
-#include "enemy.h"
+#include "../Enemies/enemy.h"
 #include <vector>
 USING_NS_CC;
 class tower :public cocos2d::Sprite

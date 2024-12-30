@@ -1,6 +1,6 @@
-#include"p.h"
-#include"cocos2d.h"
-#include"enemy.h"
+#include "p.h"
+#include "cocos2d.h"
+#include "../Enemies/enemy.h"
 
 USING_NS_CC;
 p::p()

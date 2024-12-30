@@ -1,12 +1,12 @@
-#include "level_1.h"
-#include"baseBlock.h"
-#include "baseLevel.h"
+#include "../Level/level_1.h"
+#include "../Block/baseBlock.h"
+#include "../Level/baseLevel.h"
 #include "SimpleAudioEngine.h"
 #include "ui/CocosGUI.h"
-#include"enemy.h"
-#include"enemy1.h"
-#include"enemy2.h"
-#include"enemy3.h"
+#include "../Enemies/enemy.h"
+#include "../Enemies/enemy1.h"
+#include "../Enemies/enemy2.h"
+#include "../Enemies/enemy3.h"
 
 USING_NS_CC;
 

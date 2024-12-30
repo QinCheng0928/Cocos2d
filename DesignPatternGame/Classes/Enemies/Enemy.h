@@ -1,7 +1,7 @@
 #ifndef __ENEMY_H__
 #define __ENEMY_H__
 #include "cocos2d.h"
-#include"baseBlock.h"
+#include "../Block/baseBlock.h"
 USING_NS_CC;
 class enemy :public cocos2d::Sprite
 {

@@ -1,6 +1,6 @@
-#include"dianmei.h"
-#include"cocos2d.h"
-#include"enemy.h"
+#include "dianmei.h"
+#include "cocos2d.h"
+#include "../Enemies/enemy.h"
 
 USING_NS_CC;
 dianmei::dianmei()

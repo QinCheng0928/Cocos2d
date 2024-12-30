@@ -51,26 +51,20 @@
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Enemies\BossEnemy.cpp">
-      <Filter>src\Enemies</Filter>
+    <ClCompile Include="..\Classes\GameSaveManager\GameSaveManager.cpp">
+      <Filter>src\GameSaveManager</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Enemies\Enemy.cpp">
-      <Filter>src\Enemies</Filter>
+    <ClCompile Include="..\Classes\Utils\Subject\subject.cpp">
+      <Filter>src\Utils\Subject</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Enemies\SoldierEnemy.cpp">
-      <Filter>src\Enemies</Filter>
+    <ClCompile Include="..\Classes\Utils\Observer\observer.cpp">
+      <Filter>src\Utils\Observer</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Enemies\TankEnemy.cpp">
-      <Filter>src\Enemies</Filter>
+    <ClCompile Include="..\Classes\Block\baseBlock.cpp">
+      <Filter>src\Block</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Enemies\Factories\BossEnemyFactory.cpp">
-      <Filter>src\Enemies\Factories</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Enemies\Factories\SoldierEnemyFactory.cpp">
-      <Filter>src\Enemies\Factories</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Enemies\Factories\TankEnemyFactory.cpp">
-      <Filter>src\Enemies\Factories</Filter>
+    <ClCompile Include="..\Classes\Buttet\bullet.cpp">
+      <Filter>src\Buttet</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Tower\dianmei.cpp">
       <Filter>src\Tower</Filter>
@@ -84,15 +78,6 @@
     <ClCompile Include="..\Classes\Tower\tower.cpp">
       <Filter>src\Tower</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Buttet\Bullet.cpp">
-      <Filter>src\Buttet</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Block\baseBlock.cpp">
-      <Filter>src\Block</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GameSaveManager\GameSaveManager.cpp">
-      <Filter>src\GameSaveManager</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Level\baseLevel.cpp">
       <Filter>src\Level</Filter>
     </ClCompile>
@@ -102,11 +87,17 @@
     <ClCompile Include="..\Classes\Level\level_2.cpp">
       <Filter>src\Level</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Utils\Subject\subject.cpp">
-      <Filter>src\Utils\Subject</Filter>
+    <ClCompile Include="..\Classes\Enemies\enemy.cpp">
+      <Filter>src\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Utils\Observer\observer.cpp">
-      <Filter>src\Utils\Observer</Filter>
+    <ClCompile Include="..\Classes\Enemies\enemy1.cpp">
+      <Filter>src\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Enemies\enemy2.cpp">
+      <Filter>src\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Enemies\enemy3.cpp">
+      <Filter>src\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -119,29 +110,20 @@
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Enemies\BossEnemy.h">
-      <Filter>src\Enemies</Filter>
+    <ClInclude Include="..\Classes\GameSaveManager\GameSaveManager.h">
+      <Filter>src\GameSaveManager</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Enemies\Enemy.h">
-      <Filter>src\Enemies</Filter>
+    <ClInclude Include="..\Classes\Utils\Subject\subject.h">
+      <Filter>src\Utils\Subject</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Enemies\SoldierEnemy.h">
-      <Filter>src\Enemies</Filter>
+    <ClInclude Include="..\Classes\Utils\Observer\observer.h">
+      <Filter>src\Utils\Observer</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Enemies\TankEnemy.h">
-      <Filter>src\Enemies</Filter>
+    <ClInclude Include="..\Classes\Block\baseBlock.h">
+      <Filter>src\Block</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Enemies\Factories\BossEnemyFactory.h">
-      <Filter>src\Enemies\Factories</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Enemies\Factories\EnemyFactory.h">
-      <Filter>src\Enemies\Factories</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Enemies\Factories\SoldierEnemyFactory.h">
-      <Filter>src\Enemies\Factories</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Enemies\Factories\TankEnemyFactory.h">
-      <Filter>src\Enemies\Factories</Filter>
+    <ClInclude Include="..\Classes\Buttet\bullet.h">
+      <Filter>src\Buttet</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Tower\dianmei.h">
       <Filter>src\Tower</Filter>
@@ -155,21 +137,6 @@
     <ClInclude Include="..\Classes\Tower\tower.h">
       <Filter>src\Tower</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Buttet\Bullet.h">
-      <Filter>src\Buttet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Buttet\BulletFactory.h">
-      <Filter>src\Buttet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Buttet\BulletType.h">
-      <Filter>src\Buttet</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Block\baseBlock.h">
-      <Filter>src\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameSaveManager\GameSaveManager.h">
-      <Filter>src\GameSaveManager</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Level\baseLevel.h">
       <Filter>src\Level</Filter>
     </ClInclude>
@@ -179,11 +146,17 @@
     <ClInclude Include="..\Classes\Level\level_2.h">
       <Filter>src\Level</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Utils\Subject\subject.h">
-      <Filter>src\Utils\Subject</Filter>
+    <ClInclude Include="..\Classes\Enemies\enemy.h">
+      <Filter>src\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Utils\Observer\observer.h">
-      <Filter>src\Utils\Observer</Filter>
+    <ClInclude Include="..\Classes\Enemies\enemy1.h">
+      <Filter>src\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enemies\enemy2.h">
+      <Filter>src\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Enemies\enemy3.h">
+      <Filter>src\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

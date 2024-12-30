@@ -1,9 +1,9 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
-#include"enemy.h"
-#include"p.h"
-#include"baseLevel.h"
-#include"baseBlock.h"
+#include "../Enemies/enemy.h"
+#include "../Tower/p.h"
+#include "../Level/baseLevel.h"
+#include "../Block/baseBlock.h"
 #include<cmath>
 USING_NS_CC;
 enemy::enemy()

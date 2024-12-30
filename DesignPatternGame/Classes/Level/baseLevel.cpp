@@ -1,13 +1,13 @@
-#include"baseBlock.h"
-#include "baseLevel.h"
+#include "../Block/baseBlock.h"
+#include "../Level/baseLevel.h"
 #include "SimpleAudioEngine.h"
 #include "ui/CocosGUI.h"
-#include"enemy.h"
-#include"enemy1.h"
-#include"dianmei.h"
-#include"GameSaveManager.h"
-#include"HelloWorldScene.h"
-#include"r99.h"
+#include "../Enemies/enemy.h"
+#include "../Enemies/enemy1.h"
+#include "../Tower/dianmei.h"
+#include "../GameSaveManager/GameSaveManager.h"
+#include "../HelloWorldScene.h"
+#include "../Tower/r99.h"
 USING_NS_CC;
 
 extern bool levelpass;

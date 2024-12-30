@@ -1,8 +1,8 @@
 #ifndef __BULLET_H__
 #define __BULLET_H__
 #include "cocos2d.h"
-#include "enemy.h"
-#include "baseLevel.h"
+#include "../Enemies/enemy.h"
+#include "../Level/baseLevel.h"
 USING_NS_CC;
 /*子弹类实现*/
 class bullet :public Sprite {

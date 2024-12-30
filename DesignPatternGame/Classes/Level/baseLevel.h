@@ -2,9 +2,9 @@
 #define _BASE_LEVEL
 
 #include "cocos2d.h"
-#include"baseBlock.h"
-#include"enemy.h"
-#include"tower.h"
+#include "../Block/baseBlock.h"
+#include "../Enemies/enemy.h"
+#include "../Tower/tower.h"
 
 /*
 ¹Ø¿¨»ùÀà

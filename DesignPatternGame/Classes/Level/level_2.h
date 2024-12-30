@@ -2,7 +2,7 @@
 #define _LEVEL_2_H_
 
 #include "cocos2d.h"
-#include"baseLevel.h"
+#include "../Level/baseLevel.h"
 
 class Level_2 : public baseLevel
 {

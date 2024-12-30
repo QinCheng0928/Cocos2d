@@ -1,9 +1,9 @@
 #ifndef __p_H__
 #define __p_H__
-#include"cocos2d.h"
-#include"tower.h"
-#include"enemy.h"
-#include"bullet.h"
+#include "cocos2d.h"
+#include "tower.h"
+#include "../Enemies/enemy.h"
+#include "../Buttet/bullet.h"
 USING_NS_CC;
 class p :public tower {
 private:

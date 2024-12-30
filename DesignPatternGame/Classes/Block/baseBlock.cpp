@@ -1,12 +1,11 @@
 
-#include "baseBlock.h"
-#include"testScene.h"
+#include "../Block/baseBlock.h"
 #include "SimpleAudioEngine.h"
 #include "ui/CocosGUI.h"
-#include"baseLevel.h"
-#include"dianmei.h"
-#include"r99.h"
-#include"p.h"
+#include "../Level/baseLevel.h"
+#include "../Tower/dianmei.h"
+#include "../Tower/r99.h"
+#include "../Tower/p.h"
 
 USING_NS_CC;
 
