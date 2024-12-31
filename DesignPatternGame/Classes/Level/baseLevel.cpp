@@ -91,7 +91,7 @@ void baseLevel::spawnInit()
 	spawn->setPosition(Vec2(spawnPoint.x * BLOCK_LEN + 0.5 * BLOCK_LEN, spawnPoint.y * BLOCK_LEN + 0.5 * BLOCK_LEN));
 	spawn->setZOrder(0);
 	
-	//把路径格子加入路径序列
+	//把出生格子加入路径序列
 	path.pushBack(spawn);
 
 	this->addChild(spawn);
