@@ -71,14 +71,16 @@ void r99::levelup(int key)
 
 }
 
-void r99::dadada()
+void r99::shoot()
 {
+    /* 发射单个子弹的方法，相当于子弹初始化 */
     auto attack_enemy = atk_eny.front();//获取序列中的第一个敌人
 
     CCLOG("r99::dadada is running...\n");
     auto bullet = bullet::create("shuiguai.png");//子弹创建
     bullet->setScale(0.5);
     bullet->setTrack(attack_enemy);
+    bullet->setDamage(damage);
     if(level==1)
         bullet->setSpeed(1000);
     else if(level==2)
@@ -87,19 +89,9 @@ void r99::dadada()
         bullet->setSpeed(5000);
 
     bullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
-    this->getParent()->addChild(bullet, 1);
+    this->getParent()->addChild(bullet, 1);//子弹加入场景
 
     bullet->scheduleUpdate();//子弹开始锁敌
-    //bullet->scheduleOnce(static_cast<cocos2d::SEL_SCHEDULE>(&bullet::update), 1.0f);
-
-    auto boom = ParticleExplosion::create();//击中特效
-    boom->setPosition(Vec2(attack_enemy->getContentSize().width / 2, attack_enemy->getContentSize().height - 100));
-    boom->setScale(0.5);
-    attack_enemy->addChild(boom, 10);
-
-    /*if (bullet->state == 1)
-        attack_enemy->get_hit(damage);
-    bullet->scheduleOnce(static_cast<cocos2d::SEL_SCHEDULE>(&bullet::removeBullet), 2.0f);*/
 }
 
 void r99::load()
@@ -147,7 +139,7 @@ void r99::attackOneEnemy(enemy* attack_enemy)
     if(counter < level * 10)//子弹没有打空
     {
         CCLOG("r99::attackAct is running...\n");
-        dadada();//一次射击
+        shoot();//一次射击
         counter++;
         auto numOfBullet = dynamic_cast<Label*>(getChildByName("numOfBullet"));
         numOfBullet->setString(std::to_string(level * 10 - counter));//更新子弹数量

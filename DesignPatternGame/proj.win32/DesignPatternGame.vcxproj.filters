@@ -99,6 +99,12 @@
     <ClCompile Include="..\Classes\Bullet\bullet.cpp">
       <Filter>src\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Bullet\ExplodeBullet.cpp">
+      <Filter>src\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Bullet\NoxBullet.cpp">
+      <Filter>src\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">

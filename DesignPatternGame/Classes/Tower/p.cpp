@@ -68,25 +68,14 @@ void p::attackOneEnemy(enemy* attack_enemy)
 {
     CCLOG("p::attackOneEnemy()is running..");
     //毒气弹
-    auto nox = bullet::create("nox.png");
+    auto nox = NoxBullet::create("nox.png");
     nox->setScale(1);
+    nox->setNoxDamage(noxDamage);
+    nox->setTrack(attack_enemy);
     nox->setPosition(Vec2(attack_enemy->getContentSize().width / 2, attack_enemy->getContentSize().height+50));
     attack_enemy->addChild(nox, 1);
-    
-    //毒气特效
-    auto emitter = ParticleSmoke::create();
-    //emitter->setColor(Color3B(0, 0, 0));
-    emitter->setPosition(Vec2(attack_enemy->getContentSize().width / 2, attack_enemy->getContentSize().height+50));
-    attack_enemy->addChild(emitter, 10);
-
-    //计时器每秒怪物身上就受伤
-    attack_enemy->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&enemy::noxHit), 0.5f);
-    //计时器6秒之后解除减速并且爆炸
-    nox->scheduleOnce(static_cast<cocos2d::SEL_SCHEDULE>(&p::remove_zidan), 2.5f);
-    attack_enemy->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&enemy::noxDown), 2.0f);
-    nox->scheduleOnce(static_cast<cocos2d::SEL_SCHEDULE>(&bullet::booom), 2.0f);
-
-    
+    nox->causeDamage();//毒气开始造成伤害
+    // shootBoomBullet();
 }
 
 int p::getBooomDamage()
@@ -99,10 +88,9 @@ void p::remove_zidan(float dt)
     tower::remove_zidan(dt);
 }
 
-
 void p::attack_act()
 {
-    CCLOG("p::attack_act()is running..");
+    // CCLOG("p::attack_act()is running..");
     for (auto i = atk_eny.begin(); i != atk_eny.end(); i++)
         attackOneEnemy(*i);
 }
@@ -120,5 +108,20 @@ std::string p::getPicName()
 int p::getNoxDamage()
 {
     return noxDamage;
+}
+
+void p::shootBoomBullet() {
+    auto attack_enemy = atk_eny.front();
+
+    auto boom = ExplodeBullet::create("nox.png");
+    boom->setScale(1);
+    boom->setTrack(attack_enemy);
+    boom->setBoomDamage(booomDamage);
+    boom->setSpeed(1000);
+
+    boom->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
+    this->getParent()->addChild(boom, 1);//子弹加入场景
+
+    boom->scheduleUpdate();//子弹开始锁敌
 }
 

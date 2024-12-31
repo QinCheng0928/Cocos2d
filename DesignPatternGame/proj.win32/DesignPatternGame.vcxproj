@@ -153,6 +153,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\Block\baseBlock.cpp" />
     <ClCompile Include="..\Classes\Bullet\bullet.cpp" />
+    <ClCompile Include="..\Classes\Bullet\ExplodeBullet.cpp" />
+    <ClCompile Include="..\Classes\Bullet\NoxBullet.cpp" />
     <ClCompile Include="..\Classes\Enemies\enemy.cpp" />
     <ClCompile Include="..\Classes\Enemies\enemy1.cpp" />
     <ClCompile Include="..\Classes\Enemies\enemy2.cpp" />

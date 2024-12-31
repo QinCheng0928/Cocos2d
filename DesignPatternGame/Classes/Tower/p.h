@@ -21,5 +21,6 @@ public:
 	virtual void attack_act();
 	virtual std::string getPicName();
 	void remove_zidan(float dt);
+	void shootBoomBullet();
 };
 #endif

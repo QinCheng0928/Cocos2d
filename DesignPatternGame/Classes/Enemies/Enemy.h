@@ -23,9 +23,8 @@ public:
 	void update(float dt);   //每一帧更新
 	virtual void show();//调试信息，控制台输出
 	void showhp();//显示血量以及血条
+	float getSpeedScale();
 	void setSpeedScale(float s);//设置速度倍数
-	void noxHit(float dt);//遭到毒气伤害
-	void noxDown(float dt);//毒气弹爆炸
 };
 
 #endif

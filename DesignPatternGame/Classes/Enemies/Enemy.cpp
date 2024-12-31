@@ -108,30 +108,13 @@ void enemy::showhp()
     
 }
 
+float enemy::getSpeedScale() {
+    return speedScale;
+}
+
 void enemy::setSpeedScale(float s)
 {
     speedScale = s;
-}
-
-void enemy::noxHit(float dt)
-{
-    auto pn = (dynamic_cast<p*>(this->getParent()->getChildByTag(2)));
-    if (pn != nullptr)
-    {
-        static auto noxDamage = pn->getNoxDamage();
-        this->get_hit(noxDamage);//受到毒气伤害
-        if (speedScale == 1)
-        {
-            speedScale = 0.5;//减速
-        }
-    }
-}
-
-void enemy::noxDown(float dt)
-{
-    this->unschedule(static_cast<cocos2d::SEL_SCHEDULE>(&enemy::noxHit));//解除毒气持续伤害计时器
-    if (speedScale == 0.5)
-        speedScale = 1;//恢复原速
 }
 
 //怪物在x,y上各自走多少相对距离
