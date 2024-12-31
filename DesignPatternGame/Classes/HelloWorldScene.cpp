@@ -26,9 +26,9 @@
 #include "SimpleAudioEngine.h"
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
-#include "GameSaveManager.h"
-#include"level_1.h"
-#include"level_2.h"
+#include "GameSaveManager/GameSaveManager.h"
+#include "Level/level_1.h"
+#include "Level/level_2.h"
 
 USING_NS_CC;
 
