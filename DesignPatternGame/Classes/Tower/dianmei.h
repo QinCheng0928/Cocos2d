@@ -1,10 +1,10 @@
 #ifndef __dianmei_H__
 #define __dianmei_H__
 #include "cocos2d.h"
-#include "tower.h"
-#include "../Enemies/enemy.h"
+#include "Tower.h"
+#include "../Enemies/Enemy.h"
 USING_NS_CC;
-class dianmei :public tower {
+class dianmei :public Tower {
 public:
 	dianmei();
 	virtual bool init();
@@ -14,5 +14,6 @@ public:
 	void dianmei::attackOneEnemy(Enemy* attack_enemy);
 	virtual void attack_act();
 	virtual std::string getPicName();
+	void updateEnemyList(Enemy* e, bool isCreated);//更新敌人列表
 };
 #endif

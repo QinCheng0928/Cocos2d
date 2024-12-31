@@ -1,10 +1,10 @@
 #ifndef __R99_H__
 #define __R99_H__
 #include "cocos2d.h"
-#include "tower.h"
-#include "../Enemies/enemy.h"
+#include "Tower.h"
+#include "../Enemies/Enemy.h"
 USING_NS_CC;
-class r99 :public tower {
+class r99 :public Tower {
 public:
 	int counter;//已经打出的子弹数量
 	r99();
@@ -20,5 +20,6 @@ public:
 	void attackOneEnemy(Enemy* attack_enemy);//攻击一个敌人相关
 	virtual void attack_act();//攻击动作相关
 	virtual std::string getPicName();//获取升级图片
+	virtual void updateEnemyList(Enemy* e, bool isCreated) override;//更新敌人列表
 };
 #endif

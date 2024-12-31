@@ -61,7 +61,7 @@ public:
 	//指向即将生成的怪物的迭代器
 	Vector<Enemy*>::iterator currentIter;
 
-	Vector<tower*> currentTowers;
+	Vector<Tower*> currentTowers;
 
 	int coordToTag(int x, int y);
 

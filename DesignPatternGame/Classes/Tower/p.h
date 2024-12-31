@@ -1,11 +1,11 @@
 #ifndef __p_H__
 #define __p_H__
 #include "cocos2d.h"
-#include "tower.h"
-#include "../Enemies/enemy.h"
+#include "Tower.h"
+#include "../Enemies/Enemy.h"
 #include "../Bullet/bullet.h"
 USING_NS_CC;
-class p :public tower {
+class p :public Tower {
 private:
 	int noxDamage;
 	int booomDamage;
@@ -21,5 +21,6 @@ public:
 	virtual void attack_act();
 	virtual std::string getPicName();
 	void remove_zidan(float dt);
+	void updateEnemyList(Enemy* e, bool isCreated);//更新敌人列表
 };
 #endif

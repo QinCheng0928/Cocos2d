@@ -1,44 +1,49 @@
 #ifndef __TOWER_H__
 #define __TOWER_H__
 #include "cocos2d.h"
-#include "../Enemies/enemy.h"
+#include "IEnemyObserver.h"
 #include <vector>
 USING_NS_CC;
-class tower :public cocos2d::Sprite
+
+class Enemy;
+
+class Tower :public cocos2d::Sprite, public IEnemyObserver
 {
 protected:
-	int level;//µÈ¼¶
-	int cost;//»¨·Ñ
-	int upgradeCost;//Éý¼¶»¨·Ñ
-	float speed;//Ã¿´Î¹¥»÷µÄ¼ä¸ôÊ±¼ä
-	int damage;//ÉËº¦
-	float squart;//¹¥»÷·¶Î§
-	int state;//×´Ì¬£¬ÓÐËÑË÷ºÍËøµÐ×´Ì¬
+	int level;//ï¿½È¼ï¿½
+	int cost;//ï¿½ï¿½ï¿½ï¿½
+	int upgradeCost;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	float speed;//Ã¿ï¿½Î¹ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ê±ï¿½ï¿½
+	int damage;//ï¿½Ëºï¿½
+	float squart;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î§
+	int state;//×´Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
 	//enemy* attack_enemy;
-	Vector<Enemy*>atk_eny;//´æ´¢ËøµÐµÄÁÐ±í
-	int maxLockNum;//×î´óËøµÐÈËÊý
+	Vector<Enemy*>atk_eny;//ï¿½æ´¢ï¿½ï¿½ï¿½Ðµï¿½ï¿½Ð±ï¿½
+	int maxLockNum;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 public:
-	tower();
+	Tower();
 	virtual bool init();
 	//static tower* create(const std::string& filename);
 	void onEnter();
 	void onExit();
-	void running_act();//´ý»ú¶¯×÷
-	virtual void attack_act();//¹¥»÷¶¯×÷
-	Enemy* search();//¶Ôµ¥¸öµÐÈË½øÐÐËÑË÷²¢Ëø¶¨£¨ÒÑÆúÓÃ£©
-	Vector<Enemy*>multiSearch();//¶ÔÒ»ÖÁ¶à¸öµÐÈËËø¶¨
-	void set(int new_level, int new_cost, float new_speed, int new_damage,int new_squart);//ÉèÖÃ²ÎÊý
-	int got_level();//»ñÈ¡µÈ¼¶
-	float get_distance(Enemy* enemy,tower* tower);//»ñÈ¡¾àÀë
-	virtual int getCost();//»ñÈ¡¼Û¸ñ
+	void running_act();//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	virtual void attack_act();//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	Enemy* search();//ï¿½Ôµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½
+	Vector<Enemy*>multiSearch();//ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	virtual void updateEnemyList(Enemy* enemy, bool isCreated);//ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½Ð±ï¿½
+
+	void set(int new_level, int new_cost, float new_speed, int new_damage,int new_squart);//ï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½
+	int got_level();//ï¿½ï¿½È¡ï¿½È¼ï¿½
+	float get_distance(Enemy* enemy,Tower* tower);//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+	virtual int getCost();//ï¿½ï¿½È¡ï¿½Û¸ï¿½
 	virtual void levelup(int) = 0;
-	//»ñÈ¡¶ÔÓ¦µÄÉý¼¶Í¼Æ¬
+	//ï¿½ï¿½È¡ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬
 	virtual std::string getPicName() = 0;
-	//Éý¼¶¡¢´Ý»ÙÅÚËþµÄ¶þ¼¶²Ëµ¥
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½Ëµï¿½
 	void clickCallback();
-	//ÅÐ¶ÏÊÇ·ñÒª´¥·¢»Øµ÷º¯Êý
+	//ï¿½Ð¶ï¿½ï¿½Ç·ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½
 	bool judgeListenerCallback(cocos2d::Touch* touch, cocos2d::Event* event);
-	void remove_zidan(float dt);//ÒÆ³ý×Óµ¯
+	void remove_zidan(float dt);//ï¿½Æ³ï¿½ï¿½Óµï¿½
 	void update(float dt);
 };
 

@@ -32,7 +32,7 @@ dianmei* dianmei::create()
 
 void dianmei::onEnter()
 {
-    tower::onEnter();
+    Tower::onEnter();
 }
 
 void dianmei::levelup(int key)
@@ -41,25 +41,25 @@ void dianmei::levelup(int key)
 
     if (key==2)
     {
-        another = tower::create("dianmei2.png")->getTexture();
+        another = Tower::create("dianmei2.png")->getTexture();
         this->set(2, cost + upgradeCost, 0.8, 40, 400.0f);
         maxLockNum = 2;
         /*this->stopAllActions();*/
         this->setTexture(another);
         //this->running_act();
-        unschedule(static_cast<cocos2d::SEL_SCHEDULE>(&tower::update));
-        this->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&tower::update), speed);
+        unschedule(static_cast<cocos2d::SEL_SCHEDULE>(&Tower::update));
+        this->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&Tower::update), speed);
     }
     else if(key==3)
     {
-        another = tower::create("dianmei3.png")->getTexture();
+        another = Tower::create("dianmei3.png")->getTexture();
         this->set(3, cost + upgradeCost, 0.5, 40, 500.0f);
         maxLockNum = 3;
         //this->stopAllActions();
         this->setTexture(another);
         //this->running_act();
-        unschedule(static_cast<cocos2d::SEL_SCHEDULE>(&tower::update));
-        this->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&tower::update), speed);
+        unschedule(static_cast<cocos2d::SEL_SCHEDULE>(&Tower::update));
+        this->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&Tower::update), speed);
     }
 }
 
@@ -73,7 +73,7 @@ void dianmei::attackOneEnemy(Enemy* attack_enemy)
     attack_enemy->addChild(flash, 1);
     auto move = MoveBy::create(0.05f, Vec2(0, -100));
     flash->runAction(move);
-    flash->scheduleOnce(schedule_selector(tower::remove_zidan), 0.2f);
+    flash->scheduleOnce(schedule_selector(Tower::remove_zidan), 0.2f);
 
     auto rotateTo1 = RotateTo::create(0.1f, 10.0f);
     auto rotateTo2 = RotateTo::create(0.1f, -10.0f);
@@ -105,4 +105,9 @@ std::string dianmei::getPicName()
         return "upgrade_button_dianmei1.png";
     else
         return "";
+}
+
+void dianmei::updateEnemyList(Enemy* e, bool isCreated)
+{
+
 }

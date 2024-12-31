@@ -1,4 +1,3 @@
-
 #include "../Block/baseBlock.h"
 #include "SimpleAudioEngine.h"
 #include "ui/CocosGUI.h"
@@ -6,6 +5,7 @@
 #include "../Tower/dianmei.h"
 #include "../Tower/r99.h"
 #include "../Tower/p.h"
+
 
 USING_NS_CC;
 
@@ -66,7 +66,7 @@ bool TestBlock::clickReact(Touch* touch, Event* event)
         if (texture == target->getTexture()) {
             target->setTexture("btn-about-normal.png");
 
-            //Í¨¹ýÈ«¾ÖlayerÊµÏÖ
+            //Í¨ï¿½ï¿½È«ï¿½ï¿½layerÊµï¿½ï¿½
             auto layer = Node::create();
             layer->setName("layer");
             auto* disp = Director::getInstance()->getEventDispatcher();
@@ -109,9 +109,9 @@ bool TestBlock::clickReact(Touch* touch, Event* event)
 //	return new TestBlock();
 //}
 
-//ÒÔÉÏÎª²âÊÔ´úÂë
+//ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½
 /********************************************************************************/
-//ÒÔÏÂÎªÕýÊ½´úÂë
+//ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
 
 bool BaseBlock::init()
 {
@@ -124,7 +124,7 @@ bool BaseBlock::init()
 BaseBlock* BaseBlock::create()
 {
     BaseBlock* sprite = new (std::nothrow) BaseBlock();
-    if (sprite && sprite->initWithFile("center_grid_selected.png")) // Í¼Æ¬ÊÇ¹Ì¶¨µÄ
+    if (sprite && sprite->initWithFile("center_grid_selected.png")) // Í¼Æ¬ï¿½Ç¹Ì¶ï¿½ï¿½ï¿½
     {
         sprite->autorelease();
         return sprite;
@@ -139,20 +139,20 @@ void BaseBlock::onEnter()
 
     Sprite::onEnter();
 
-    //»ñµÃÊÂ¼þ·Ö·¢Æ÷
+    //ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
     auto* disp = Director::getInstance()->getEventDispatcher();
 
-    //´´½¨Ò»¸ö¼àÌýÆ÷
+    //ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     auto listener = EventListenerTouchOneByOne::create();
-    //²»»áÍÌÃ»ÊÂ¼þ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Â¼ï¿½
     listener->setSwallowTouches(false);
 
     listener->onTouchBegan = [](Touch* touch, Event* event) {
         return true;
         };
-    listener->onTouchEnded = CC_CALLBACK_2(BaseBlock::judgeListenerCallback, this); //°´¼üÌ§Æð²Å»á´¥·¢
+    listener->onTouchEnded = CC_CALLBACK_2(BaseBlock::judgeListenerCallback, this); //ï¿½ï¿½ï¿½ï¿½Ì§ï¿½ï¿½Å»á´¥ï¿½ï¿½
 
-    //°Ñ¼àÌýÆ÷Ìí¼Óµ½BaseBlockÖÐ
+    //ï¿½Ñ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½BaseBlockï¿½ï¿½
     disp->addEventListenerWithSceneGraphPriority(listener, this);
 }
 
@@ -160,25 +160,25 @@ void BaseBlock::onExit()
 {
     Sprite::onExit();
 
-    //ÒÆ³ý¸Ã¶ÔÏóËùÓÐµÄ¼àÌý
+    //ï¿½Æ³ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ¼ï¿½ï¿½ï¿½
     auto* disp = Director::getInstance()->getEventDispatcher();
     disp->removeEventListenersForTarget(this);
 }
 
 bool BaseBlock::judgeListenerCallback(cocos2d::Touch* touch, cocos2d::Event* event)
 {
-    //»ñÈ¡ÊÂ¼þ¶ÔÏó£¨¾ÍÊÇBlock×Ô¼º£©
+    //ï¿½ï¿½È¡ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ó£¨¾ï¿½ï¿½ï¿½Blockï¿½Ô¼ï¿½ï¿½ï¿½
     auto target = static_cast<Sprite*>(event->getCurrentTarget());
-    //»ñÈ¡µã»÷µÄÊÀ½çÎ»ÖÃ
+    //ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
     Vec2 tworld = touch->getLocation();
-    //½«ÊÀ½çÎ»ÖÃ×ª»»Îª±¾µØÎ»ÖÃ£¨BlockµÄÏà¶ÔÎ»ÖÃ£©
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½×ªï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½Î»ï¿½Ã£ï¿½Blockï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ã£ï¿½
     Vec2 tlocal = target->convertToNodeSpace(tworld);
 
-    //»ñÈ¡¶ÔÏóµÄ³ß´ç
+    //ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ä³ß´ï¿½
     auto size = target->getContentSize();
     auto rect = Rect(0, 0, size.width, size.height);
 
-    //Èç¹ûµã»÷µÄÎ»ÖÃÊÇÔÚBlockÉÏ£¬Ôò»áÕæÕý´¥·¢»Øµ÷
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Blockï¿½Ï£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½
     if (rect.containsPoint(tlocal)) {
         clickCallback();
         return true;
@@ -244,11 +244,11 @@ void BaseBlock::clickCallback()
                 
                 if (parent->money >= dianmei().getCost()) {
                     parent->money -= dianmei().getCost();
-                    auto dianmei = dianmei::create();
-                    dianmei->setPosition(this->getPosition());
-                    dianmei->running_act();
-                    parent->currentTowers.pushBack(dianmei);
-                    this->getParent()->addChild(dianmei);
+                    auto newDianmei = dianmei::create();
+                    newDianmei->setPosition(this->getPosition());
+                    newDianmei->running_act();
+                    parent->currentTowers.pushBack(newDianmei);
+                    this->getParent()->addChild(newDianmei);
                     this->removeFromParent();
                 }
                 return true;
@@ -283,11 +283,11 @@ void BaseBlock::clickCallback()
 
             if (parent->money >= r99().getCost()) {
                 parent->money -= r99().getCost();
-                auto r99 = r99::create();
-                r99->setPosition(this->getPosition());
-                r99->running_act();
-                parent->currentTowers.pushBack(r99);
-                this->getParent()->addChild(r99);
+                auto newR99 = r99::create();
+                newR99->setPosition(this->getPosition());
+                newR99->running_act();
+                parent->currentTowers.pushBack(newR99);
+                this->getParent()->addChild(newR99);
                 this->removeFromParent();
             }
 
@@ -323,11 +323,11 @@ void BaseBlock::clickCallback()
 
             if (parent->money >= p().getCost()) {
                 parent->money -= p().getCost();
-                auto p = p::create();
-                p->setPosition(this->getPosition());
-                p->running_act();
-                parent->currentTowers.pushBack(p);
-                this->getParent()->addChild(p);
+                auto newP = p::create();
+                newP->setPosition(this->getPosition());
+                newP->running_act();
+                parent->currentTowers.pushBack(newP);
+                this->getParent()->addChild(newP);
                 this->removeFromParent();
             }
 
@@ -406,7 +406,7 @@ bool PathBlock::init()
 PathBlock* PathBlock::create()
 {
     PathBlock* sprite = new (std::nothrow) PathBlock();
-    if (sprite && sprite->initWithFile("path_block.png")) // Í¼Æ¬ÊÇ¹Ì¶¨µÄ
+    if (sprite && sprite->initWithFile("path_block.png")) // Í¼Æ¬ï¿½Ç¹Ì¶ï¿½ï¿½ï¿½
     {
         sprite->autorelease();
         return sprite;

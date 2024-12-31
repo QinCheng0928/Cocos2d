@@ -1,12 +1,15 @@
 #include "Enemy.h"
 #include "../Level/baseLevel.h"
 #include "../Tower/p.h"
+#include "../Tower/EnemyNotifyManager.h"
 
 USING_NS_CC;
 
 Enemy::Enemy() : value(1000), hp(100), speed(5), maxHp(hp), speedScale(1), nextPosition(nullptr) {}
 
 bool Enemy::init() {
+    if (!Sprite::init()) return false;
+    EnemyNotifyManager::getInstance()->notifyObservers(this, true);
     return true;
 }
 
@@ -166,6 +169,7 @@ void Enemy::update(float dt) {
         this->setPosition(Vec2(0, 0));  // Reset position
         parent->money += value;          // Add reward to the parent
         this->removeFromParent();        // Remove the enemy from the parent
+        EnemyNotifyManager::getInstance()->notifyObservers(this, false);
     }
     // Check if the enemy has reached the end of the path
     else if (parent && fabs(this->getPosition().x - parent->path.back()->getPosition().x) < 10 &&

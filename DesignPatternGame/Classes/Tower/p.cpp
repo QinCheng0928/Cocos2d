@@ -34,8 +34,14 @@ p* p::create()
 
 void p::onEnter()
 {
-    tower::onEnter();
-    this->setTag(2);//ÉèÖÃTag==2
+    Tower::onEnter();
+    this->setTag(2);//ï¿½ï¿½ï¿½ï¿½Tag==2
+}
+
+void p::updateEnemyList(Enemy* enemy, bool isCreated)
+{
+
+
 }
 
 void p::levelup(int key)
@@ -44,7 +50,7 @@ void p::levelup(int key)
 
     if (key == 2)
     {
-        another = tower::create("p2.png")->getTexture();
+        another = Tower::create("p2.png")->getTexture();
         this->set(2, cost + upgradeCost, 0.5, 50, 600.0f);
         /*this->stopAllActions();*/
         this->setTexture(another);
@@ -54,7 +60,7 @@ void p::levelup(int key)
     }
     else if (key == 3)
     {
-        another = tower::create("p3.png")->getTexture();
+        another = Tower::create("p3.png")->getTexture();
         this->set(3, cost + upgradeCost, 0.5, 50, 900.0f);
         //this->stopAllActions();
         this->setTexture(another);
@@ -67,21 +73,21 @@ void p::levelup(int key)
 void p::attackOneEnemy(Enemy* attack_enemy)
 {
     CCLOG("p::attackOneEnemy()is running..");
-    //¶¾Æøµ¯
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     auto nox = bullet::create("nox.png");
     nox->setScale(1);
     nox->setPosition(Vec2(attack_enemy->getContentSize().width / 2, attack_enemy->getContentSize().height+50));
     attack_enemy->addChild(nox, 1);
     
-    //¶¾ÆøÌØÐ§
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§
     auto emitter = ParticleSmoke::create();
     //emitter->setColor(Color3B(0, 0, 0));
     emitter->setPosition(Vec2(attack_enemy->getContentSize().width / 2, attack_enemy->getContentSize().height+50));
     attack_enemy->addChild(emitter, 10);
 
-    //¼ÆÊ±Æ÷Ã¿Ãë¹ÖÎïÉíÉÏ¾ÍÊÜÉË
+    //ï¿½ï¿½Ê±ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¾ï¿½ï¿½ï¿½ï¿½ï¿½
     attack_enemy->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&Enemy::noxHit), 0.5f);
-    //¼ÆÊ±Æ÷6ÃëÖ®ºó½â³ý¼õËÙ²¢ÇÒ±¬Õ¨
+    //ï¿½ï¿½Ê±ï¿½ï¿½6ï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù²ï¿½ï¿½Ò±ï¿½Õ¨
     nox->scheduleOnce(static_cast<cocos2d::SEL_SCHEDULE>(&p::remove_zidan), 2.5f);
     attack_enemy->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&Enemy::noxDown), 2.0f);
     nox->scheduleOnce(static_cast<cocos2d::SEL_SCHEDULE>(&bullet::booom), 2.0f);
@@ -96,7 +102,7 @@ int p::getBooomDamage()
 
 void p::remove_zidan(float dt)
 {
-    tower::remove_zidan(dt);
+    Tower::remove_zidan(dt);
 }
 
 

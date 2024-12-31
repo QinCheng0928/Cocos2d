@@ -1,15 +1,15 @@
 #include "SimpleAudioEngine.h"
-#include "tower.h"
+#include "Tower.h"
 #include "../Level/baseLevel.h"
 #include<cmath>
 USING_NS_CC;
 using namespace std;
-inline bool tower::init()
+inline bool Tower::init()
 {
 	return true;
 }
 
-tower::tower()
+Tower::Tower()
 {
 	level = 1;
 	cost = 1;
@@ -23,7 +23,7 @@ tower::tower()
 
 
 
-void tower::onEnter()
+void Tower::onEnter()
 {
 	Sprite::onEnter();
 
@@ -38,13 +38,13 @@ void tower::onEnter()
 	listener->onTouchBegan = [](Touch* touch, Event* event) {
 		return true;
 		};
-	listener->onTouchEnded = CC_CALLBACK_2(tower::judgeListenerCallback, this); //按键抬起才会触发
+	listener->onTouchEnded = CC_CALLBACK_2(Tower::judgeListenerCallback, this); //按键抬起才会触发
 
 	//把监听器添加到BaseBlock中
 	disp->addEventListenerWithSceneGraphPriority(listener, this);
-	this->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&tower::update), speed);
+	this->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&Tower::update), speed);
 }
-void tower::onExit()
+void Tower::onExit()
 {
 	Sprite::onExit();
 
@@ -52,7 +52,7 @@ void tower::onExit()
 	auto* disp = Director::getInstance()->getEventDispatcher();
 	disp->removeEventListenersForTarget(this);
 }
-void tower::set(int new_level, int new_cost, float new_speed, int new_damage,int new_squart) 
+void Tower::set(int new_level, int new_cost, float new_speed, int new_damage,int new_squart) 
 {
 	level = new_level;
 	cost = new_cost;
@@ -61,12 +61,12 @@ void tower::set(int new_level, int new_cost, float new_speed, int new_damage,int
 	squart = new_squart;
 }
 
-int tower::got_level()
+int Tower::got_level()
 {
 	return level;
 }
 
-void tower::running_act()
+void Tower::running_act()
 {
 	//待机动作
 	auto rotateTo1 = RotateTo::create(0.6f, 5.0f);
@@ -81,27 +81,27 @@ void tower::running_act()
 	this->runAction(seqf);
 }
 
-void tower::attack_act()
+void Tower::attack_act()
 {
 
 }
 
-float tower::get_distance(Enemy* enemy,tower* tower)
+float Tower::get_distance(Enemy* enemy,Tower* Tower)
 {
 	float enemy_x = enemy->getPosition().x;
 	float enemy_y = enemy->getPosition().y;
-	float tower_x = tower->getPosition().x;
-	float tower_y = tower->getPosition().y;
-	float distance = std::sqrt((fabs(enemy_x - tower_x)) * (fabs(enemy_x - tower_x)) + (fabs(enemy_y - tower_y)) * (fabs(enemy_y - tower_y)));
+	float Tower_x = Tower->getPosition().x;
+	float Tower_y = Tower->getPosition().y;
+	float distance = std::sqrt((fabs(enemy_x - Tower_x)) * (fabs(enemy_x - Tower_x)) + (fabs(enemy_y - Tower_y)) * (fabs(enemy_y - Tower_y)));
 	return distance;
 }
 
-int tower::getCost()
+int Tower::getCost()
 {
 	return cost;
 }
 
-void tower::clickCallback()
+void Tower::clickCallback()
 {
 	// 创建一个DrawNode
 	auto drawNode = cocos2d::DrawNode::create();
@@ -217,7 +217,7 @@ void tower::clickCallback()
 	this->getParent()->addChild(layer);
 }
 
-bool tower::judgeListenerCallback(cocos2d::Touch* touch, cocos2d::Event* event)
+bool Tower::judgeListenerCallback(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 	//获取事件对象（就是Block自己）
 	auto target = static_cast<Sprite*>(event->getCurrentTarget());
@@ -238,7 +238,7 @@ bool tower::judgeListenerCallback(cocos2d::Touch* touch, cocos2d::Event* event)
 	return false;
 }
 //搜索单个敌人（弃用）
-Enemy* tower::search()
+Enemy* Tower::search()
 {
 	auto cur_baseLevel = dynamic_cast<baseLevel*>(this->getParent());
 	if(cur_baseLevel!=nullptr)
@@ -251,7 +251,7 @@ Enemy* tower::search()
 				for (auto i = cur_enemy; i != cur_baseLevel->waveIter->sequence.end(); i++)
 				{
 					float distance = this->get_distance((*i), this);
-					if (distance <= tower::squart)
+					if (distance <= Tower::squart)
 					{
 						return (*i);
 					}
@@ -262,7 +262,7 @@ Enemy* tower::search()
 	return nullptr;
 }
 //搜索一至多个敌人
-Vector<Enemy*> tower::multiSearch()
+Vector<Enemy*> Tower::multiSearch()
 {
 	Vector<Enemy*> temp;
 	//获取当前波次所有怪物
@@ -278,7 +278,7 @@ Vector<Enemy*> tower::multiSearch()
 				for (auto i = cur_enemy; i != cur_baseLevel->waveIter->sequence.end(); i++)
 				{
 					float distance = this->get_distance((*i), this);
-					if (distance <= tower::squart && temp.size()<maxLockNum)
+					if (distance <= Tower::squart && temp.size()<maxLockNum)
 					{
 						temp.pushBack(*i);
 						CCLOG("temp.size()==%d", temp.size());
@@ -289,8 +289,13 @@ Vector<Enemy*> tower::multiSearch()
 	}
 	return temp;
 }
+void Tower::updateEnemyList(Enemy* enemy, bool isCreated)
+{
 
-void tower::update(float dt)
+}
+
+
+void Tower::update(float dt)
 {
 	//判断当前炮塔是什么状态
 	//if (attack_enemy == nullptr || attack_enemy->getParent() == nullptr || get_distance(attack_enemy, this) > this->squart)//
@@ -343,7 +348,7 @@ void tower::update(float dt)
 	}
 }
 
-void tower::remove_zidan(float dt)
+void Tower::remove_zidan(float dt)
 {
 	this->removeFromParent();
 }

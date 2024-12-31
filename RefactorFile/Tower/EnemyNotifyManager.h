@@ -3,8 +3,8 @@
 
 #include "cocos2d.h"
 #include <vector>
-#include "Tower/tower.h"
-#include "enemy.h"
+#include "Tower/Tower.h"
+#include "Enemies/Enemy.h"
 
 USING_NS_CC;
 
@@ -12,7 +12,7 @@ class EnemyNotifyManager {
 private:
     static EnemyNotifyManager* instance;
     std::vector<Tower*> towers;
-    
+
     EnemyNotifyManager() {
         instance = new EnemyNotifyManager();
     }

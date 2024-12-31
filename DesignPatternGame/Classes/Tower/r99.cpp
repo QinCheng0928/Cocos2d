@@ -1,6 +1,6 @@
 #include"r99.h"
 #include"cocos2d.h"
-#include "../Enemies/enemy.h"
+#include "../Enemies/Enemy.h"
 #include "../Bullet/bullet.h"
 USING_NS_CC;
 r99::r99()
@@ -39,7 +39,7 @@ r99* r99::create()
 
 void r99::onEnter()
 {
-    tower::onEnter();
+    Tower::onEnter();
     this->setTag(1);//设置标签为1
     this->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&r99::bulletCounter));
     auto numOfBullet = Label::createWithTTF(std::to_string(level*10-counter) , "fonts/Marker Felt.ttf", 100);//子弹数目显示
@@ -54,7 +54,7 @@ void r99::levelup(int key)
 
     if (key == 2)
     {
-        another = tower::create("r991.png")->getTexture();
+        another = Tower::create("r991.png")->getTexture();
         this->set(2, cost + upgradeCost, 0.1f, 40, 300.0f);
         this->setTexture(another);
         auto numOfBullet = dynamic_cast<Label*>(getChildByName("numOfBullet"));
@@ -62,7 +62,7 @@ void r99::levelup(int key)
     }
     else if (key == 3)
     {
-        another = tower::create("r97.png")->getTexture();
+        another = Tower::create("r97.png")->getTexture();
         this->set(3, cost + upgradeCost, 0.1f, 40, 300.0f);
         this->setTexture(another);
         auto numOfBullet = dynamic_cast<Label*>(getChildByName("numOfBullet"));
@@ -121,7 +121,7 @@ void r99::start(float dt)
 {
     auto numOfBullet = dynamic_cast<Label*>(getChildByName("numOfBullet"));
     numOfBullet->setString(std::to_string(level * 10 - counter));//更新子弹数量
-    this->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&tower::update), speed);//打开侦测函数
+    this->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&Tower::update), speed);//打开侦测函数
 }
 
 void r99::bulletCounter(float dt)
@@ -129,7 +129,7 @@ void r99::bulletCounter(float dt)
     if (counter >= level * 10)
     {
         counter = 0;
-        this->unschedule(static_cast<cocos2d::SEL_SCHEDULE>(&tower::update));//子弹为0关闭搜索计数器
+        this->unschedule(static_cast<cocos2d::SEL_SCHEDULE>(&Tower::update));//子弹为0关闭搜索计数器
         load();//装弹
     }
 }
@@ -182,4 +182,16 @@ std::string r99::getPicName()
         return "upgrade_button_dianmei1.png";
     else
         return "upgrade_button_dianmei3.png";
+}
+
+void r99::updateEnemyList(Enemy* e, bool isCreated)
+{
+    if (isCreated)
+    {
+        atk_eny.pushBack(e);
+    }
+    else
+    {
+        atk_eny.eraseObject(e);
+    }
 }
