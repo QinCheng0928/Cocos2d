@@ -336,6 +336,7 @@ void baseLevel::spawnOne(float dt)
 	auto enemy = *currentIter;
 	enemy->setOpacity(255);
 	this->addChild(enemy);
+    
 	currentIter++;
 	//如果不是最后一只怪，则准备生成下一只怪
 	if (currentIter != waveIter->sequence.end() && waveIter != wave.end())

@@ -14,7 +14,7 @@ tower::tower()
 {
 	level = 1;
 	cost = 1;
-	speed = 1.0f;//�������
+	speed = 1.0f;//�������?
 	damage = 60;
 	squart = 500.0f;
 	state = 1;
@@ -28,7 +28,7 @@ void tower::onEnter()
 {
 	Sprite::onEnter();
 
-	//����¼��ַ���
+	//����¼��ַ���?
 	auto* disp = Director::getInstance()->getEventDispatcher();
 
 	//����һ��������
@@ -39,7 +39,7 @@ void tower::onEnter()
 	listener->onTouchBegan = [](Touch* touch, Event* event) {
 		return true;
 		};
-	listener->onTouchEnded = CC_CALLBACK_2(tower::judgeListenerCallback, this); //����̧��Żᴥ��
+	listener->onTouchEnded = CC_CALLBACK_2(tower::judgeListenerCallback, this); //����̧��Żᴥ��?
 
 	//�Ѽ��������ӵ�BaseBlock��
 	disp->addEventListenerWithSceneGraphPriority(listener, this);
@@ -222,16 +222,16 @@ bool tower::judgeListenerCallback(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 	//��ȡ�¼����󣨾���Block�Լ���
 	auto target = static_cast<Sprite*>(event->getCurrentTarget());
-	//��ȡ���������λ��
+	//��ȡ���������λ��?
 	Vec2 tworld = touch->getLocation();
-	//������λ��ת��Ϊ����λ�ã�Block�����λ�ã�
+	//������λ��ת��Ϊ����λ�ã�Block�����λ�ã�?
 	Vec2 tlocal = target->convertToNodeSpace(tworld);
 
-	//��ȡ����ĳߴ�
+	//��ȡ����ĳߴ�?
 	auto size = target->getContentSize();
 	auto rect = Rect(0, 0, size.width, size.height);
 
-	//��������λ������Block�ϣ�������������ص�
+	//��������λ������Block�ϣ�������������ص�?
 	if (rect.containsPoint(tlocal)) {
 		clickCallback();
 		return true;
@@ -262,7 +262,7 @@ enemy* tower::search()
 	}
 	return nullptr;
 }
-//����һ���������
+//����һ���������?
 Vector<enemy*> tower::multiSearch()
 {
 	Vector<enemy*> temp;
@@ -275,7 +275,7 @@ Vector<enemy*> tower::multiSearch()
 			auto cur_enemy = cur_baseLevel->waveIter->sequence.begin();
 			if ((*cur_enemy) != nullptr)
 			{
-				//�����������Ĺ�������б�
+				//�����������Ĺ�������б�?
 				for (auto i = cur_enemy; i != cur_baseLevel->waveIter->sequence.end(); i++)
 				{
 					float distance = this->get_distance((*i), this);
@@ -329,7 +329,7 @@ void tower::update(float dt)
 	if (flag2 == 0)
 		state = 1;
 
-	if ((atk_eny.empty() == 1) || flag1 == 0 || flag2 == 0)//�����ǰ���δ��ڹ�����������״̬
+	if ((atk_eny.empty() == 1) || flag1 == 0 || flag2 == 0)//�����ǰ���δ��ڹ���?���������״�?
 		state = 1;
 
 	if (state == 1)
@@ -357,7 +357,7 @@ void tower::update(float dt)
 		CCLOG("attack %d enemy...\n", atk_eny.size());
 		this->stopAllActions();
 		this->attack_act();
-		atk_eny.clear();//ÿ�ι���֮�����
+		atk_eny.clear();//ÿ�ι���֮�����?
 	}
 }
 

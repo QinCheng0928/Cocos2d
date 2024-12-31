@@ -9,7 +9,7 @@
 
 USING_NS_CC;
 
-class Tower : public Sprite, public Observer {
+class Tower : public Sprite{
 protected:
     int level; // 等级
     int cost; // 成本
@@ -29,6 +29,11 @@ public:
     virtual void attack_act();
     enemy* search();
     Vector<enemy*> multiSearch();
+
+    // 修改为纯虚函数，由子类实现具体的更新逻辑
+    // isCreated: true表示敌人创建，false表示敌人死亡
+    virtual void updateEnemyList(Enemy* e, bool isCreated) = 0;
+
     void set(int new_level, int new_cost, float new_speed, int new_damage, int new_range);
     int get_level();
     float get_distance(enemy* enemy, Tower* tower);
