@@ -3,16 +3,14 @@
 #include "../Tower/p.h"
 USING_NS_CC;
 //构造函数
-NoxBullet::NoxBullet()
-{
-    bullet();
+NoxDecorator::NoxDecorator(bullet* wrappee): bullet(*wrappee){
     noxDamage = 0; // ——毒气
 }
 
 //创建函数——公共
-NoxBullet* NoxBullet::create(const std::string& filename)
+NoxDecorator* NoxDecorator::create(const std::string& filename, bullet* wrappee)
 {
-    NoxBullet* sprite = new (std::nothrow) NoxBullet();
+    NoxDecorator* sprite = new (std::nothrow) NoxDecorator(wrappee);
     if (sprite && sprite->initWithFile(filename))
     {
         sprite->autorelease();
@@ -22,13 +20,14 @@ NoxBullet* NoxBullet::create(const std::string& filename)
     return nullptr;
 }
 
-void NoxBullet::setNoxDamage(int damage) {
+void NoxDecorator::setNoxDamage(int damage) {
     noxDamage = damage;
 }
 
 //搜索敌人，攻击
-void NoxBullet::causeDamage()
+void NoxDecorator::causeDamage()
 {
+    bullet::causeDamage();
     //毒气特效
     auto emitter = ParticleSmoke::create();
     emitter->setColor(Color3B(0, 0, 0));
@@ -47,7 +46,7 @@ void NoxBullet::causeDamage()
     //计时器6秒之后解除减速并且爆炸
     nox->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&Nox::noxDown), 2.0f);
 
-    this->removeFromParent();
+    // this->removeFromParent();
 }
 
 

@@ -76,7 +76,7 @@ void r99::shoot()
     /* 发射单个子弹的方法，相当于子弹初始化 */
     auto attack_enemy = atk_eny.front();//获取序列中的第一个敌人
 
-    bulletComponent* baseBullet = bullet::create("shuiguai.png");//子弹创建
+    auto baseBullet = bullet::create("shuiguai.png");//子弹创建
     baseBullet->setScale(0.5);
     baseBullet->setTrack(attack_enemy);
     baseBullet->setDamage(damage);

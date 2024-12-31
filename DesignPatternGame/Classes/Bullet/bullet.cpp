@@ -12,6 +12,15 @@ bullet::bullet()
     damage = 0; // ——公共
 }
 
+// 复制构造函数
+bullet::bullet(const bullet& other) {
+    this->speed = other.speed;         // 复制速度
+    this->damage = other.damage;       // 复制伤害
+    this->trackEnemy = other.trackEnemy; // 复制锁定敌人
+    this->state = other.state;         // 复制状态
+    // 注意：没有复制父类 Sprite 的内容，因为它是由 cocos2d 自动管理的
+}
+
 bool bullet::init()
 {
 	return true;
@@ -102,7 +111,7 @@ void bullet::causeDamage() {
 }
 
 //距离计算函数——公共
-float bullet::get_distance(enemy* enemy, bulletComponent* bullet)
+float bullet::get_distance(enemy* enemy, bullet* bullet)
 {
     Vec2 enemyPosition = convertToWorldSpaceAR(enemy->getPosition());
     Vec2 bulletPosition = convertToWorldSpaceAR(bullet->getParent()->getPosition());

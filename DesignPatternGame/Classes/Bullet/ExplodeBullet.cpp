@@ -2,9 +2,22 @@
 #include "cocos2d.h"
 #include "../Tower/p.h"
 USING_NS_CC;
-//构造函数
-ExplodeDecorator::ExplodeDecorator(bulletComponent* wrappee) : BulletDecorator(wrappee) {
-    boomDamage = 0;
+
+// ExplodeDecorator 构造函数
+ExplodeDecorator::ExplodeDecorator(bullet* wrappee) : bullet(*wrappee) {
+    boomDamage = 0;  // 设置初始爆炸伤害
+}
+
+ExplodeDecorator* ExplodeDecorator::create(const std::string& filename, bullet* wrappee)
+{
+    ExplodeDecorator* sprite = new (std::nothrow) ExplodeDecorator(wrappee);
+    if (sprite && sprite->initWithFile(filename))
+    {
+        sprite->autorelease();
+        return sprite;
+    }
+    CC_SAFE_DELETE(sprite);
+    return nullptr;
 }
 
 
@@ -16,7 +29,7 @@ void ExplodeDecorator::setBoomDamage(int damage) {
 void ExplodeDecorator::causeDamage()
 {
     CCLOG("ExplodeDecorator::causeDamage() is running...");
-    BulletDecorator::causeDamage(); // 先执行基本的伤害逻辑
+    bullet::causeDamage(); // 先执行基本的伤害逻辑
     booom();
     // this->removeFromParent();//移除
 }
