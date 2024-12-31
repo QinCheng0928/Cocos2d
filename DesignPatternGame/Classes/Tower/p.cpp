@@ -72,9 +72,11 @@ void p::attackOneEnemy(enemy* attack_enemy)
     nox->setScale(1);
     nox->setNoxDamage(noxDamage);
     nox->setTrack(attack_enemy);
-    nox->setPosition(Vec2(attack_enemy->getContentSize().width / 2, attack_enemy->getContentSize().height+50));
-    attack_enemy->addChild(nox, 1);
-    nox->causeDamage();//毒气开始造成伤害
+    nox->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
+    //nox->setPosition(Vec2(attack_enemy->getContentSize().width / 2, attack_enemy->getContentSize().height+50));
+    //attack_enemy->addChild(nox, 1);
+    this->getParent()->addChild(nox, 1);//子弹加入场景
+    nox->scheduleUpdate();//毒气开始造成伤害
     // shootBoomBullet();
 }
 

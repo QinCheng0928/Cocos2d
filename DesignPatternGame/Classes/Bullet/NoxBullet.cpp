@@ -35,23 +35,69 @@ void NoxBullet::causeDamage()
     emitter->setPosition(Vec2(trackEnemy->getContentSize().width / 2, trackEnemy->getContentSize().height+50));
     trackEnemy->addChild(emitter, 10);
 
+    auto nox = Nox::create("nox.png");
+    nox->setScale(1);
+    nox->setNoxDamage(noxDamage);
+    nox->setTrack(trackEnemy);
+    nox->setPosition(Vec2(trackEnemy->getContentSize().width / 2, trackEnemy->getContentSize().height+50));
+    trackEnemy->addChild(nox, 1);
+
     //计时器每秒怪物身上就受伤
-    this->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&NoxBullet::noxHit), 0.5f);
+    nox->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&Nox::noxHit), 0.5f);
     //计时器6秒之后解除减速并且爆炸
-    this->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&NoxBullet::noxDown), 2.0f);
-    // nox->scheduleOnce(static_cast<cocos2d::SEL_SCHEDULE>(&bullet::booom), 2.0f);
+    nox->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&Nox::noxDown), 2.0f);
+
+    this->removeFromParent();
 }
 
-void NoxBullet::noxHit(float dt) {
+
+
+Nox::Nox() {
+    noxDamage = 0;
+    trackEnemy = nullptr;
+}
+
+bool Nox::init() {
+    return true;
+}
+
+void Nox::onEnter() {
+    Sprite::onEnter();
+}
+
+Nox* Nox::create(const std::string& filename) {
+    Nox* sprite = new (std::nothrow) Nox();
+    if (sprite && sprite->initWithFile(filename))
+    {
+        sprite->autorelease();
+        return sprite;
+    }
+    CC_SAFE_DELETE(sprite);
+    return nullptr;
+}
+
+void Nox::setNoxDamage(int damage) {
+    noxDamage = damage;
+}
+
+void Nox::noxHit(float dt) {
     trackEnemy->get_hit(noxDamage); // 毒气伤害
     if (trackEnemy->getSpeedScale() == 1) {
         trackEnemy->setSpeedScale(0.5);
     }
 }
 
-void NoxBullet::noxDown(float dt) {
-    this->unschedule(static_cast<cocos2d::SEL_SCHEDULE>(&NoxBullet::noxHit));//解除毒气持续伤害计时器
+void Nox::noxDown(float dt) {
+    this->unschedule(static_cast<cocos2d::SEL_SCHEDULE>(&Nox::noxHit));//解除毒气持续伤害计时器
     if (trackEnemy->getSpeedScale() == 0.5) {
         trackEnemy->setSpeedScale(1);
     }
+
+    trackEnemy->removeChildByTag(10); // 去除毒气效果
+    this->removeFromParent();
 }
+
+void Nox::setTrack(enemy* enemy) {
+    trackEnemy = enemy;
+}
+

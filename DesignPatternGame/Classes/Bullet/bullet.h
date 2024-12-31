@@ -15,14 +15,13 @@ public:
 	bullet();//构造函数
 	virtual bool init();
 	void onEnter();//初始化函数
-	void update(float dt);//计时器函数
+	virtual void update(float dt);//计时器函数
 	static bullet* create(const std::string& filename);//创建函数
 	void setTrack(enemy* trackIt);//设置锁敌
 	void setSpeed(int newSpeed);//设置飞行速度
 	void setDamage(int damage);
-	void trackAndAttack(float dt);//计时器下调用的函数，搜索敌人，如果搜索成功则进行攻击
+	virtual void trackAndAttack(float dt);//计时器下调用的函数，搜索敌人，如果搜索成功则进行攻击
 	virtual void causeDamage();// 重写，每种子弹伤害方式不同
-	// void booom(float dt);//子弹爆炸的实现
 	float get_distance(enemy* enemy, bullet* bullet);//计算子弹与敌人的距离
 };
 
@@ -44,6 +43,19 @@ public:
 	static NoxBullet* create(const std::string& filename);//创建函数
 	void setNoxDamage(int damage);
 	void causeDamage();
+};
+
+// 毒气类，用于造成持续伤害
+class Nox :public Sprite {
+	int noxDamage;
+	enemy* trackEnemy;
+public:
+	Nox();//构造函数
+	virtual bool init();
+	void onEnter();//初始化函数
+	static Nox* create(const std::string& filename);//创建函数
+	void setNoxDamage(int damage);
+	void setTrack(enemy* enemy);
 	void noxHit(float dt);
 	void noxDown(float dt);
 };
