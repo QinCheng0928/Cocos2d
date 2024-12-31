@@ -24,35 +24,32 @@ cocos2d::Scene* baseLevel::createScene()
 
 bool baseLevel::init()
 {
-	//初始化一些基本参数
-	superInit();
-
-	//设置怪物行走路径、起始点、萝卜位置
-	spawnInit();
-
-	//打印ui界面
+	moneyAndHpSet();
+	baseBlockInit();
+	backgroundInit();
+	spawnPointSet();
+	spawnBlockInit();
+	pathSet();
+	carrotSet();
 	uiInit();
-
-	//每帧都要更新的东西进行初始化
 	scheduleInit();
-
-	//初始化波次信息
+	waveSet();
 	waveInit();
-
-	//开始出怪
 	monsterSpawn(1);
 
 	return true;
 }
 
-
-void baseLevel::superInit()
+void baseLevel::moneyAndHpSet()
 {
-	//设置各个变量的初始值
-	moneyAndHpSet();
+	money = 5000;
+	healthPoint = 10;
+}
+
+void baseLevel::baseBlockInit()
+{
 	currentWave = 0;
 	stop = 0;
-
 	//初始化所有格子为空格子
 	for (int i = 1; i <= BLOCK_X_NUM; ++i) {
 		for (int j = 1; j <= BLOCK_Y_NUM; ++j) {
@@ -65,40 +62,29 @@ void baseLevel::superInit()
 			this->addChild(block);
 		}
 	}
+}
 
-	//背景图
+void baseLevel::backgroundInit()
+{
 	auto background = Sprite::create("BG.png");
 	background->setPosition(Director::getInstance()->getVisibleSize() / 2);
 	this->addChild(background);
 }
 
-void baseLevel::moneyAndHpSet()
+void baseLevel::spawnBlockInit()
 {
-	money = 5000;
-	healthPoint = 10;
-}
-
-void baseLevel::spawnInit()
-{
-	//根据关卡不同自己调整怪物的出生位置
-	spawnPointSet();
-
 	//把当前位置的格子移除，用路径格子作为替代
 	this->removeChildByTag(coordToTag(spawnPoint.x, spawnPoint.y));
-
 	auto spawn = PathBlock::create();
-
 	spawn->setPosition(Vec2(spawnPoint.x * BLOCK_LEN + 0.5 * BLOCK_LEN, spawnPoint.y * BLOCK_LEN + 0.5 * BLOCK_LEN));
 	spawn->setZOrder(0);
-	
-	//把出生格子加入路径序列
+	//把路径格子加入路径序列
 	path.pushBack(spawn);
-
 	this->addChild(spawn);
+}
 
-	//根据需要设置怪物的移动路径
-	pathSet();
-
+void baseLevel::carrotSet()
+{
 	//在终点添加一个萝卜图层
 	auto carrot = Sprite::create("carrot.png");
 	carrot->setAnchorPoint(Vec2(0.5, 0));
@@ -106,9 +92,8 @@ void baseLevel::spawnInit()
 	carrot->setScale(2);
 	carrot->setName("carrot");
 	this->addChild(carrot);
-
-	//for test
 }
+
 
 void baseLevel::spawnPointSet()
 {
@@ -239,9 +224,6 @@ void baseLevel::switchToPauseMenu()
 
 void baseLevel::waveInit()
 {
-	//自行定制波次、怪物数量以及刷新间隔
-	waveSet();
-
 	maxWave = wave.size();
 	waveIter = wave.begin();
 	currentIter = waveIter->sequence.begin();

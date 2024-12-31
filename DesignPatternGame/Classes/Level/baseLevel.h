@@ -67,17 +67,21 @@ public:
 
 	static cocos2d::Scene* createScene();
 	//初始化
-	virtual bool init();
-	//进行最基本的初始化
-	void superInit();
+	bool init();
 	//对血量以及初始金币进行设置
 	virtual void moneyAndHpSet();
-	//对出生点以及路径进行设置
-	void spawnInit();
+	//对格子进行初始化
+	void baseBlockInit();
+	//对背景进行初始化
+	void backgroundInit();
 	//对出生点的位置进行设置
 	virtual void spawnPointSet();
+	//对出生点格子进行设置
+	void spawnBlockInit();
 	//对怪物的移动路径进行设置
 	virtual void pathSet();
+	//对萝卜的位置进行设置
+	void carrotSet();
 	//对ui进行设置
 	void uiInit();
 	//将场景切换到暂停界面
