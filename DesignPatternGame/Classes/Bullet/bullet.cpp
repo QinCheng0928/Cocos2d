@@ -53,7 +53,7 @@ void bullet::setDamage(int damage) {
 //调用搜索和攻击函数——公共
 void bullet::update(float dt)
 {
-    // CCLOG("bullet::state==[%d]", state);
+    CCLOG("bullet::state==[%d]", state);
     trackAndAttack(dt);
 }
 //搜索敌人，攻击
@@ -77,6 +77,7 @@ void bullet::trackAndAttack(float dt)
         {
             causeDamage();//造成伤害与动画
             state = 1;//记录状态
+            this->removeFromParent();//移除
             CCLOG("bullet boom!");
         }
         else
@@ -98,11 +99,10 @@ void bullet::causeDamage() {
     trackEnemy->addChild(boom, 10);
 
     trackEnemy->get_hit(damage);//对怪造成伤害
-    this->removeFromParent();//移除
 }
 
 //距离计算函数——公共
-float bullet::get_distance(enemy* enemy, bullet* bullet)
+float bullet::get_distance(enemy* enemy, bulletComponent* bullet)
 {
     Vec2 enemyPosition = convertToWorldSpaceAR(enemy->getPosition());
     Vec2 bulletPosition = convertToWorldSpaceAR(bullet->getParent()->getPosition());

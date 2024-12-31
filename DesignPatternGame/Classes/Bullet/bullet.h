@@ -5,7 +5,21 @@
 #include "../Level/baseLevel.h"
 USING_NS_CC;
 /*子弹类实现*/
-class bullet :public Sprite {
+
+// 组件接口
+class bulletComponent : public Sprite {
+public:
+	virtual void causeDamage() = 0;
+	virtual void update(float dt) = 0;
+	virtual void trackAndAttack(float dt) = 0;
+	virtual void setTrack(enemy* trackIt) = 0;  // 锁定敌人
+	virtual void setSpeed(int newSpeed) = 0;  // 设置飞行速度
+	virtual void setDamage(int damage) = 0;   // 设置伤害
+	virtual float get_distance(enemy* enemy, bulletComponent* bullet) = 0;//计算子弹与敌人的距离
+};
+
+// 具体组件
+class bullet :public bulletComponent {
 protected:
 	int speed;//子弹移速 // ——公共
 	int damage;//子弹伤害 // ——公共
@@ -15,23 +29,51 @@ public:
 	bullet();//构造函数
 	virtual bool init();
 	void onEnter();//初始化函数
-	virtual void update(float dt);//计时器函数
 	static bullet* create(const std::string& filename);//创建函数
-	void setTrack(enemy* trackIt);//设置锁敌
-	void setSpeed(int newSpeed);//设置飞行速度
-	void setDamage(int damage);
-	virtual void trackAndAttack(float dt);//计时器下调用的函数，搜索敌人，如果搜索成功则进行攻击
-	virtual void causeDamage();// 重写，每种子弹伤害方式不同
-	float get_distance(enemy* enemy, bullet* bullet);//计算子弹与敌人的距离
+	void update(float dt) override;//计时器函数
+	void trackAndAttack(float dt) override;//计时器下调用的函数，搜索敌人，如果搜索成功则进行攻击
+	void setTrack(enemy* trackIt) override;//设置锁敌
+	void setSpeed(int newSpeed) override;//设置飞行速度
+	void setDamage(int damage) override;
+	float get_distance(enemy* enemy, bulletComponent* bullet) override;
+	void causeDamage() override;// 重写，每种子弹伤害方式不同
 };
 
-class ExplodeBullet :public bullet {
+// 装饰器抽象类
+class BulletDecorator :public bulletComponent {
+protected:
+	bulletComponent* baseBullet;
+public:
+	BulletDecorator(bulletComponent* baseBullet): baseBullet(baseBullet){}
+	virtual void causeDamage() override {
+		baseBullet->causeDamage();
+	}
+	void update(float dt) override {
+		baseBullet->update(dt);
+	}
+	void trackAndAttack(float dt) override {
+		baseBullet->trackAndAttack(dt);
+	}
+	void setTrack(enemy* trackIt) override {
+		baseBullet->setTrack(trackIt);  // 调用基础子弹的锁定敌人方法
+	}
+	void setSpeed(int newSpeed) override {
+		baseBullet->setSpeed(newSpeed);  // 调用基础子弹的设置速度方法
+	}
+	void setDamage(int damage) override {
+		baseBullet->setDamage(damage);  // 调用基础子弹的设置伤害方法
+	}
+	float get_distance(enemy* enemy, bulletComponent* bullet) override {
+		return baseBullet->get_distance(enemy, bullet);
+	}
+};
+
+class ExplodeDecorator :public BulletDecorator {
 	int boomDamage;
 public:
-	ExplodeBullet();
-	static ExplodeBullet* create(const std::string& filename);//创建函数
+	ExplodeDecorator(bulletComponent* wrappee);
+	void causeDamage() override;
 	void setBoomDamage(int damage);
-	void causeDamage();
 	Vector<enemy*> multiSearch();
 	void booom();
 };
@@ -59,5 +101,6 @@ public:
 	void noxHit(float dt);
 	void noxDown(float dt);
 };
+
 
 #endif

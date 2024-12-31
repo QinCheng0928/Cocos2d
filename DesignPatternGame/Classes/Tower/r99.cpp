@@ -76,22 +76,21 @@ void r99::shoot()
     /* 发射单个子弹的方法，相当于子弹初始化 */
     auto attack_enemy = atk_eny.front();//获取序列中的第一个敌人
 
-    CCLOG("r99::dadada is running...\n");
-    auto bullet = bullet::create("shuiguai.png");//子弹创建
-    bullet->setScale(0.5);
-    bullet->setTrack(attack_enemy);
-    bullet->setDamage(damage);
+    bulletComponent* baseBullet = bullet::create("shuiguai.png");//子弹创建
+    baseBullet->setScale(0.5);
+    baseBullet->setTrack(attack_enemy);
+    baseBullet->setDamage(damage);
     if(level==1)
-        bullet->setSpeed(1000);
+        baseBullet->setSpeed(1000);
     else if(level==2)
-        bullet->setSpeed(3000);
+        baseBullet->setSpeed(3000);
     else
-        bullet->setSpeed(5000);
+        baseBullet->setSpeed(5000);
 
-    bullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
-    this->getParent()->addChild(bullet, 1);//子弹加入场景
+    baseBullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
+    this->getParent()->addChild(baseBullet, 1);//子弹加入场景
 
-    bullet->scheduleUpdate();//子弹开始锁敌
+    baseBullet->scheduleUpdate();//子弹开始锁敌
 }
 
 void r99::load()

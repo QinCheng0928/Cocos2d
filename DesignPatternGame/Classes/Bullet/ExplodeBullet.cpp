@@ -3,38 +3,26 @@
 #include "../Tower/p.h"
 USING_NS_CC;
 //构造函数
-ExplodeBullet::ExplodeBullet()
-{
-    bullet();
-    boomDamage = 0; // ——爆炸
+ExplodeDecorator::ExplodeDecorator(bulletComponent* wrappee) : BulletDecorator(wrappee) {
+    boomDamage = 0;
 }
 
-//创建函数——公共
-ExplodeBullet* ExplodeBullet::create(const std::string& filename)
-{
-    ExplodeBullet* sprite = new (std::nothrow) ExplodeBullet();
-    if (sprite && sprite->initWithFile(filename))
-    {
-        sprite->autorelease();
-        return sprite;
-    }
-    CC_SAFE_DELETE(sprite);
-    return nullptr;
-}
 
-void ExplodeBullet::setBoomDamage(int damage) {
+void ExplodeDecorator::setBoomDamage(int damage) {
     boomDamage = damage;
 }
 
 //搜索敌人，攻击
-void ExplodeBullet::causeDamage()
+void ExplodeDecorator::causeDamage()
 {
+    CCLOG("ExplodeDecorator::causeDamage() is running...");
+    BulletDecorator::causeDamage(); // 先执行基本的伤害逻辑
     booom();
-    this->removeFromParent();//移除
+    // this->removeFromParent();//移除
 }
 
 //爆炸子弹搜索函数——爆炸子弹
-Vector<enemy*> ExplodeBullet::multiSearch()
+Vector<enemy*> ExplodeDecorator::multiSearch()
 {
     Vector<enemy*> temp;
 
@@ -62,16 +50,21 @@ Vector<enemy*> ExplodeBullet::multiSearch()
 }
 
 //爆炸子弹代码——爆炸子弹
-void ExplodeBullet::booom()
+void ExplodeDecorator::booom()
 {
+    CCLOG("ExplodeDecorator::booom() is running...");
+
     auto boom = ParticleExplosion::create();//爆炸特效
     boom->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
     boom->setScale(1);
     this->getParent()->addChild(boom, 10);
 
     Vector<enemy*>hitEnemy = this->multiSearch();//搜索范围内所有敌人
+    CCLOG("ExplodeDecorator found %d enemies", hitEnemy.size());
+
     for (auto i = hitEnemy.begin(); i != hitEnemy.end(); i++)
     {
         (*i)->get_hit(boomDamage);//造成爆炸伤害
+        CCLOG("ExplodeDecorator dealt %d damage to enemy: %p", boomDamage, *i);
     }
 }
