@@ -1,14 +1,14 @@
-#include "bullet.h"
+#include "Bullet.h"
 #include "cocos2d.h"
 #include "../Tower/p.h"
 USING_NS_CC;
 
 // ExplodeDecorator 构造函数
-ExplodeDecorator::ExplodeDecorator(bullet* wrappee) : bullet(*wrappee) {
+ExplodeDecorator::ExplodeDecorator(Bullet* wrappee) : Bullet(*wrappee) {
     boomDamage = 0;  // 设置初始爆炸伤害
 }
 
-ExplodeDecorator* ExplodeDecorator::create(const std::string& filename, bullet* wrappee)
+ExplodeDecorator* ExplodeDecorator::create(const std::string& filename, Bullet* wrappee)
 {
     ExplodeDecorator* sprite = new (std::nothrow) ExplodeDecorator(wrappee);
     if (sprite && sprite->initWithFile(filename))
@@ -29,15 +29,15 @@ void ExplodeDecorator::setBoomDamage(int damage) {
 void ExplodeDecorator::causeDamage()
 {
     CCLOG("ExplodeDecorator::causeDamage() is running...");
-    bullet::causeDamage(); // 先执行基本的伤害逻辑
+    Bullet::causeDamage(); // 先执行基本的伤害逻辑
     booom();
     // this->removeFromParent();//移除
 }
 
 //爆炸子弹搜索函数——爆炸子弹
-Vector<enemy*> ExplodeDecorator::multiSearch()
+Vector<Enemy*> ExplodeDecorator::multiSearch()
 {
-    Vector<enemy*> temp;
+    Vector<Enemy*> temp;
 
     auto cur_baseLevel = dynamic_cast<baseLevel*>(this->getParent());
     if (cur_baseLevel != nullptr)
@@ -72,12 +72,12 @@ void ExplodeDecorator::booom()
     boom->setScale(1);
     this->getParent()->addChild(boom, 10);
 
-    Vector<enemy*>hitEnemy = this->multiSearch();//搜索范围内所有敌人
+    Vector<Enemy*>hitEnemy = this->multiSearch();//搜索范围内所有敌人
     CCLOG("ExplodeDecorator found %d enemies", hitEnemy.size());
 
     for (auto i = hitEnemy.begin(); i != hitEnemy.end(); i++)
     {
-        (*i)->get_hit(boomDamage);//造成爆炸伤害
+        (*i)->getHit(boomDamage);//造成爆炸伤害
         CCLOG("ExplodeDecorator dealt %d damage to enemy: %p", boomDamage, *i);
     }
 }

@@ -84,7 +84,7 @@
     <ClCompile Include="..\Classes\Level\level_2.cpp">
       <Filter>src\Level</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Bullet\bullet.cpp">
+    <ClCompile Include="..\Classes\Bullet\Bullet.cpp">
       <Filter>src\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Enemies\Factories\BossEnemyFactory.cpp">
@@ -111,10 +111,10 @@
     <ClCompile Include="..\Classes\Tower\EnemyNotifyManager.cpp">
       <Filter>src\Tower</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Bullet\ExplodeBullet.cpp">
+    <ClCompile Include="..\Classes\Bullet\ExplodeDecorator.cpp">
       <Filter>src\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Bullet\NoxBullet.cpp">
+    <ClCompile Include="..\Classes\Bullet\NoxDecorator.cpp">
       <Filter>src\Bullet</Filter>
     </ClCompile>
   </ItemGroup>
@@ -161,7 +161,7 @@
     <ClInclude Include="..\Classes\Level\level_2.h">
       <Filter>src\Level</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Bullet\bullet.h">
+    <ClInclude Include="..\Classes\Bullet\Bullet.h">
       <Filter>src\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Enemies\Factories\BossEnemyFactory.h">

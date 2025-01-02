@@ -81,11 +81,11 @@ void Enemy::showhp() {
     }
 }
 
-float enemy::getSpeedScale() {
+float Enemy::getSpeedScale() {
     return speedScale;
 }
 
-void enemy::setSpeedScale(float s)
+void Enemy::setSpeedScale(float s)
 {
     speedScale = s;
 }

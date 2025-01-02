@@ -1,10 +1,10 @@
-#include "bullet.h"
+#include "Bullet.h"
 #include "cocos2d.h"
 #include "../Tower/r99.h"
 #include "../Tower/p.h"
 USING_NS_CC;
 //构造函数
-bullet::bullet()
+Bullet::Bullet()
 {
 	trackEnemy = nullptr; // ——公共
     speed = 1000; // ——公共
@@ -13,7 +13,7 @@ bullet::bullet()
 }
 
 // 复制构造函数
-bullet::bullet(const bullet& other) {
+Bullet::Bullet(const Bullet& other) {
     this->speed = other.speed;         // 复制速度
     this->damage = other.damage;       // 复制伤害
     this->trackEnemy = other.trackEnemy; // 复制锁定敌人
@@ -21,21 +21,21 @@ bullet::bullet(const bullet& other) {
     // 注意：没有复制父类 Sprite 的内容，因为它是由 cocos2d 自动管理的
 }
 
-bool bullet::init()
+bool Bullet::init()
 {
 	return true;
 }
 
-void bullet::onEnter()
+void Bullet::onEnter()
 {
     Sprite::onEnter();
     /*damage = (dynamic_cast<r99*>(this->getParent()->getChildByTag(1)))->getDamage();
     boomDamage = (dynamic_cast<p*>(this->getParent()->getParent()->getChildByTag(2)))->getBooomDamage();*/
 }
 //创建函数——公共
-bullet* bullet::create(const std::string& filename)
+Bullet* Bullet::create(const std::string& filename)
 {
-    bullet* sprite = new (std::nothrow) bullet();
+    Bullet* sprite = new (std::nothrow) Bullet();
     if (sprite && sprite->initWithFile(filename))
     {
         sprite->autorelease();
@@ -46,27 +46,27 @@ bullet* bullet::create(const std::string& filename)
 }
 
 //设置锁敌
-void bullet::setTrack(Enemy* trackIt)
+void Bullet::setTrack(Enemy* trackIt)
 {
     trackEnemy = trackIt;
 }
 //设置速度——公共
-void bullet::setSpeed(int newSpeed)
+void Bullet::setSpeed(int newSpeed)
 {
     speed = newSpeed;
 }
 //设置伤害——公共
-void bullet::setDamage(int damage) {
+void Bullet::setDamage(int damage) {
     this->damage = damage;
 }
 //调用搜索和攻击函数——公共
-void bullet::update(float dt)
+void Bullet::update(float dt)
 {
     CCLOG("bullet::state==[%d]", state);
     trackAndAttack(dt);
 }
 //搜索敌人，攻击
-void bullet::trackAndAttack(float dt)
+void Bullet::trackAndAttack(float dt)
 {
     if (trackEnemy->getParent() == nullptr)//敌人已经被清除
     {
@@ -100,18 +100,18 @@ void bullet::trackAndAttack(float dt)
     }
 }
 
-void bullet::causeDamage() {
+void Bullet::causeDamage() {
     // 击中特效
     auto boom = ParticleExplosion::create();
     boom->setPosition(Vec2(trackEnemy->getContentSize().width / 2, trackEnemy->getContentSize().height - 100));
     boom->setScale(0.5);
     trackEnemy->addChild(boom, 10);
 
-    trackEnemy->get_hit(damage);//对怪造成伤害
+    trackEnemy->getHit(damage);//对怪造成伤害
 }
 
 //距离计算函数——公共
-float bullet::get_distance(enemy* enemy, bullet* bullet)
+float Bullet::get_distance(Enemy* enemy, Bullet* bullet)
 {
     Vec2 enemyPosition = convertToWorldSpaceAR(enemy->getPosition());
     Vec2 bulletPosition = convertToWorldSpaceAR(bullet->getParent()->getPosition());

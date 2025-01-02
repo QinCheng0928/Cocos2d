@@ -1,14 +1,14 @@
-#include "bullet.h"
+#include "Bullet.h"
 #include "cocos2d.h"
 #include "../Tower/p.h"
 USING_NS_CC;
 //构造函数
-NoxDecorator::NoxDecorator(bullet* wrappee): bullet(*wrappee){
+NoxDecorator::NoxDecorator(Bullet* wrappee): Bullet(*wrappee){
     noxDamage = 0; // ——毒气
 }
 
 //创建函数——公共
-NoxDecorator* NoxDecorator::create(const std::string& filename, bullet* wrappee)
+NoxDecorator* NoxDecorator::create(const std::string& filename, Bullet* wrappee)
 {
     NoxDecorator* sprite = new (std::nothrow) NoxDecorator(wrappee);
     if (sprite && sprite->initWithFile(filename))
@@ -27,7 +27,7 @@ void NoxDecorator::setNoxDamage(int damage) {
 //搜索敌人，攻击
 void NoxDecorator::causeDamage()
 {
-    bullet::causeDamage();
+    Bullet::causeDamage();
     //毒气特效
     auto emitter = ParticleSmoke::create();
     emitter->setColor(Color3B(0, 0, 0));
@@ -48,8 +48,6 @@ void NoxDecorator::causeDamage()
 
     // this->removeFromParent();
 }
-
-
 
 Nox::Nox() {
     noxDamage = 0;
@@ -80,7 +78,7 @@ void Nox::setNoxDamage(int damage) {
 }
 
 void Nox::noxHit(float dt) {
-    trackEnemy->get_hit(noxDamage); // 毒气伤害
+    trackEnemy->getHit(noxDamage); // 毒气伤害
     if (trackEnemy->getSpeedScale() == 1) {
         trackEnemy->setSpeedScale(0.5);
     }
@@ -96,7 +94,7 @@ void Nox::noxDown(float dt) {
     this->removeFromParent();
 }
 
-void Nox::setTrack(enemy* enemy) {
+void Nox::setTrack(Enemy* enemy) {
     trackEnemy = enemy;
 }
 

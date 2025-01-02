@@ -16,7 +16,7 @@ USING_NS_CC;
 //};
 
 // 具体组件——普通子弹
-class bullet :public Sprite {
+class Bullet :public Sprite {
 protected:
 	int speed;//子弹移速
 	int damage;//子弹伤害
@@ -24,17 +24,17 @@ protected:
 	Enemy* trackEnemy;//子弹锁定的敌人
 public:
 	int state;//状态
-	bullet();//构造函数
-	bullet(const bullet& other);  // 复制构造函数
+	Bullet();//构造函数
+	Bullet(const Bullet& other);  // 复制构造函数
 	virtual bool init();
 	void onEnter();//初始化函数
-	static bullet* create(const std::string& filename);//创建函数
+	static Bullet* create(const std::string& filename);//创建函数
 	void update(float dt);//计时器函数
 	void trackAndAttack(float dt);//计时器下调用的函数，搜索敌人，如果搜索成功则进行攻击
-	void setTrack(enemy* trackIt);//设置锁敌
+	void setTrack(Enemy* trackIt);//设置锁敌
 	void setSpeed(int newSpeed);//设置飞行速度
 	void setDamage(int damage);
-	float get_distance(enemy* enemy, bullet* bullet);
+	float get_distance(Enemy* enemy, Bullet* bullet);
 	virtual void causeDamage();// 重写，每种子弹伤害方式不同
 };
 
@@ -58,22 +58,22 @@ public:
 //	}
 //};
 
-class ExplodeDecorator :public bullet {
+class ExplodeDecorator :public Bullet {
 	int boomDamage;
 public:
-	ExplodeDecorator(bullet* wrappee);
-	static ExplodeDecorator* create(const std::string& filename, bullet* wrappee);
+	ExplodeDecorator(Bullet* wrappee);
+	static ExplodeDecorator* create(const std::string& filename, Bullet* wrappee);
 	void causeDamage() override;
 	void setBoomDamage(int damage);
-	Vector<enemy*> multiSearch();
+	Vector<Enemy*> multiSearch();
 	void booom();
 };
 
-class NoxDecorator :public bullet {
+class NoxDecorator :public Bullet {
 	int noxDamage;
 public:
-	NoxDecorator(bullet* wrappee);
-	static NoxDecorator* create(const std::string& filename, bullet* wrappee);//创建函数
+	NoxDecorator(Bullet* wrappee);
+	static NoxDecorator* create(const std::string& filename, Bullet* wrappee);//创建函数
 	void setNoxDamage(int damage);
 	void causeDamage() override;
 };
@@ -81,14 +81,14 @@ public:
 // 毒气类，用于造成持续伤害
 class Nox :public Sprite {
 	int noxDamage;
-	enemy* trackEnemy;
+	Enemy* trackEnemy;
 public:
 	Nox();//构造函数
 	virtual bool init();
 	void onEnter();//初始化函数
 	static Nox* create(const std::string& filename);//创建函数
 	void setNoxDamage(int damage);
-	void setTrack(enemy* enemy);
+	void setTrack(Enemy* enemy);
 	void noxHit(float dt);
 	void noxDown(float dt);
 };

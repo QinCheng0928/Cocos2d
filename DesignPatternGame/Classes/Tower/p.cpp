@@ -72,42 +72,9 @@ void p::levelup(int key)
 
 void p::attackOneEnemy(Enemy* attack_enemy)
 {
-    CCLOG("p::attackOneEnemy()is running..");
-<<<<<<< HEAD
-    //锟斤拷锟斤拷锟斤拷
-    auto nox = bullet::create("nox.png");
-    nox->setScale(1);
-    nox->setPosition(Vec2(attack_enemy->getContentSize().width / 2, attack_enemy->getContentSize().height+50));
-    attack_enemy->addChild(nox, 1);
-    
-    //锟斤拷锟斤拷锟斤拷效
-    auto emitter = ParticleSmoke::create();
-    //emitter->setColor(Color3B(0, 0, 0));
-    emitter->setPosition(Vec2(attack_enemy->getContentSize().width / 2, attack_enemy->getContentSize().height+50));
-    attack_enemy->addChild(emitter, 10);
-
-    //锟斤拷时锟斤拷每锟斤拷锟斤拷锟斤拷锟斤拷暇锟斤拷锟斤拷锟?
-    attack_enemy->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&Enemy::noxHit), 0.5f);
-    //锟斤拷时锟斤拷6锟斤拷之锟斤拷锟斤拷锟斤拷锟劫诧拷锟揭憋拷炸
-    nox->scheduleOnce(static_cast<cocos2d::SEL_SCHEDULE>(&p::remove_zidan), 2.5f);
-    attack_enemy->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&Enemy::noxDown), 2.0f);
-    nox->scheduleOnce(static_cast<cocos2d::SEL_SCHEDULE>(&bullet::booom), 2.0f);
-
-    
-=======
-    ////毒气弹
-    //auto nox = NoxBullet::create("nox.png");
-    //nox->setScale(1);
-    //nox->setNoxDamage(noxDamage);
-    //nox->setTrack(attack_enemy);
-    //nox->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
-    ////nox->setPosition(Vec2(attack_enemy->getContentSize().width / 2, attack_enemy->getContentSize().height+50));
-    ////attack_enemy->addChild(nox, 1);
-    //this->getParent()->addChild(nox, 1);//子弹加入场景
-    //nox->scheduleUpdate();//毒气开始造成伤害
-
     shootBoomBullet();
->>>>>>> Decorator
+    // shootNoxBullet();
+    // shootBoomAndNoxBullet();
 }
 
 int p::getBooomDamage()
@@ -142,61 +109,80 @@ int p::getNoxDamage()
     return noxDamage;
 }
 
-//void p::shootBoomBullet() {
-//    auto attack_enemy = atk_eny.front();
-//
-//    auto boom = ExplodeBullet::create("nox.png");
-//    boom->setScale(1);
-//    boom->setTrack(attack_enemy);
-//    boom->setBoomDamage(booomDamage);
-//    boom->setSpeed(1000);
-//
-//    boom->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
-//    this->getParent()->addChild(boom, 1);//子弹加入场景
-//
-//    boom->scheduleUpdate();//子弹开始锁敌
-//}
-
 void p::shootBoomBullet() {
     auto attack_enemy = atk_eny.front();
 
-    auto baseBullet = bullet::create("nox.png");
+    auto baseBullet = Bullet::create("nox.png");
 
     baseBullet->setScale(1);
     baseBullet->setTrack(attack_enemy);
-    // boomBullet->setBoomDamage(booomDamage);
     baseBullet->setSpeed(1000);
     baseBullet->setDamage(damage);
 
-    /*bullet* boomBullet = new ExplodeDecorator(baseBullet);*/
-    bullet* boomBullet = ExplodeDecorator::create("nox.png",baseBullet);
+    Bullet* boomBullet = ExplodeDecorator::create("nox.png",baseBullet);
 
-    // 动态转换为 ExplodeDecorator 类型来访问特有方法
-    if (auto explodeBullet = dynamic_cast<ExplodeDecorator*>(boomBullet)) {
-        explodeBullet->setBoomDamage(booomDamage); // 设置爆炸伤害
-    }
-    else {
-        CCLOG("Failed to cast to ExplodeDecorator!");
-    }
-
-    //bullet* noxBullet = NoxDecorator::create("nox.png", boomBullet);
-
-    //if (auto nBullet = dynamic_cast<NoxDecorator*>(noxBullet)) {
-    //    nBullet->setNoxDamage(noxDamage); // 设置爆炸伤害
+    //// 动态转换为 ExplodeDecorator 类型来访问特有方法
+    //if (auto explodeBullet = dynamic_cast<ExplodeDecorator*>(boomBullet)) {
+    //    explodeBullet->setBoomDamage(booomDamage); // 设置爆炸伤害
     //}
     //else {
     //    CCLOG("Failed to cast to ExplodeDecorator!");
     //}
 
-    boomBullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
-    this->getParent()->addChild(boomBullet, 1);//子弹加入场景
-    //noxBullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
-    //this->getParent()->addChild(noxBullet, 1);//子弹加入场景
-    //baseBullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
-    //this->getParent()->addChild(baseBullet, 1);//子弹加入场景
-    
-    boomBullet->scheduleUpdate();//子弹开始锁敌
-    //noxBullet->scheduleUpdate();//子弹开始锁敌
-    //baseBullet->scheduleUpdate();
+    Bullet* noxBullet = NoxDecorator::create("nox.png", boomBullet);
+
+    noxBullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
+    this->getParent()->addChild(noxBullet, 1);//子弹加入场景
+
+    noxBullet->scheduleUpdate();//子弹开始锁敌
+}
+
+void p::shootNoxBullet() {
+    auto attack_enemy = atk_eny.front();
+
+    auto baseBullet = Bullet::create("nox.png");
+
+    baseBullet->setScale(1);
+    baseBullet->setTrack(attack_enemy);
+    baseBullet->setSpeed(1000);
+    baseBullet->setDamage(damage);
+
+    Bullet* noxBullet = NoxDecorator::create("nox.png", baseBullet);
+
+    if (auto nBullet = dynamic_cast<NoxDecorator*>(noxBullet)) {
+        nBullet->setNoxDamage(noxDamage); // 设置毒气伤害
+    }
+    else {
+        CCLOG("Failed to cast to ExplodeDecorator!");
+    }
+
+    noxBullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
+    this->getParent()->addChild(noxBullet, 1);//子弹加入场景
+
+    noxBullet->scheduleUpdate();//子弹开始锁敌
+}
+
+void p::shootBoomAndNoxBullet() {
+    auto attack_enemy = atk_eny.front();
+
+    auto baseBullet = Bullet::create("nox.png");
+
+    baseBullet->setScale(1);
+    baseBullet->setTrack(attack_enemy);
+    baseBullet->setSpeed(1000);
+    baseBullet->setDamage(damage);
+
+    ExplodeDecorator* boomBullet = ExplodeDecorator::create("nox.png", baseBullet);
+
+    boomBullet->setBoomDamage(booomDamage); // 设置爆炸伤害
+
+    NoxDecorator* noxBullet = NoxDecorator::create("nox.png",boomBullet);
+
+    noxBullet->setNoxDamage(noxDamage);
+
+    noxBullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
+    this->getParent()->addChild(noxBullet, 1);//子弹加入场景
+
+    noxBullet->scheduleUpdate();//子弹开始锁敌
 }
 

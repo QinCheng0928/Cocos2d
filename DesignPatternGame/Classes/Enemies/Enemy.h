@@ -26,8 +26,6 @@ public:
     virtual void show();            // Debug information, output to console
     void showhp();                  // Display health and health bar
     void setSpeedScale(float s);    // Set speed multiplier
-    void noxHit(float dt);          // Take poison gas damage
-    void noxDown(float dt);         // Poison gas grenade explosion
-
+    float getSpeedScale();
 };
 #endif
