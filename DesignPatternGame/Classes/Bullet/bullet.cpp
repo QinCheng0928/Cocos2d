@@ -6,11 +6,19 @@ USING_NS_CC;
 //构造函数
 bullet::bullet()
 {
-	trackEnemy = nullptr;
-    speed = 1000;
-    state = 0;
-    damage = 0;
-    boomDamage = 0;
+	trackEnemy = nullptr; // ——公共
+    speed = 1000; // ——公共
+    state = 0; // ——公共
+    damage = 0; // ——公共
+}
+
+// 复制构造函数
+bullet::bullet(const bullet& other) {
+    this->speed = other.speed;         // 复制速度
+    this->damage = other.damage;       // 复制伤害
+    this->trackEnemy = other.trackEnemy; // 复制锁定敌人
+    this->state = other.state;         // 复制状态
+    // 注意：没有复制父类 Sprite 的内容，因为它是由 cocos2d 自动管理的
 }
 
 bool bullet::init()
@@ -24,7 +32,7 @@ void bullet::onEnter()
     /*damage = (dynamic_cast<r99*>(this->getParent()->getChildByTag(1)))->getDamage();
     boomDamage = (dynamic_cast<p*>(this->getParent()->getParent()->getChildByTag(2)))->getBooomDamage();*/
 }
-//创建函数
+//创建函数——公共
 bullet* bullet::create(const std::string& filename)
 {
     bullet* sprite = new (std::nothrow) bullet();
@@ -42,12 +50,16 @@ void bullet::setTrack(Enemy* trackIt)
 {
     trackEnemy = trackIt;
 }
-//设置速度
+//设置速度——公共
 void bullet::setSpeed(int newSpeed)
 {
     speed = newSpeed;
 }
-//调用搜索和攻击函数
+//设置伤害——公共
+void bullet::setDamage(int damage) {
+    this->damage = damage;
+}
+//调用搜索和攻击函数——公共
 void bullet::update(float dt)
 {
     CCLOG("bullet::state==[%d]", state);
@@ -69,22 +81,17 @@ void bullet::trackAndAttack(float dt)
         float enemyX = trackEnemy->getPosition().x;
         float enemyY = trackEnemy->getPosition().y;
 
-        auto r = (dynamic_cast<r99*>(this->getParent()->getChildByTag(1)));
-        if (r != nullptr)
-        {
-            damage = r->getDamage();
-        }
-
+        // 基础：单体伤害
         if (fabs(bulletX - enemyX) < 100 && fabs(bulletY - enemyY) < 100)//计算范围
         {
-            trackEnemy->getHit(damage);//获取r99的子弹伤害
-            this->removeFromParent();//移除
+            causeDamage();//造成伤害与动画
             state = 1;//记录状态
+            this->removeFromParent();//移除
             CCLOG("bullet boom!");
         }
         else
         {
-            CCLOG("bullet is moving!");
+            // CCLOG("bullet is moving!");
             state = 2;
             auto move1 = MoveTo::create(speed / 1000, trackEnemy->getPosition());//追踪
             this->runAction(move1);
@@ -92,35 +99,19 @@ void bullet::trackAndAttack(float dt)
         
     }
 }
-//移除子弹
-void bullet::removeBullet(float dt)
-{
-    this->removeFromParent();
-}
-//爆炸子弹代码
-void bullet::booom(float dt)
-{
-    auto pn = (dynamic_cast<p*>(this->getParent()->getParent()->getChildByTag(2)));
-    if (pn != nullptr)
-    {
-        boomDamage = pn->getBooomDamage();
-        Vector<Enemy*>hitEnemy = this->multiSearch();//搜索范围内所有敌人
-        for (auto i = hitEnemy.begin(); i != hitEnemy.end(); i++)
-        {
-            (*i)->getHit(boomDamage);//造成爆炸伤害
-        }
 
-        auto boom = ParticleExplosion::create();//爆炸特效
-        boom->setPosition(Vec2(this->getParent()->getPosition().x, this->getParent()->getPosition().y));
-        boom->setScale(1);
-        this->getParent()->getParent()->addChild(boom, 10);
-    }
-    
-    
+void bullet::causeDamage() {
+    // 击中特效
+    auto boom = ParticleExplosion::create();
+    boom->setPosition(Vec2(trackEnemy->getContentSize().width / 2, trackEnemy->getContentSize().height - 100));
+    boom->setScale(0.5);
+    trackEnemy->addChild(boom, 10);
 
+    trackEnemy->get_hit(damage);//对怪造成伤害
 }
-//距离计算函数
-float bullet::get_distance(Enemy* enemy, bullet* bullet)
+
+//距离计算函数——公共
+float bullet::get_distance(enemy* enemy, bullet* bullet)
 {
     Vec2 enemyPosition = convertToWorldSpaceAR(enemy->getPosition());
     Vec2 bulletPosition = convertToWorldSpaceAR(bullet->getParent()->getPosition());
@@ -131,31 +122,4 @@ float bullet::get_distance(Enemy* enemy, bullet* bullet)
     
     float distance = std::sqrt((fabs(enemy_x - bullet_x)) * (fabs(enemy_x - bullet_x)) + (fabs(enemy_y - bullet_y)) * (fabs(enemy_y - bullet_y)));
     return distance;
-}
-//爆炸子弹搜索函数
-Vector<Enemy*> bullet::multiSearch()
-{
-    Vector<Enemy*> temp;
-
-    auto cur_baseLevel = dynamic_cast<baseLevel*>(this->getParent()->getParent());
-    if (cur_baseLevel != nullptr)
-    {
-        if (cur_baseLevel->waveIter != cur_baseLevel->wave.end())
-        {
-            auto cur_enemy = cur_baseLevel->waveIter->sequence.begin();
-            if ((*cur_enemy) != nullptr)
-            {
-                for (auto i = cur_enemy; i != cur_baseLevel->waveIter->sequence.end(); i++)
-                {
-                    float distance = this->get_distance((*i), this);
-                    if (distance <= 300)
-                    {
-                        temp.pushBack(*i);
-                        CCLOG("noxboomenemy.size()==%d", temp.size());
-                    }
-                }
-            }
-        }
-    }
-    return temp;
 }

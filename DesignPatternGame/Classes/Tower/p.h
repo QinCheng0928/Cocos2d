@@ -22,5 +22,6 @@ public:
 	virtual std::string getPicName();
 	void remove_zidan(float dt);
 	void updateEnemyList(Enemy* e, bool isCreated);//更新敌人列表
+	void shootBoomBullet();
 };
 #endif

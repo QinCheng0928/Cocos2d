@@ -81,35 +81,13 @@ void Enemy::showhp() {
     }
 }
 
-// Set the speed multiplier for the enemy
-void Enemy::setSpeedScale(float s) {
+float enemy::getSpeedScale() {
+    return speedScale;
+}
+
+void enemy::setSpeedScale(float s)
+{
     speedScale = s;
-}
-
-// Apply poison gas damage to the enemy
-void Enemy::noxHit(float dt) {
-    auto pn = (dynamic_cast<p*>(this->getParent()->getChildByTag(2)));
-    if (pn != nullptr) {
-        // Get poison gas damage from parent
-        static auto noxDamage = pn->getNoxDamage();
-        // Apply the poison damage
-        this->getHit(noxDamage);
-
-        // Slow down the enemy if not already slowed
-        if (speedScale == 1) {
-            speedScale = 0.5;  // Reduce speed
-        }
-    }
-}
-
-// Stop poison gas damage and restore speed
-void Enemy::noxDown(float dt) {
-    // Unsubscribe from the poison damage timer
-    this->unschedule(static_cast<cocos2d::SEL_SCHEDULE>(&Enemy::noxHit));
-
-    // Restore the enemy's original speed
-    if (speedScale == 0.5)
-        speedScale = 1;  // Restore normal speed
 }
 
 // Move the enemy along the path

@@ -13,7 +13,7 @@ public:
 	static r99* create();
 	void onEnter();
 	void levelup(int key);//升级
-	void dadada();//子弹攻击相关
+	void shoot();//子弹攻击相关
 	void load();//装载相关
 	void start(float dt);//初始化子弹数目，启动侦测函数
 	void bulletCounter(float dt);//子弹数目侦测
