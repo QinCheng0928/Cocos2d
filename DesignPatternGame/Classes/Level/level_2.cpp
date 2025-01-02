@@ -9,6 +9,9 @@ USING_NS_CC;
 
 bool Level_2::init()
 {
+	enemyFactories.insert("Soldier", new SoldierEnemyFactory);
+	enemyFactories.insert("Tank", new TankEnemyFactory);
+	enemyFactories.insert("Boss", new BossEnemyFactory);
 	return baseLevel::init();
 }
 
@@ -38,10 +41,6 @@ void Level_2::moneyAndHpSet()
 
 void Level_2::waveSet()
 {
-	enemyFactories.insert("Soldier", new SoldierEnemyFactory);
-	enemyFactories.insert("Tank", new TankEnemyFactory);
-	enemyFactories.insert("Boss", new BossEnemyFactory);
-
 	WaveList wave1;
 	wave1.spawnInterval = 1;
 	for (int i = 0; i < 6; i++) {
