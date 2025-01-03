@@ -3,11 +3,14 @@
 #include "../Tower/FrostTower.h"
 USING_NS_CC;
 
-// ExplodeDecorator 构造函数
-ExplodeDecorator::ExplodeDecorator(Bullet* wrappee) : Bullet(*wrappee) {
-    boomDamage = 0;  // 设置初始爆炸伤害
+// Constructor for the ExplodeDecorator class
+ExplodeDecorator::ExplodeDecorator(Bullet* wrappee) : Bullet(*wrappee) 
+{
+    // Initialize explosion damage
+    boomDamage = 0; 
 }
 
+// Creates an ExplodeDecorator object with the specified texture and wraps the given bullet
 ExplodeDecorator* ExplodeDecorator::create(const std::string& filename, Bullet* wrappee)
 {
     ExplodeDecorator* sprite = new (std::nothrow) ExplodeDecorator(wrappee);
@@ -20,21 +23,21 @@ ExplodeDecorator* ExplodeDecorator::create(const std::string& filename, Bullet* 
     return nullptr;
 }
 
-
+// Sets the explosion damage
 void ExplodeDecorator::setBoomDamage(int damage) {
     boomDamage = damage;
 }
 
-//搜索敌人，攻击
+// Inflicts damage on the target and triggers an explosion
 void ExplodeDecorator::causeDamage()
 {
     CCLOG("ExplodeDecorator::causeDamage() is running...");
-    Bullet::causeDamage(); // 先执行基本的伤害逻辑
+    Bullet::causeDamage(); // Execute the base damage logic
     booom();
-    // this->removeFromParent();//移除
+    // this->removeFromParent();// Remove from parent node
 }
 
-//爆炸子弹搜索函数——爆炸子弹
+// Searches for multiple enemies within the explosion radius
 Vector<Enemy*> ExplodeDecorator::multiSearch()
 {
     Vector<Enemy*> temp;
@@ -62,22 +65,22 @@ Vector<Enemy*> ExplodeDecorator::multiSearch()
     return temp;
 }
 
-//爆炸子弹代码——爆炸子弹
+// Handles the explosion logic and applies damage to all nearby enemies
 void ExplodeDecorator::booom()
 {
     CCLOG("ExplodeDecorator::booom() is running...");
 
-    auto boom = ParticleExplosion::create();//爆炸特效
+    auto boom = ParticleExplosion::create();// Create explosion effect
     boom->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
     boom->setScale(1);
-    this->getParent()->addChild(boom, 10);
+    this->getParent()->addChild(boom, 10);// Add explosion effect to the scene
 
-    Vector<Enemy*>hitEnemy = this->multiSearch();//搜索范围内所有敌人
+    Vector<Enemy*>hitEnemy = this->multiSearch();// Search for all enemies in range
     CCLOG("ExplodeDecorator found %d enemies", hitEnemy.size());
 
     for (auto i = hitEnemy.begin(); i != hitEnemy.end(); i++)
     {
-        (*i)->getHit(boomDamage);//造成爆炸伤害
+        (*i)->getHit(boomDamage); // Apply explosion damage to each enemy
         CCLOG("ExplodeDecorator dealt %d damage to enemy: %p", boomDamage, *i);
     }
 }

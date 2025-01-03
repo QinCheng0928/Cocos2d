@@ -28,15 +28,6 @@
     <Filter Include="src\Tower">
       <UniqueIdentifier>{eeb5cef0-07db-46ae-a40c-664cc29e5673}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Utils">
-      <UniqueIdentifier>{35da2029-9485-4c3e-9a35-e95f1e17478c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Utils\Observer">
-      <UniqueIdentifier>{523991a0-41cb-40fb-b642-31276828db8a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Utils\Subject">
-      <UniqueIdentifier>{afea041e-150d-483d-9cd2-941de78d6bd3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Bullet">
       <UniqueIdentifier>{e6d495c3-eec7-4b63-a0c9-8adfa61f5057}</UniqueIdentifier>
     </Filter>
@@ -53,12 +44,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameSaveManager\GameSaveManager.cpp">
       <Filter>src\GameSaveManager</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Utils\Subject\subject.cpp">
-      <Filter>src\Utils\Subject</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Utils\Observer\observer.cpp">
-      <Filter>src\Utils\Observer</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Block\baseBlock.cpp">
       <Filter>src\Block</Filter>
@@ -133,12 +118,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameSaveManager\GameSaveManager.h">
       <Filter>src\GameSaveManager</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Utils\Subject\subject.h">
-      <Filter>src\Utils\Subject</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Utils\Observer\observer.h">
-      <Filter>src\Utils\Observer</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Block\baseBlock.h">
       <Filter>src\Block</Filter>

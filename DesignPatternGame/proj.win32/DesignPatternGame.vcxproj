@@ -173,8 +173,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Tower\FlameTower.cpp" />
     <ClCompile Include="..\Classes\Tower\FrostTower.cpp" />
     <ClCompile Include="..\Classes\Tower\Tower.cpp" />
-    <ClCompile Include="..\Classes\Utils\Observer\observer.cpp" />
-    <ClCompile Include="..\Classes\Utils\Subject\subject.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -201,8 +199,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Tower\FrostTower.h" />
     <ClInclude Include="..\Classes\Tower\IEnemyObserver.h" />
     <ClInclude Include="..\Classes\Tower\Tower.h" />
-    <ClInclude Include="..\Classes\Utils\Observer\observer.h" />
-    <ClInclude Include="..\Classes\Utils\Subject\subject.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
