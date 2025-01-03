@@ -2,9 +2,9 @@
 #include "SimpleAudioEngine.h"
 #include "ui/CocosGUI.h"
 #include "../Level/baseLevel.h"
-#include "../Tower/dianmei.h"
-#include "../Tower/r99.h"
-#include "../Tower/p.h"
+#include "../Tower/FlameTower.h"
+#include "../Tower/ElectroTower.h"
+#include "../Tower/FrostTower.h"
 
 
 USING_NS_CC;
@@ -66,7 +66,7 @@ bool TestBlock::clickReact(Touch* touch, Event* event)
         if (texture == target->getTexture()) {
             target->setTexture("btn-about-normal.png");
 
-            //ͨ��ȫ��layerʵ��
+            
             auto layer = Node::create();
             layer->setName("layer");
             auto* disp = Director::getInstance()->getEventDispatcher();
@@ -109,10 +109,6 @@ bool TestBlock::clickReact(Touch* touch, Event* event)
 //	return new TestBlock();
 //}
 
-//����Ϊ���Դ���
-/********************************************************************************/
-//����Ϊ��ʽ����
-
 bool BaseBlock::init()
 {
 
@@ -139,20 +135,20 @@ void BaseBlock::onEnter()
 
     Sprite::onEnter();
 
-    //����¼��ַ���
+    
     auto* disp = Director::getInstance()->getEventDispatcher();
 
-    //����һ��������
+    
     auto listener = EventListenerTouchOneByOne::create();
-    //������û�¼�
+    
     listener->setSwallowTouches(false);
 
     listener->onTouchBegan = [](Touch* touch, Event* event) {
         return true;
         };
-    listener->onTouchEnded = CC_CALLBACK_2(BaseBlock::judgeListenerCallback, this); //����̧��Żᴥ��
+    listener->onTouchEnded = CC_CALLBACK_2(BaseBlock::judgeListenerCallback, this); 
 
-    //�Ѽ��������ӵ�BaseBlock��
+    
     disp->addEventListenerWithSceneGraphPriority(listener, this);
 }
 
@@ -160,25 +156,25 @@ void BaseBlock::onExit()
 {
     Sprite::onExit();
 
-    //�Ƴ��ö������еļ���
+    
     auto* disp = Director::getInstance()->getEventDispatcher();
     disp->removeEventListenersForTarget(this);
 }
 
 bool BaseBlock::judgeListenerCallback(cocos2d::Touch* touch, cocos2d::Event* event)
 {
-    //��ȡ�¼����󣨾���Block�Լ���
+    
     auto target = static_cast<Sprite*>(event->getCurrentTarget());
-    //��ȡ���������λ��
+    
     Vec2 tworld = touch->getLocation();
-    //������λ��ת��Ϊ����λ�ã�Block�����λ�ã�
+    
     Vec2 tlocal = target->convertToNodeSpace(tworld);
 
-    //��ȡ����ĳߴ�
+    
     auto size = target->getContentSize();
     auto rect = Rect(0, 0, size.width, size.height);
 
-    //��������λ������Block�ϣ�������������ص�
+    
     if (rect.containsPoint(tlocal)) {
         clickCallback();
         return true;
@@ -190,10 +186,10 @@ void BaseBlock::clickCallback()
 {
     CCLOG("clicked!");
     this->setOpacity(SELECTED_OPACITY);
-    auto towerPicOne = ui::Button::create("dianmei1.png");
+    auto towerPicOne = ui::Button::create("FlameTower1.png");
     towerPicOne->setScale(0.5);
-    auto towerPicTwo = ui::Button::create("r991.png");
-    auto towerPicThree = ui::Button::create("p1.png");
+    auto towerPicTwo = ui::Button::create("ElectroTower1.png");
+    auto towerPicThree = ui::Button::create("FrostTower1.png");
 
     auto myWidth = this->getContentSize().width;
     auto myHeight = this->getContentSize().height;
@@ -242,9 +238,9 @@ void BaseBlock::clickCallback()
                 auto parent = dynamic_cast<baseLevel*>(this->getParent());
                 
                 
-                if (parent->money >= dianmei().getCost()) {
-                    parent->money -= dianmei().getCost();
-                    auto newDianmei = dianmei::create();
+                if (parent->money >= FlameTower().getCost()) {
+                    parent->money -= FlameTower().getCost();
+                    auto newDianmei = FlameTower::create();
                     newDianmei->setPosition(this->getPosition());
                     newDianmei->running_act();
                     parent->currentTowers.pushBack(newDianmei);
@@ -281,9 +277,9 @@ void BaseBlock::clickCallback()
             auto parent = dynamic_cast<baseLevel*>(this->getParent());
 
 
-            if (parent->money >= r99().getCost()) {
-                parent->money -= r99().getCost();
-                auto newR99 = r99::create();
+            if (parent->money >= ElectroTower().getCost()) {
+                parent->money -= ElectroTower().getCost();
+                auto newR99 = ElectroTower::create();
                 newR99->setPosition(this->getPosition());
                 newR99->running_act();
                 parent->currentTowers.pushBack(newR99);
@@ -321,9 +317,9 @@ void BaseBlock::clickCallback()
             auto parent = dynamic_cast<baseLevel*>(this->getParent());
 
 
-            if (parent->money >= p().getCost()) {
-                parent->money -= p().getCost();
-                auto newP = p::create();
+            if (parent->money >= FrostTower().getCost()) {
+                parent->money -= FrostTower().getCost();
+                auto newP = FrostTower::create();
                 newP->setPosition(this->getPosition());
                 newP->running_act();
                 parent->currentTowers.pushBack(newP);
@@ -406,7 +402,7 @@ bool PathBlock::init()
 PathBlock* PathBlock::create()
 {
     PathBlock* sprite = new (std::nothrow) PathBlock();
-    if (sprite && sprite->initWithFile("path_block.png")) // ͼƬ�ǹ̶���
+    if (sprite && sprite->initWithFile("path_block.png"))
     {
         sprite->autorelease();
         return sprite;

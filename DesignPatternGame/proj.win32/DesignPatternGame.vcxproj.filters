@@ -63,15 +63,6 @@
     <ClCompile Include="..\Classes\Block\baseBlock.cpp">
       <Filter>src\Block</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Tower\dianmei.cpp">
-      <Filter>src\Tower</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Tower\p.cpp">
-      <Filter>src\Tower</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Tower\r99.cpp">
-      <Filter>src\Tower</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Tower\Tower.cpp">
       <Filter>src\Tower</Filter>
     </ClCompile>
@@ -120,6 +111,15 @@
     <ClCompile Include="..\Classes\Bullet\BulletFactory.cpp">
       <Filter>src\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Tower\FlameTower.cpp">
+      <Filter>src\Tower</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Tower\FrostTower.cpp">
+      <Filter>src\Tower</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Tower\ElectroTower.cpp">
+      <Filter>src\Tower</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -142,15 +142,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Block\baseBlock.h">
       <Filter>src\Block</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Tower\dianmei.h">
-      <Filter>src\Tower</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Tower\p.h">
-      <Filter>src\Tower</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Tower\r99.h">
-      <Filter>src\Tower</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Tower\Tower.h">
       <Filter>src\Tower</Filter>
@@ -199,6 +190,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Bullet\BulletFactory.h">
       <Filter>src\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Tower\FlameTower.h">
+      <Filter>src\Tower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Tower\FrostTower.h">
+      <Filter>src\Tower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Tower\ElectroTower.h">
+      <Filter>src\Tower</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

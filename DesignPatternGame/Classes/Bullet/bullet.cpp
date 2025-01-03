@@ -1,8 +1,8 @@
 #include "Bullet.h"
 #include "BulletFactory.h"
 #include "cocos2d.h"
-#include "../Tower/r99.h"
-#include "../Tower/p.h"
+#include "../Tower/ElectroTower.h"
+#include "../Tower/FrostTower.h"
 USING_NS_CC;
 //¹¹Ôìº¯Êý
 Bullet::Bullet()
