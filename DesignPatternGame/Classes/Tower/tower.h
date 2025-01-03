@@ -2,6 +2,7 @@
 #define __TOWER_H__
 #include "cocos2d.h"
 #include "IEnemyObserver.h"
+#include "EnemyNotifyManager.h"
 #include <vector>
 USING_NS_CC;
 
@@ -19,6 +20,7 @@ protected:
     int state;                 // The state of the tower (e.g., attacking or idle)
     Vector<Enemy*> atk_eny;    // List of currently targeted enemies
     int maxLockNum;            // Maximum number of enemies that can be locked
+    Vector<Enemy*> observedEnemies; // 新增：保存敌人的容器
 
 public:
     Tower();
@@ -29,7 +31,7 @@ public:
     virtual void attack_act();                       // The attack behavior logic of the tower
     Enemy* search();                                 // Search for a single target enemy
     Vector<Enemy*> multiSearch();                    // Search for all enemies within range
-    virtual void updateEnemyList(Enemy* enemy, bool isCreated); 
+    virtual void updateEnemyList(Enemy* enemy, bool isCreated) override; 
                                                      // Update the enemy list (add or remove enemies)
     void set(int new_level, int new_cost, float new_speed, int new_damage, int new_squart); // Set the parameters of the tower
     int got_level();                                 // Get the level of the tower

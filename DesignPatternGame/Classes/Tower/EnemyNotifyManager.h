@@ -27,6 +27,7 @@ public:
 
     void addObserver(IEnemyObserver* observer) {
         observers.push_back(observer);
+        CCLOG("EnemyNotifyManager: addObserver");
     }
 
     void removeObserver(IEnemyObserver* observer) {
@@ -39,6 +40,7 @@ public:
     void notifyObservers(Enemy* enemy, bool isCreated) {
         for (auto observer : observers) {
             observer->updateEnemyList(enemy, isCreated);
+            CCLOG("EnemyNotifyManager: notifyObservers");
         }
     }
 };

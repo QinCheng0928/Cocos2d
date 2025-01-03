@@ -11,7 +11,7 @@ bool Enemy::init() {
     if (!Sprite::init()) 
         return false;
     // The this pointer points to the subclass object, when creating a subclass.
-    EnemyNotifyManager::getInstance()->notifyObservers(this, true);
+    
     return true;
 }
 
@@ -64,6 +64,10 @@ void Enemy::onEnter() {
     // Add health bar first, then health label
     this->scheduleUpdate();
     this->schedule(schedule_selector(Enemy::move), 1.0 / 60);
+
+    // Notify the observers
+    EnemyNotifyManager::getInstance()->notifyObservers(this, true);
+    CCLOG("Enemy::init() is running..Trying to notify observers..");
 }
 
 // Display health bar

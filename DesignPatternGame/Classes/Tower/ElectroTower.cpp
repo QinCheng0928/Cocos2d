@@ -193,12 +193,10 @@ std::string ElectroTower::getPicName()
 // Function to update the enemy list when enemies are created or removed
 void ElectroTower::updateEnemyList(Enemy* e, bool isCreated)
 {
-    if (isCreated)
-    {
-        atk_eny.pushBack(e); 
-    }
-    else
-    {
-        atk_eny.eraseObject(e); 
+    if (isCreated) {
+        observedEnemies.pushBack(e);
+        CCLOG("Observed one enemy!\n");
+    } else {
+        observedEnemies.eraseObject(e);
     }
 }

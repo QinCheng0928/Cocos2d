@@ -109,5 +109,10 @@ std::string FlameTower::getPicName()
 
 void FlameTower::updateEnemyList(Enemy* e, bool isCreated)
 {
-    return;
+    if (isCreated) {
+        observedEnemies.pushBack(e);
+        CCLOG("Observed one enemy!\n");
+    } else {
+        observedEnemies.eraseObject(e);
+    }
 }

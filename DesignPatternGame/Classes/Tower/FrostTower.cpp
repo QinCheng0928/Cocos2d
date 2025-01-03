@@ -40,7 +40,12 @@ void FrostTower::onEnter()
 
 void FrostTower::updateEnemyList(Enemy* enemy, bool isCreated)
 {
-    return;
+    if (isCreated) {
+        observedEnemies.pushBack(enemy);
+        CCLOG("Observed one enemy!\n");
+    } else {
+        observedEnemies.eraseObject(enemy);
+    }
 }
 
 void FrostTower::levelup(int key)
@@ -120,9 +125,9 @@ void FrostTower::shootBoomBullet() {
 
     Bullet* boomBullet = ExplodeDecorator::create("nox.png",baseBullet);
 
-    //// ¶¯Ì¬×ª»»Îª ExplodeDecorator ÀàÐÍÀ´·ÃÎÊÌØÓÐ·½·¨
+    //// ï¿½ï¿½Ì¬×ªï¿½ï¿½Îª ExplodeDecorator ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð·ï¿½ï¿½ï¿½
     //if (auto explodeBullet = dynamic_cast<ExplodeDecorator*>(boomBullet)) {
-    //    explodeBullet->setBoomDamage(booomDamage); // ÉèÖÃ±¬Õ¨ÉËº¦
+    //    explodeBullet->setBoomDamage(booomDamage); // ï¿½ï¿½ï¿½Ã±ï¿½Õ¨ï¿½Ëºï¿½
     //}
     //else {
     //    CCLOG("Failed to cast to ExplodeDecorator!");
@@ -131,9 +136,9 @@ void FrostTower::shootBoomBullet() {
     Bullet* noxBullet = NoxDecorator::create("nox.png", boomBullet);
 
     noxBullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
-    this->getParent()->addChild(noxBullet, 1);//×Óµ¯¼ÓÈë³¡¾°
+    this->getParent()->addChild(noxBullet, 1);//ï¿½Óµï¿½ï¿½ï¿½ï¿½ë³¡ï¿½ï¿½
 
-    noxBullet->scheduleUpdate();//×Óµ¯¿ªÊ¼ËøµÐ
+    noxBullet->scheduleUpdate();//ï¿½Óµï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 }
 
 void FrostTower::shootNoxBullet() {
@@ -149,16 +154,16 @@ void FrostTower::shootNoxBullet() {
     Bullet* noxBullet = NoxDecorator::create("nox.png", baseBullet);
 
     if (auto nBullet = dynamic_cast<NoxDecorator*>(noxBullet)) {
-        nBullet->setNoxDamage(noxDamage); // ÉèÖÃ¶¾ÆøÉËº¦
+        nBullet->setNoxDamage(noxDamage); // ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½Ëºï¿½
     }
     else {
         CCLOG("Failed to cast to ExplodeDecorator!");
     }
 
     noxBullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
-    this->getParent()->addChild(noxBullet, 1);//×Óµ¯¼ÓÈë³¡¾°
+    this->getParent()->addChild(noxBullet, 1);//ï¿½Óµï¿½ï¿½ï¿½ï¿½ë³¡ï¿½ï¿½
 
-    noxBullet->scheduleUpdate();//×Óµ¯¿ªÊ¼ËøµÐ
+    noxBullet->scheduleUpdate();//ï¿½Óµï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 }
 
 void FrostTower::shootBoomAndNoxBullet() {
@@ -173,15 +178,15 @@ void FrostTower::shootBoomAndNoxBullet() {
 
     ExplodeDecorator* boomBullet = ExplodeDecorator::create("nox.png", baseBullet);
 
-    boomBullet->setBoomDamage(booomDamage); // ÉèÖÃ±¬Õ¨ÉËº¦
+    boomBullet->setBoomDamage(booomDamage); // ï¿½ï¿½ï¿½Ã±ï¿½Õ¨ï¿½Ëºï¿½
 
     NoxDecorator* noxBullet = NoxDecorator::create("nox.png",boomBullet);
 
     noxBullet->setNoxDamage(noxDamage);
 
     noxBullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
-    this->getParent()->addChild(noxBullet, 1);//×Óµ¯¼ÓÈë³¡¾°
+    this->getParent()->addChild(noxBullet, 1);//ï¿½Óµï¿½ï¿½ï¿½ï¿½ë³¡ï¿½ï¿½
 
-    noxBullet->scheduleUpdate();//×Óµ¯¿ªÊ¼ËøµÐ
+    noxBullet->scheduleUpdate();//ï¿½Óµï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 }
 
