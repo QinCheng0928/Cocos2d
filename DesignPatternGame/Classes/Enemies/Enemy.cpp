@@ -1,6 +1,6 @@
 #include "Enemy.h"
 #include "../Level/baseLevel.h"
-#include "../Tower/p.h"
+#include "../Tower/FrostTower.h"
 #include "../Tower/EnemyNotifyManager.h"
 
 USING_NS_CC;

@@ -1,6 +1,6 @@
 #include "Bullet.h"
 #include "cocos2d.h"
-#include "../Tower/p.h"
+#include "../Tower/FrostTower.h"
 USING_NS_CC;
 
 // ExplodeDecorator ¹¹Ôìº¯Êý

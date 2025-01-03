@@ -4,22 +4,22 @@
 #include "../Tower/ElectroTower.h"
 #include "../Tower/FrostTower.h"
 USING_NS_CC;
-//构造函数
+
 Bullet::Bullet()
 {
-	trackEnemy = nullptr; // ——公共
-    speed = 1000; // ——公共
-    state = 0; // ——公共
-    damage = 0; // ——公共
+    trackEnemy = nullptr;  // Tracks the target enemy
+    speed = 1000;          // Speed of the bullet
+    state = 0;             // State of the bullet (0 = inactive, 1 = hit, 2 = moving)
+    damage = 0;            // Damage caused by the bullet
 }
 
-// 复制构造函数
+// Copy constructor
+// Parent class `Sprite` content is not copied as it's managed by cocos2d
 Bullet::Bullet(const Bullet& other) {
-    this->speed = other.speed;         // 复制速度
-    this->damage = other.damage;       // 复制伤害
-    this->trackEnemy = other.trackEnemy; // 复制锁定敌人
-    this->state = other.state;         // 复制状态
-    // 注意：没有复制父类 Sprite 的内容，因为它是由 cocos2d 自动管理的
+    this->speed = other.speed;              // Copy speed
+    this->damage = other.damage;            // Copy damage
+    this->trackEnemy = other.trackEnemy;    // Copy tracked enemy
+    this->state = other.state;              // Copy state
 }
 
 bool Bullet::init()
@@ -30,13 +30,12 @@ bool Bullet::init()
 void Bullet::onEnter()
 {
     Sprite::onEnter();
-    /*damage = (dynamic_cast<r99*>(this->getParent()->getChildByTag(1)))->getDamage();
-    boomDamage = (dynamic_cast<p*>(this->getParent()->getParent()->getChildByTag(2)))->getBooomDamage();*/
 }
-//创建函数——公共
+
+// Create function
 Bullet* Bullet::create(const std::string& filename)
 {
-    const auto texture = BulletFactory::getBulletTexture(filename);
+    cocos2d::Texture2D* texture = BulletFactory::getBulletTexture(filename);
     Bullet* sprite = new (std::nothrow) Bullet();
     if (sprite && sprite->initWithTexture(texture))
     {
@@ -47,30 +46,35 @@ Bullet* Bullet::create(const std::string& filename)
     return nullptr;
 }
 
-//设置锁敌
+// Set the enemy to track
 void Bullet::setTrack(Enemy* trackIt)
 {
     trackEnemy = trackIt;
 }
-//设置速度——公共
+
+// Set bullet speed
 void Bullet::setSpeed(int newSpeed)
 {
     speed = newSpeed;
 }
-//设置伤害——公共
+
+// Set bullet damage
 void Bullet::setDamage(int damage) {
     this->damage = damage;
 }
-//调用搜索和攻击函数——公共
+
+// Update function, called every frame
 void Bullet::update(float dt)
 {
     CCLOG("bullet::state==[%d]", state);
     trackAndAttack(dt);
 }
-//搜索敌人，攻击
+
+// Function to track and attack the enemy
 void Bullet::trackAndAttack(float dt)
 {
-    if (trackEnemy->getParent() == nullptr)//敌人已经被清除
+    // Check if the enemy is removed
+    if (trackEnemy->getParent() == nullptr)
     {
         state = 0;
         this->removeFromParent();
@@ -83,17 +87,16 @@ void Bullet::trackAndAttack(float dt)
         float enemyX = trackEnemy->getPosition().x;
         float enemyY = trackEnemy->getPosition().y;
 
-        // 基础：单体伤害
+        // Basic damage logic
         if (fabs(bulletX - enemyX) < 100 && fabs(bulletY - enemyY) < 100)//计算范围
         {
-            causeDamage();//造成伤害与动画
-            state = 1;//记录状态
-            this->removeFromParent();//移除
+            causeDamage();              // Apply damage and effect
+            state = 1;                  // Update state to hit
+            this->removeFromParent();   // Remove bullet
             CCLOG("bullet boom!");
         }
         else
         {
-            // CCLOG("bullet is moving!");
             state = 2;
             auto move1 = MoveTo::create(speed / 1000, trackEnemy->getPosition());//追踪
             this->runAction(move1);
@@ -102,17 +105,18 @@ void Bullet::trackAndAttack(float dt)
     }
 }
 
+// Function to apply damage and play explosion effect
 void Bullet::causeDamage() {
-    // 击中特效
+    // Explosion effect
     auto boom = ParticleExplosion::create();
     boom->setPosition(Vec2(trackEnemy->getContentSize().width / 2, trackEnemy->getContentSize().height - 100));
     boom->setScale(0.5);
     trackEnemy->addChild(boom, 10);
 
-    trackEnemy->getHit(damage);//对怪造成伤害
+    trackEnemy->getHit(damage);     // Apply damage to the enemy
 }
 
-//距离计算函数——公共
+// Function to calculate the distance between a bullet and an enemy
 float Bullet::get_distance(Enemy* enemy, Bullet* bullet)
 {
     Vec2 enemyPosition = convertToWorldSpaceAR(enemy->getPosition());

@@ -4,10 +4,10 @@
 #include "ui/CocosGUI.h"
 #include "../Enemies/Enemy.h"
 #include "../Enemies/SoldierEnemy.h"
-#include "../Tower/dianmei.h"
+#include "../Tower/FlameTower.h"
 #include "../GameSaveManager/GameSaveManager.h"
 #include "../HelloWorldScene.h"
-#include "../Tower/r99.h"
+#include "../Tower/ElectroTower.h"
 USING_NS_CC;
 
 extern bool levelpass;
@@ -170,56 +170,7 @@ void baseLevel::uiInit()
 void baseLevel::switchToPauseMenu()
 {
 	Director::getInstance()->popScene();
-	////暂停界面的场景
-	//auto pauseScene = Scene::create();
 
-	////场景的背景图
-	//auto background = Sprite::create("BG.png");
-	//background->setPosition(pauseScene->getContentSize() / 2);
-
-	////重新开始按钮
-	//auto restartButton = ui::Button::create("restart_normal.png", "restart_selected.png");
-	//restartButton->setPosition(Vec2(pauseScene->getContentSize().width / 2, pauseScene->getContentSize().height / 2));
-	////按下就会重新开始当前关卡
-	//restartButton->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
-	//	switch (type)
-	//	{
-	//	case ui::Widget::TouchEventType::ENDED:
-	//		Director::getInstance()->popScene();
-	//		restart();
-	//	}
-	//});
-
-	////继续按钮
-	//auto continueButton = ui::Button::create("continue_normal.png", "continue_selected.png");
-	//continueButton->setPosition(Vec2(pauseScene->getContentSize().width / 2, pauseScene->getContentSize().height * 0.7));
-	////按下就会继续当前关卡
-	//continueButton->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
-	//	switch (type)
-	//	{
-	//	case ui::Widget::TouchEventType::ENDED:
-	//		Director::getInstance()->popScene();
-	//	}
-	//});
-
-	////返回菜单按钮
-	//auto returnButton = ui::Button::create("select_menu_normal.png", "select_menu_normal.png");
-	//returnButton->setPosition(Vec2(pauseScene->getContentSize().width / 2, pauseScene->getContentSize().height * 0.3));
-	////按下就会返回关卡选择界面
-	//returnButton->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
-	//	switch (type)
-	//	{
-	//	case ui::Widget::TouchEventType::ENDED:
-	//		Director::getInstance()->popScene();
-	//		Director::getInstance()->popScene();
-	//	}
-	//});
-	//
-	//pauseScene->addChild(background);
-	//pauseScene->addChild(restartButton);
-	//pauseScene->addChild(continueButton);
-	//pauseScene->addChild(returnButton);
-	//Director::getInstance()->pushScene(pauseScene);
 }
 
 void baseLevel::waveInit()

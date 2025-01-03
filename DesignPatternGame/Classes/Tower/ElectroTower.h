@@ -1,25 +1,29 @@
-#ifndef __R99_H__
-#define __R99_H__
+#ifndef __ElectroTower_H__
+#define __ElectroTower_H__
+
 #include "cocos2d.h"
 #include "Tower.h"
 #include "../Enemies/Enemy.h"
+
 USING_NS_CC;
-class ElectroTower :public Tower {
+
+class ElectroTower : public Tower {
 public:
-	int counter;//已经打出的子弹数量
-	ElectroTower();
-	int getDamage();//返回子弹伤害
-	virtual bool init();
-	static ElectroTower* create();
-	void onEnter();
-	void levelup(int key);//升级
-	void shoot();//子弹攻击相关
-	void load();//装载相关
-	void start(float dt);//初始化子弹数目，启动侦测函数
-	void bulletCounter(float dt);//子弹数目侦测
-	void attackOneEnemy(Enemy* attack_enemy);//攻击一个敌人相关
-	virtual void attack_act();//攻击动作相关
-	virtual std::string getPicName();//获取升级图片
-	virtual void updateEnemyList(Enemy* e, bool isCreated) override;//更新敌人列表
+    int counter;                         // Number of bullets already fired
+    ElectroTower();                      // Constructor
+    int getDamage();                     // Returns bullet damage
+    virtual bool init();                 // Initializes the ElectroTower
+    static ElectroTower* create();       // Creates an ElectroTower object
+    void onEnter();                      // Called when the tower enters the scene
+    void levelup(int key);               // Upgrades the tower to the specified level
+    void shoot();                        // Handles bullet attack logic
+    void load();                         // Handles bullet loading and reloading logic
+    void start(float dt);                // Initializes bullet count and starts detection
+    void bulletCounter(float dt);        // Monitors the number of bullets fired
+    void attackOneEnemy(Enemy* attack_enemy); // Handles attacking a single enemy
+    virtual void attack_act();           // Executes the attack action
+    virtual std::string getPicName();    // Retrieves the image name for upgrades
+    virtual void updateEnemyList(Enemy* e, bool isCreated) override; // Updates the enemy list
 };
+
 #endif

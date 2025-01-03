@@ -5,26 +5,33 @@
 #include <unordered_map>
 #include <string>
 
+// BulletFactory class definition
+// This class manages a cache of textures for bullets to optimize memory usage
 class BulletFactory : public cocos2d::Ref {
 public:
-    // Cache for bullet types
+    // Cache for bullet textures, using an unordered_map to store textures by filename
     static std::unordered_map<std::string, cocos2d::Texture2D*> textureCache;
 
     BulletFactory() {}
 
+    // Static function to get a texture for a bullet by filename
     static cocos2d::Texture2D* getBulletTexture(const std::string& filename) {
         cocos2d::Texture2D* texture = nullptr;
-        if (textureCache.find(filename) == textureCache.end()) {
-            // 如果纹理未加载，加载并缓存
+        
+        if (textureCache.find(filename) == textureCache.end()) 
+        {
+            // If the texture is not in the cache, load it from file and cache it
             texture = cocos2d::Director::getInstance()->getTextureCache()->addImage(filename);
             if (!texture) {
                 CCLOG("Failed to load texture: %s", filename.c_str());
                 return nullptr;
             }
+            // Store the loaded texture in the cache
             textureCache[filename] = texture;
         }
-        else {
-            // 如果纹理已存在，直接使用缓存中的纹理
+        else 
+        {
+            // If the texture is already cached, retrieve it from the cache
             texture = textureCache[filename];
         }
 		return texture;

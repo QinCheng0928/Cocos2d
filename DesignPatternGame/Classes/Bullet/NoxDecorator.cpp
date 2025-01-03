@@ -1,6 +1,6 @@
 #include "Bullet.h"
 #include "cocos2d.h"
-#include "../Tower/p.h"
+#include "../Tower/FrostTower.h"
 USING_NS_CC;
 //¹¹Ôìº¯Êý
 NoxDecorator::NoxDecorator(Bullet* wrappee): Bullet(*wrappee){
