@@ -8,7 +8,9 @@ USING_NS_CC;
 Enemy::Enemy() : value(1000), hp(100), speed(5), maxHp(hp), speedScale(1), nextPosition(nullptr) {}
 
 bool Enemy::init() {
-    if (!Sprite::init()) return false;
+    if (!Sprite::init()) 
+        return false;
+    // The this pointer points to the subclass object, when creating a subclass.
     EnemyNotifyManager::getInstance()->notifyObservers(this, true);
     return true;
 }

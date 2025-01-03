@@ -291,7 +291,7 @@ Vector<Enemy*> Tower::multiSearch()
 }
 void Tower::updateEnemyList(Enemy* enemy, bool isCreated)
 {
-
+	return;
 }
 
 

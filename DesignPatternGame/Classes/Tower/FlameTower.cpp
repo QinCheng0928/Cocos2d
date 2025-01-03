@@ -41,7 +41,7 @@ void FlameTower::levelup(int key)
 
     if (key==2)
     {
-        another = Tower::create("dianmei2.png")->getTexture();
+        another = Tower::create("FlameTower2.png")->getTexture();
         this->set(2, cost + upgradeCost, 0.8, 40, 400.0f);
         maxLockNum = 2;
         /*this->stopAllActions();*/
@@ -52,7 +52,7 @@ void FlameTower::levelup(int key)
     }
     else if(key==3)
     {
-        another = Tower::create("dianmei3.png")->getTexture();
+        another = Tower::create("FlameTower3.png")->getTexture();
         this->set(3, cost + upgradeCost, 0.5, 40, 500.0f);
         maxLockNum = 3;
         //this->stopAllActions();
@@ -109,5 +109,5 @@ std::string FlameTower::getPicName()
 
 void FlameTower::updateEnemyList(Enemy* e, bool isCreated)
 {
-
+    return;
 }

@@ -7,7 +7,6 @@
 
 USING_NS_CC;
 
-// 前向声明
 class Enemy;
 
 class EnemyNotifyManager {
@@ -15,7 +14,8 @@ private:
     static EnemyNotifyManager* instance;
     std::vector<IEnemyObserver*> observers;
 
-    EnemyNotifyManager() {}  // 修正构造函数，移除递归创建
+    // Fix the constructor to remove recursive creation
+    EnemyNotifyManager() {}
 
 public:
     static EnemyNotifyManager* getInstance() {

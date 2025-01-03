@@ -149,7 +149,6 @@ void ElectroTower::attackOneEnemy(Enemy* attack_enemy)
 {
     if (counter < level * 10) // Check if bullets are available
     {
-        CCLOG("r99::attackAct is running...\n");
         shoot(); // Fire a bullet
         counter++;
         auto numOfBullet = dynamic_cast<Label*>(getChildByName("numOfBullet"));
