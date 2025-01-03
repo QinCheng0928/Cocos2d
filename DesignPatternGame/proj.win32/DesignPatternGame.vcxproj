@@ -153,6 +153,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\Block\baseBlock.cpp" />
     <ClCompile Include="..\Classes\Bullet\Bullet.cpp" />
+    <ClCompile Include="..\Classes\Bullet\BulletFactory.cpp" />
     <ClCompile Include="..\Classes\Bullet\ExplodeDecorator.cpp" />
     <ClCompile Include="..\Classes\Bullet\NoxDecorator.cpp" />
     <ClCompile Include="..\Classes\Enemies\BossEnemy.cpp" />
@@ -180,6 +181,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\Block\baseBlock.h" />
     <ClInclude Include="..\Classes\Bullet\Bullet.h" />
+    <ClInclude Include="..\Classes\Bullet\BulletFactory.h" />
     <ClInclude Include="..\Classes\Enemies\BossEnemy.h" />
     <ClInclude Include="..\Classes\Enemies\Enemy.h" />
     <ClInclude Include="..\Classes\Enemies\Factories\BossEnemyFactory.h" />

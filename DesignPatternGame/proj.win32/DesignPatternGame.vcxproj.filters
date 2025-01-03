@@ -117,6 +117,9 @@
     <ClCompile Include="..\Classes\Bullet\NoxDecorator.cpp">
       <Filter>src\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Bullet\BulletFactory.cpp">
+      <Filter>src\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -193,6 +196,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Tower\IEnemyObserver.h">
       <Filter>src\Tower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Bullet\BulletFactory.h">
+      <Filter>src\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

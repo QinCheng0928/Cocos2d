@@ -1,4 +1,5 @@
 #include "Bullet.h"
+#include "BulletFactory.h"
 #include "cocos2d.h"
 #include "../Tower/r99.h"
 #include "../Tower/p.h"
@@ -35,8 +36,9 @@ void Bullet::onEnter()
 //创建函数——公共
 Bullet* Bullet::create(const std::string& filename)
 {
+    const auto texture = BulletFactory::getBulletTexture(filename);
     Bullet* sprite = new (std::nothrow) Bullet();
-    if (sprite && sprite->initWithFile(filename))
+    if (sprite && sprite->initWithTexture(texture))
     {
         sprite->autorelease();
         return sprite;
