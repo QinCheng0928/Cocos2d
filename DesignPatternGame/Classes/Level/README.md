@@ -18,7 +18,7 @@ bool baseLevel::init()
 }
 ```
 
-后续子类只需要按需重写：
+Subsequent subclasses only need to override as needed:
 
 ```c++
 moneyAndHpSet();
