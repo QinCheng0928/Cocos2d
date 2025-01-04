@@ -6,28 +6,58 @@
 USING_NS_CC;
 /*子弹类实现*/
 
-// 具体组件——普通子弹
-class Bullet :public Sprite {
+//// 组件接口
+//class bulletComponent : public Sprite {
+//public:
+//	virtual void causeDamage() = 0;
+//	virtual void update(float dt) = 0;
+//	virtual void trackAndAttack(float dt) = 0;
+//	virtual float get_distance(enemy* enemy, bulletComponent* bullet) = 0;//计算子弹与敌人的距离
+//};
+
+// Specific Component - Generic Bullet
+class Bullet : public Sprite {
 protected:
-	int speed;//子弹移速
-	int damage;//子弹伤害
-	int boomDamage;//子弹爆炸伤害
-	Enemy* trackEnemy;//子弹锁定的敌人
+	int speed;               // Bullet speed
+	int damage;              // Bullet damage
+	int boomDamage;          // Bullet explosion damage
+	Enemy* trackEnemy;       // Enemy targeted by the bullet
 public:
-	int state;//状态
-	Bullet();//构造函数
-	Bullet(const Bullet& other);  // 复制构造函数
-	virtual bool init();
-	void onEnter();//初始化函数
-	static Bullet* create(const std::string& filename);//创建函数
-	void update(float dt);//计时器函数
-	void trackAndAttack(float dt);//计时器下调用的函数，搜索敌人，如果搜索成功则进行攻击
-	void setTrack(Enemy* trackIt);//设置锁敌
-	void setSpeed(int newSpeed);//设置飞行速度
-	void setDamage(int damage);
-	float get_distance(Enemy* enemy, Bullet* bullet);
-	virtual void causeDamage();// 重写，每种子弹伤害方式不同
+	int state;											// Bullet state (e.g., moving, exploding)
+	Bullet();											// Constructor
+	Bullet(const Bullet& other);						// Copy constructor
+	virtual bool init();								// Initialization function
+	void onEnter();										// Called when the bullet is added to a scene
+	static Bullet* create(const std::string& filename); // Factory function to create a bullet
+	void update(float dt);								// Timer function for periodic updates
+	void trackAndAttack(float dt);						// Searches for enemies and attacks if found
+	void setTrack(Enemy* trackIt);						// Sets the target enemy
+	void setSpeed(int newSpeed);						// Sets the bullet's flying speed
+	void setDamage(int damage);							// Sets the bullet's damage
+	float get_distance(Enemy* enemy, Bullet* bullet);	// Calculates the distance between a bullet and an enemy
+	virtual void causeDamage();							// Virtual function for applying damage (different types of bullets can override this)
 };
+
+
+//// 装饰器抽象类
+//class BulletDecorator :public bulletComponent {
+//protected:
+//	bulletComponent* baseBullet;
+//public:
+//	BulletDecorator(bulletComponent* baseBullet): baseBullet(baseBullet){}
+//	virtual void causeDamage() override {
+//		baseBullet->causeDamage();
+//	}
+//	void update(float dt) override {
+//		baseBullet->update(dt);
+//	}
+//	void trackAndAttack(float dt) override {
+//		baseBullet->trackAndAttack(dt);
+//	}
+//	float get_distance(enemy* enemy, bulletComponent* bullet) override {
+//		return baseBullet->get_distance(enemy, bullet);
+//	}
+//};
 
 class ExplodeDecorator :public Bullet {
 	int boomDamage;

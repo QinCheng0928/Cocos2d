@@ -1,35 +1,24 @@
-初始化money和HP
-初始化空格子和背景（固定）
-初始化enemy出生点位置
-出生点格子初始化
-设置enemy的移动路径
-添加一个萝卜图层
-打印ui界面（固定）
-每帧都要更新的东西进行初始化scheduleInit()（固定）
-初始化波次信息
-开始出怪（固定）
-
 ```c++
 bool baseLevel::init()
 {
-	moneyAndHpSet();
-	baseBlockInit();
-	backgroundInit();
-	spawnPointSet();
-	spawnBlockInit();
-	pathSet();
-	carrotSet();
-	uiInit();
-	scheduleInit();
-	waveSet();
-	waveInit();
-	monsterSpawn(1);
+    moneyAndHpSet();    // Initialize money and HP
+    baseBlockInit();    // Initialize empty blocks 								(fixed)
+    backgroundInit();   // Initialize the background layer 						(fixed)
+    spawnPointSet();    // Initialize enemy spawn point positions
+    spawnBlockInit();   // Initialize spawn point blocks						(fixed)
+    pathSet();          // Set the enemy movement path
+    carrotSet();        // Add the carrot layer									(fixed)
+    uiInit();           // Initialize the UI interface 							(fixed)
+    scheduleInit();     // Initialize the per-frame update logic 				(fixed)
+    waveSet();          // Initialize wave information
+    waveInit();         // Set up the specific wave details						(fixed)
+    monsterSpawn(1);    // Start spawning the first wave of enemies				(fixed)
 
-	return true;
+    return true;        // Return initialization success
 }
 ```
 
-后续子类只需要按需重写：
+Subsequent subclasses only need to override as needed:
 
 ```c++
 moneyAndHpSet();

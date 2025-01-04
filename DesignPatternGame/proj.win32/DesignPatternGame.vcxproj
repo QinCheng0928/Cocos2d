@@ -153,6 +153,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\Block\baseBlock.cpp" />
     <ClCompile Include="..\Classes\Bullet\Bullet.cpp" />
+    <ClCompile Include="..\Classes\Bullet\BulletFactory.cpp" />
     <ClCompile Include="..\Classes\Bullet\ExplodeDecorator.cpp" />
     <ClCompile Include="..\Classes\Bullet\NoxDecorator.cpp" />
     <ClCompile Include="..\Classes\Enemies\BossEnemy.cpp" />
@@ -167,19 +168,18 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Level\baseLevel.cpp" />
     <ClCompile Include="..\Classes\Level\level_1.cpp" />
     <ClCompile Include="..\Classes\Level\level_2.cpp" />
-    <ClCompile Include="..\Classes\Tower\dianmei.cpp" />
+    <ClCompile Include="..\Classes\Tower\ElectroTower.cpp" />
     <ClCompile Include="..\Classes\Tower\EnemyNotifyManager.cpp" />
-    <ClCompile Include="..\Classes\Tower\p.cpp" />
-    <ClCompile Include="..\Classes\Tower\r99.cpp" />
+    <ClCompile Include="..\Classes\Tower\FlameTower.cpp" />
+    <ClCompile Include="..\Classes\Tower\FrostTower.cpp" />
     <ClCompile Include="..\Classes\Tower\Tower.cpp" />
-    <ClCompile Include="..\Classes\Utils\Observer\observer.cpp" />
-    <ClCompile Include="..\Classes\Utils\Subject\subject.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\Block\baseBlock.h" />
     <ClInclude Include="..\Classes\Bullet\Bullet.h" />
+    <ClInclude Include="..\Classes\Bullet\BulletFactory.h" />
     <ClInclude Include="..\Classes\Enemies\BossEnemy.h" />
     <ClInclude Include="..\Classes\Enemies\Enemy.h" />
     <ClInclude Include="..\Classes\Enemies\Factories\BossEnemyFactory.h" />
@@ -193,14 +193,12 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Level\baseLevel.h" />
     <ClInclude Include="..\Classes\Level\level_1.h" />
     <ClInclude Include="..\Classes\Level\level_2.h" />
-    <ClInclude Include="..\Classes\Tower\dianmei.h" />
+    <ClInclude Include="..\Classes\Tower\ElectroTower.h" />
     <ClInclude Include="..\Classes\Tower\EnemyNotifyManager.h" />
+    <ClInclude Include="..\Classes\Tower\FlameTower.h" />
+    <ClInclude Include="..\Classes\Tower\FrostTower.h" />
     <ClInclude Include="..\Classes\Tower\IEnemyObserver.h" />
-    <ClInclude Include="..\Classes\Tower\p.h" />
-    <ClInclude Include="..\Classes\Tower\r99.h" />
     <ClInclude Include="..\Classes\Tower\Tower.h" />
-    <ClInclude Include="..\Classes\Utils\Observer\observer.h" />
-    <ClInclude Include="..\Classes\Utils\Subject\subject.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

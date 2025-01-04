@@ -19,6 +19,7 @@ SoldierEnemy* SoldierEnemy::create() {
     SoldierEnemy* sprite = new (std::nothrow) SoldierEnemy();
     if (sprite && sprite->initWithFile("SoldierEnemy.png")) {
         sprite->autorelease();
+        
         return sprite;
     }
     CC_SAFE_DELETE(sprite);

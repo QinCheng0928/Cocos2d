@@ -1,4 +1,5 @@
-怪物对应关系：
-enemy1 mike     SoldierEnemy
-enemy2 nongp    TankEnemy
-enemy3 zy       BossEnemy
+To make the program more standardized, 
+here is the correspondence between the old and new naming conventions for the monster names:
+mike class  in enemy1 file  →  SoldierEnemy class   in SoldierEnemy file
+nongp class in enemy2 file  →  TankEnemy class      in TankEnemy file
+zy class    in enemy3 file  →  BossEnemy class      in BossEnemy file

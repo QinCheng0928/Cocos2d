@@ -1,6 +1,6 @@
 #include "Enemy.h"
 #include "../Level/baseLevel.h"
-#include "../Tower/p.h"
+#include "../Tower/FrostTower.h"
 #include "../Tower/EnemyNotifyManager.h"
 
 USING_NS_CC;
@@ -8,8 +8,8 @@ USING_NS_CC;
 Enemy::Enemy() : value(1000), hp(100), speed(5), maxHp(hp), speedScale(1), nextPosition(nullptr) {}
 
 bool Enemy::init() {
-    if (!Sprite::init()) return false;
-    EnemyNotifyManager::getInstance()->notifyObservers(this, true);
+    if (!Sprite::init()) 
+        return false;    
     return true;
 }
 
@@ -62,6 +62,10 @@ void Enemy::onEnter() {
     // Add health bar first, then health label
     this->scheduleUpdate();
     this->schedule(schedule_selector(Enemy::move), 1.0 / 60);
+
+    // Notify the observers
+    EnemyNotifyManager::getInstance()->notifyObservers(this, true);
+    CCLOG("Enemy::init() is running..Trying to notify observers..");
 }
 
 // Display health bar

@@ -2,6 +2,7 @@
 #include "Tower.h"
 #include "../Level/baseLevel.h"
 #include<cmath>
+#include "EnemyNotifyManager.h"
 USING_NS_CC;
 using namespace std;
 inline bool Tower::init()
@@ -13,7 +14,7 @@ Tower::Tower()
 {
 	level = 1;
 	cost = 1;
-	speed = 1.0f;//攻击间隔
+	speed = 1.0f;
 	damage = 60;
 	squart = 500.0f;
 	state = 1;
@@ -24,29 +25,32 @@ Tower::Tower()
 void Tower::onEnter()
 {
 	Sprite::onEnter();
+    EnemyNotifyManager::getInstance()->addObserver(this);
+    CCLOG("Tower::onEnter() is running..");
 
-	//获得事件分发器
+	
 	auto* disp = Director::getInstance()->getEventDispatcher();
 
-	//创建一个监听器
+	
 	auto listener = EventListenerTouchOneByOne::create();
-	//不会吞没事件
+	
 	listener->setSwallowTouches(false);
 
 	listener->onTouchBegan = [](Touch* touch, Event* event) {
 		return true;
 		};
-	listener->onTouchEnded = CC_CALLBACK_2(Tower::judgeListenerCallback, this); //按键抬起才会触发
+	listener->onTouchEnded = CC_CALLBACK_2(Tower::judgeListenerCallback, this); 
 
-	//把监听器添加到BaseBlock中
+	
 	disp->addEventListenerWithSceneGraphPriority(listener, this);
 	this->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&Tower::update), speed);
 }
 void Tower::onExit()
 {
+    EnemyNotifyManager::getInstance()->removeObserver(this);
 	Sprite::onExit();
 
-	//移除该对象所有的监听
+	
 	auto* disp = Director::getInstance()->getEventDispatcher();
 	disp->removeEventListenersForTarget(this);
 }
@@ -66,7 +70,7 @@ int Tower::got_level()
 
 void Tower::running_act()
 {
-	//待机动作
+	
 	auto rotateTo1 = RotateTo::create(0.6f, 5.0f);
 	auto rotateTo2 = RotateTo::create(0.6f, -5.0f);
 	//auto moveBy1 = MoveBy::create(0.3f, Vec2(0, 10));
@@ -81,7 +85,7 @@ void Tower::running_act()
 
 void Tower::attack_act()
 {
-
+	return;
 }
 
 float Tower::get_distance(Enemy* enemy,Tower* Tower)
@@ -101,12 +105,12 @@ int Tower::getCost()
 
 void Tower::clickCallback()
 {
-	// 创建一个DrawNode
+	
 	auto drawNode = cocos2d::DrawNode::create();
 	this->getParent()->addChild(drawNode);
 	drawNode->setName("yuan");
 
-	// 画空心圆表示攻击范围
+	
 	//drawNode->drawDot(this->getPosition(), this->squart, cocos2d::Color4F::WHITE);
 	//drawNode->drawCircle(this->getPosition(), this->squart, 0, segments, false, lineWidth, cocos2d::Color4F::WHITE);
 	drawNode->drawCircle(this->getPosition(), this->squart, 0, 100, false, cocos2d::Color4F::WHITE);
@@ -217,25 +221,25 @@ void Tower::clickCallback()
 
 bool Tower::judgeListenerCallback(cocos2d::Touch* touch, cocos2d::Event* event)
 {
-	//获取事件对象（就是Block自己）
+	
 	auto target = static_cast<Sprite*>(event->getCurrentTarget());
-	//获取点击的世界位置
+	
 	Vec2 tworld = touch->getLocation();
-	//将世界位置转换为本地位置（Block的相对位置）
+	
 	Vec2 tlocal = target->convertToNodeSpace(tworld);
 
-	//获取对象的尺寸
+	
 	auto size = target->getContentSize();
 	auto rect = Rect(0, 0, size.width, size.height);
 
-	//如果点击的位置是在Block上，则会真正触发回调
+	
 	if (rect.containsPoint(tlocal)) {
 		clickCallback();
 		return true;
 	}
 	return false;
 }
-//搜索单个敌人（弃用）
+
 Enemy* Tower::search()
 {
 	auto cur_baseLevel = dynamic_cast<baseLevel*>(this->getParent());
@@ -259,72 +263,56 @@ Enemy* Tower::search()
 	}
 	return nullptr;
 }
-//搜索一至多个敌人
+
 Vector<Enemy*> Tower::multiSearch()
 {
 	Vector<Enemy*> temp;
-	//获取当前波次所有怪物
-	auto cur_baseLevel = dynamic_cast<baseLevel*>(this->getParent());
-	if(cur_baseLevel!=nullptr)
-	{
-		if (cur_baseLevel->waveIter != cur_baseLevel->wave.end())
-		{
-			auto cur_enemy = cur_baseLevel->waveIter->sequence.begin();
-			if ((*cur_enemy) != nullptr)
-			{
-				//将符合条件的怪物加入列表
-				for (auto i = cur_enemy; i != cur_baseLevel->waveIter->sequence.end(); i++)
-				{
-					float distance = this->get_distance((*i), this);
-					if (distance <= Tower::squart && temp.size()<maxLockNum)
-					{
-						temp.pushBack(*i);
-						CCLOG("temp.size()==%d", temp.size());
-					}
-				}
-			}
-		}
-	}
+	for (auto e : observedEnemies) {
+        float distance = this->get_distance(e, this);
+        if (distance <= this->squart && temp.size() < maxLockNum) {
+            temp.pushBack(e);
+        }
+    }
 	return temp;
 }
 void Tower::updateEnemyList(Enemy* enemy, bool isCreated)
 {
-
+	return;
 }
 
 
 void Tower::update(float dt)
 {
-	//判断当前炮塔是什么状态
+	
 	//if (attack_enemy == nullptr || attack_enemy->getParent() == nullptr || get_distance(attack_enemy, this) > this->squart)//
 	//	state = 1;
 	int flag1 = 0, flag2 = 0;
 	for (auto i = atk_eny.begin(); i != atk_eny.end(); i++)
 	{
 		if ((*i)->getParent() != nullptr)
-			flag1 = 1;//存在怪物
+			flag1 = 1;
 	}
 	if (flag1 == 0)
 		state = 1;
 	for (auto i = atk_eny.begin(); i != atk_eny.end(); i++)
 	{
 		if (get_distance((*i), this) > this->squart)
-			flag2 = 1;//存在范围内怪物
+			flag2 = 1;
 	}
 	if (flag2 == 0)
 		state = 1;
 
-	if ((atk_eny.empty() == 1) || flag1 == 0 || flag2 == 0)//如果当前波次存在怪物，则进入搜索状态
+	if ((atk_eny.empty() == 1) || flag1 == 0 || flag2 == 0)
 		state = 1;
 
 	if (state == 1)
 	{
-		CCLOG("enemy::state==1 searching...\n");
-		Vector<Enemy*> cur_enemy = this->multiSearch();//搜索怪物
+		//CCLOG("enemy::state==1 searching...\n");
+		Vector<Enemy*> cur_enemy = this->multiSearch();
 		if (cur_enemy.size()!=0)
 		{
 			state = 2;
-			atk_eny = cur_enemy;//更新炮塔锁敌列表
+			atk_eny = cur_enemy;
 		}
 		else
 		{
@@ -336,13 +324,13 @@ void Tower::update(float dt)
 	{
 		if (atk_eny.size() < maxLockNum)
 		{
-			Vector<Enemy*> cur_enemy = this->multiSearch();//更新敌人列表
+			Vector<Enemy*> cur_enemy = this->multiSearch();
 			atk_eny = cur_enemy;
 		}
 		CCLOG("attack %d enemy...\n", atk_eny.size());
 		this->stopAllActions();
 		this->attack_act();
-		atk_eny.clear();//每次攻击之后清空
+		atk_eny.clear();
 	}
 }
 
