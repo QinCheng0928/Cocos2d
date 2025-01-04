@@ -15,10 +15,16 @@ private:
     std::vector<IEnemyObserver*> observers;
     std::vector<Enemy*> currentEnemies; // 新增：存活敌人列表
 
-    // Fix the constructor to remove recursive creation
+    // Private constructor to prevent external instantiation
     EnemyNotifyManager() {}
+    // Disable copy constructor
+    EnemyNotifyManager(const EnemyNotifyManager&) = delete; 
+    // Disable assignment operator
+    EnemyNotifyManager& operator=(const EnemyNotifyManager&) = delete; 
+
 
 public:
+    // Public static method to provide access to the Singleton instance
     static EnemyNotifyManager* getInstance() {
         if (instance == nullptr) {
             instance = new EnemyNotifyManager();
