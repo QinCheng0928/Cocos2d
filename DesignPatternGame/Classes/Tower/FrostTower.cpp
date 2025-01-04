@@ -78,7 +78,6 @@ void FrostTower::attackOneEnemy(Enemy* attack_enemy)
 {
     shootBoomBullet();
     // shootNoxBullet();
-    // shootBoomAndNoxBullet();
 }
 
 int FrostTower::getBooomDamage()

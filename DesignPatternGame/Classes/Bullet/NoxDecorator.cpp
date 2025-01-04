@@ -3,18 +3,12 @@
 #include "../Tower/FrostTower.h"
 USING_NS_CC;
 // Constructor for the NoxDecorator class
-NoxDecorator::NoxDecorator(Bullet* wrappee): Bullet(*wrappee)
-{
-    // Initialize poison gas damage
-    noxDamage = 0; 
-//构造函数
 NoxDecorator::NoxDecorator(Bullet* wrappee, int damage): Bullet(*wrappee){
-    noxDamage = damage; // ——毒气
+    // Initialize poison gas damage
+    noxDamage = damage; 
 }
 
 // Factory method to create a NoxDecorator object with the specified texture and wrapped bullet
-NoxDecorator* NoxDecorator::create(const std::string& filename, Bullet* wrappee)
-//创建函数——公共
 NoxDecorator* NoxDecorator::create(const std::string& filename, Bullet* wrappee, int damage)
 {
     NoxDecorator* sprite = new (std::nothrow) NoxDecorator(wrappee, damage);
@@ -25,11 +19,6 @@ NoxDecorator* NoxDecorator::create(const std::string& filename, Bullet* wrappee,
     }
     CC_SAFE_DELETE(sprite);
     return nullptr;
-}
-
-// Sets the poison gas damage value
-void NoxDecorator::setNoxDamage(int damage) {
-    noxDamage = damage;
 }
 
 // Searches for an enemy and applies poison gas damage and effects

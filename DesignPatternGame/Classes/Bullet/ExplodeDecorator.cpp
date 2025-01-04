@@ -4,17 +4,12 @@
 USING_NS_CC;
 
 // Constructor for the ExplodeDecorator class
-ExplodeDecorator::ExplodeDecorator(Bullet* wrappee) : Bullet(*wrappee) 
-{
-    // Initialize explosion damage
-    boomDamage = 0; 
-// ExplodeDecorator ππ‘Ï∫Ø ˝
 ExplodeDecorator::ExplodeDecorator(Bullet* wrappee, int damage) : Bullet(*wrappee) {
-    boomDamage = damage;  // …Ë÷√≥ı º±¨’®…À∫¶
+    // Initialize explosion damage
+    boomDamage = damage; 
 }
 
 // Creates an ExplodeDecorator object with the specified texture and wraps the given bullet
-ExplodeDecorator* ExplodeDecorator::create(const std::string& filename, Bullet* wrappee)
 ExplodeDecorator* ExplodeDecorator::create(const std::string& filename, Bullet* wrappee, int damage)
 {
     ExplodeDecorator* sprite = new (std::nothrow) ExplodeDecorator(wrappee, damage);
@@ -27,13 +22,7 @@ ExplodeDecorator* ExplodeDecorator::create(const std::string& filename, Bullet* 
     return nullptr;
 }
 
-// Sets the explosion damage
-void ExplodeDecorator::setBoomDamage(int damage) {
-    boomDamage = damage;
-}
-
 // Inflicts damage on the target and triggers an explosion
-//À—À˜µ–»À£¨π•ª˜
 void ExplodeDecorator::causeDamage()
 {
     CCLOG("ExplodeDecorator::causeDamage() is running...");
