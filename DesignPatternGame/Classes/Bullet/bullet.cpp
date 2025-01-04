@@ -129,3 +129,11 @@ float Bullet::get_distance(Enemy* enemy, Bullet* bullet)
     float distance = std::sqrt((fabs(enemy_x - bullet_x)) * (fabs(enemy_x - bullet_x)) + (fabs(enemy_y - bullet_y)) * (fabs(enemy_y - bullet_y)));
     return distance;
 }
+
+void Bullet::reset()
+{
+    trackEnemy = nullptr;
+    speed = 0;          
+    state = 0;          
+    damage = 0;
+}

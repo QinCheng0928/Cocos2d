@@ -13,14 +13,14 @@ class EnemyNotifyManager {
 private:
     static EnemyNotifyManager* instance;
     std::vector<IEnemyObserver*> observers;
-    std::vector<Enemy*> currentEnemies; // 新增：存活敌人列表
+    std::vector<Enemy*> currentEnemies; // New: List of active enemies
 
     // Private constructor to prevent external instantiation
     EnemyNotifyManager() {}
     // Disable copy constructor
-    EnemyNotifyManager(const EnemyNotifyManager&) = delete; 
+    EnemyNotifyManager(const EnemyNotifyManager&) = delete;
     // Disable assignment operator
-    EnemyNotifyManager& operator=(const EnemyNotifyManager&) = delete; 
+    EnemyNotifyManager& operator=(const EnemyNotifyManager&) = delete;
 
 
 public:
@@ -34,7 +34,7 @@ public:
 
     void addObserver(IEnemyObserver* observer) {
         observers.push_back(observer);
-        // 将现有敌人通知给新观察者
+        // Notify the new observer of the current enemies
         for (auto e : currentEnemies) {
             observer->updateEnemyList(e, true);
         }
@@ -49,10 +49,11 @@ public:
     }
 
     void notifyObservers(Enemy* enemy, bool isCreated) {
-        // 同步维护 currentEnemies
+        // Update the currentEnemies list accordingly
         if (isCreated) {
             currentEnemies.push_back(enemy);
-        } else {
+        }
+        else {
             auto it = std::find(currentEnemies.begin(), currentEnemies.end(), enemy);
             if (it != currentEnemies.end()) {
                 currentEnemies.erase(it);

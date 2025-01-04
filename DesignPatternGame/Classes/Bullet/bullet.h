@@ -36,6 +36,7 @@ public:
 	void setDamage(int damage);							// Sets the bullet's damage
 	float get_distance(Enemy* enemy, Bullet* bullet);	// Calculates the distance between a bullet and an enemy
 	virtual void causeDamage();							// Virtual function for applying damage (different types of bullets can override this)
+	void reset();
 };
 
 

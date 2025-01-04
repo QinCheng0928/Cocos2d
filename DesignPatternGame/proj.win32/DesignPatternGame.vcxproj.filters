@@ -179,6 +179,9 @@
     <ClInclude Include="..\Classes\Tower\Tower.h">
       <Filter>src\Tower</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\Bullet\BulletPool.h">
+      <Filter>src\Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
