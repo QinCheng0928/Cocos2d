@@ -1,0 +1,251 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0" version="26.0.3">
+  <diagram name="第 1 页" id="jD0PNglv-HnlaPaWg_iE">
+    <mxGraphModel dx="2213" dy="791" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-1" value="&amp;nbsp; &lt;font style=&quot;color: rgb(102, 204, 0);&quot;&gt;// attack a single enemy&lt;/font&gt;&lt;div&gt;&amp;nbsp; enemy.getHit(damage)&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=8;fillColor=#E3E3E3;strokeColor=#919191;align=left;" vertex="1" parent="1">
+          <mxGeometry x="130" y="390" width="182.5" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-2" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="llV-JPU1NUP95iyjeOVZ-5" target="llV-JPU1NUP95iyjeOVZ-4">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="270" y="200" as="sourcePoint" />
+            <mxPoint x="345" y="120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-3" value="&amp;nbsp; wrappee.causeDamage()&lt;div&gt;&amp;nbsp; boom() &lt;font style=&quot;color: rgb(102, 204, 0);&quot;&gt;// execute boom logic&lt;/font&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=8;fillColor=#E3E3E3;strokeColor=#919191;align=left;" vertex="1" parent="1">
+          <mxGeometry x="335" y="510" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-4" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;BulletComponent&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ causeDamage()&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;rounded=1;arcSize=4;fillColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="290" y="40" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-5" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Bullet&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;-&amp;nbsp; damage&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;-&amp;nbsp; speed&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;-&amp;nbsp; trackEnemy&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;...&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ trackAndAttack()&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ causeDamage()&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;...&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#F5F5F5;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="130" y="200" width="190" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-6" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;BulletDecorator&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;-&amp;nbsp; wrappee: BulletComponent&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getLocation()&lt;br&gt;+ showinMap(location)&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ caculate()&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#F5F5F5;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="400" y="190" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-7" value="" style="endArrow=none;dashed=1;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" target="llV-JPU1NUP95iyjeOVZ-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="367" y="153" as="sourcePoint" />
+            <mxPoint x="492" y="193" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="367" y="154" />
+              <mxPoint x="495" y="154" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-8" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;ExplodeDecorator&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;-&amp;nbsp; boomDamage&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ causeDamage()&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ boom()&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#F5F5F5;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="350" y="370" width="140" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-9" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;NoxDecorator&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;-&amp;nbsp; noxDamage&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ causeDamage()&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ nox()&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#F5F5F5;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="520" y="370" width="140" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-10" value="" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="llV-JPU1NUP95iyjeOVZ-8" target="llV-JPU1NUP95iyjeOVZ-6">
+          <mxGeometry x="-0.125" y="-20" width="160" relative="1" as="geometry">
+            <mxPoint x="425" y="380" as="sourcePoint" />
+            <mxPoint x="490" y="310" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="420" y="350" />
+              <mxPoint x="495" y="350" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-11" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="llV-JPU1NUP95iyjeOVZ-9">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="490" y="350" as="sourcePoint" />
+            <mxPoint x="570" y="380" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="590" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-12" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#919191;" vertex="1" parent="1">
+          <mxGeometry x="233" y="321" width="5" height="5" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-13" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#919191;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.578;entryY=-0.05;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="llV-JPU1NUP95iyjeOVZ-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="235.75" y="326" as="sourcePoint" />
+            <mxPoint x="235.25" y="361" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-14" value="&amp;nbsp; wrappee.causeDamage()&lt;div&gt;&amp;nbsp; nox() &lt;font style=&quot;color: rgb(102, 204, 0);&quot;&gt;// execute nox logic&lt;/font&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=8;fillColor=#E3E3E3;strokeColor=#919191;align=left;" vertex="1" parent="1">
+          <mxGeometry x="520" y="510" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-15" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#919191;" vertex="1" parent="1">
+          <mxGeometry x="452" y="434" width="5" height="5" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-16" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#919191;" vertex="1" parent="1">
+          <mxGeometry x="622" y="434" width="5" height="5" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-17" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#919191;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.705;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="llV-JPU1NUP95iyjeOVZ-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="454.88" y="439" as="sourcePoint" />
+            <mxPoint x="454.13" y="501" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-18" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#919191;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.705;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="624.42" y="439" as="sourcePoint" />
+            <mxPoint x="624.54" y="510" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-19" value="&amp;nbsp; Bullet::causeDamage()&lt;div&gt;&amp;nbsp; &lt;font style=&quot;color: rgb(102, 204, 0);&quot;&gt;// boom logic...&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(102, 204, 0);&quot;&gt;&amp;nbsp; // ...&lt;/font&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=8;fillColor=#E3E3E3;strokeColor=#919191;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-520" y="450" width="182.5" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-20" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Bullet&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;-&amp;nbsp; damage&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;-&amp;nbsp; speed&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;-&amp;nbsp; trackEnemy&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;...&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ trackAndAttack()&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ causeDamage()&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;...&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#F5F5F5;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="-411" y="100" width="190" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-21" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;ExplodeBullet&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;-&amp;nbsp; boomDamage&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ causeDamage()&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#F5F5F5;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="-501" y="320" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-22" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;NoxBullet&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;-&amp;nbsp; noxDamage&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ causeDamage()&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#F5F5F5;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="-271" y="320" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-23" value="" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="llV-JPU1NUP95iyjeOVZ-21">
+          <mxGeometry x="-0.125" y="-20" width="160" relative="1" as="geometry">
+            <mxPoint x="-386" y="320" as="sourcePoint" />
+            <mxPoint x="-316" y="250" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-431" y="290" />
+              <mxPoint x="-316" y="290" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-24" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="llV-JPU1NUP95iyjeOVZ-22">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-321" y="290" as="sourcePoint" />
+            <mxPoint x="-241" y="320" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-201" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-25" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#919191;" vertex="1" parent="1">
+          <mxGeometry x="-399" y="384" width="5" height="5" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-26" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#919191;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-395.98" y="390" as="sourcePoint" />
+            <mxPoint x="-396" y="450" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-27" value="&amp;nbsp; Bullet::causeDamage()&lt;div&gt;&amp;nbsp; &lt;font style=&quot;color: rgb(102, 204, 0);&quot;&gt;// nox logic...&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(102, 204, 0);&quot;&gt;&amp;nbsp; // ...&lt;/font&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=8;fillColor=#E3E3E3;strokeColor=#919191;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-281" y="450" width="182.5" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-28" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#919191;" vertex="1" parent="1">
+          <mxGeometry x="-170" y="385" width="5" height="5" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-29" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#919191;entryX=0.626;entryY=0.014;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="llV-JPU1NUP95iyjeOVZ-27">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-167.62" y="390" as="sourcePoint" />
+            <mxPoint x="-171" y="450" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-30" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#919191;" vertex="1" parent="1">
+          <mxGeometry x="-310" y="221" width="5" height="5" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-31" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#919191;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="llV-JPU1NUP95iyjeOVZ-30" target="llV-JPU1NUP95iyjeOVZ-32">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-302" y="221" as="sourcePoint" />
+            <mxPoint x="-211" y="230" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-32" value="&lt;div&gt;&amp;nbsp; &lt;font style=&quot;color: rgb(102, 204, 0);&quot;&gt;// attack single enemy&lt;/font&gt;&lt;/div&gt;&amp;nbsp; enemy.geHit(damage)" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=8;fillColor=#E3E3E3;strokeColor=#919191;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-191" y="200" width="182.5" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-33" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;font style=&quot;color: rgb(0, 255, 0);&quot;&gt;&amp;nbsp;&lt;/font&gt;&lt;font style=&quot;color: rgb(102, 204, 0);&quot;&gt;// reset the bullet state&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;font style=&quot;color: rgb(0, 255, 0);&quot;&gt;&amp;nbsp;&lt;/font&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&amp;nbsp;bullet-&amp;gt;reset();&amp;nbsp;&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp;&lt;font style=&quot;color: rgb(102, 204, 0);&quot;&gt;// Push the finished Bullet object back&amp;nbsp; &amp;nbsp;into the pool&lt;/font&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp;pool.push(bullet);&amp;nbsp;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=8;fillColor=#E3E3E3;strokeColor=#919191;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-449.5" y="820" width="218" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-34" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;BulletPool&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;-&amp;nbsp; pool: queue&amp;lt;Bullet*&amp;gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getInstance()&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ acquireBullet()&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ releaseBullet()&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#F5F5F5;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="-461.5" y="660" width="190" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-35" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Bullet&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;-&amp;nbsp; damage&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;-&amp;nbsp; speed&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;-&amp;nbsp; trackEnemy&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;...&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ causeDamage()&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ reset()&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#F5F5F5;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="-611.5" y="820" width="140" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-36" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#919191;entryX=0.384;entryY=-0.003;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="llV-JPU1NUP95iyjeOVZ-33">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-365.58000000000004" y="760" as="sourcePoint" />
+            <mxPoint x="-365.6" y="820" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-37" value="" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=-0.008;exitY=0.382;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;" edge="1" parent="1" source="llV-JPU1NUP95iyjeOVZ-34" target="llV-JPU1NUP95iyjeOVZ-35">
+          <mxGeometry x="-1" y="3" relative="1" as="geometry">
+            <mxPoint x="-591.5" y="820" as="sourcePoint" />
+            <mxPoint x="-431.5" y="820" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-38" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#919191;" vertex="1" parent="1">
+          <mxGeometry x="-368" y="753" width="5" height="5" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-39" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#919191;" vertex="1" parent="1">
+          <mxGeometry x="-375" y="724" width="5" height="5" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-40" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#919191;" vertex="1" parent="1">
+          <mxGeometry x="-368" y="738" width="5" height="5" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-41" value="&lt;div&gt;&lt;font&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp;&lt;/font&gt;&lt;font style=&quot;color: rgb(102, 204, 0);&quot;&gt;// Get a Bullet object from the pool&amp;nbsp;&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp;if (pool.empty()) {&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;return nullptr;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp;}&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp;Bullet* bullet = pool.front();&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp;pool.pop();&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp;return bullet;&lt;/font&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=8;fillColor=#E3E3E3;strokeColor=#919191;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-221.5" y="800" width="218" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-42" value="&lt;div&gt;&lt;font style=&quot;color: rgb(102, 204, 0);&quot;&gt;&amp;nbsp;// Create a pool with a size of 100&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp;static BulletPool instance(100);&amp;nbsp;&lt;/div&gt;&lt;div&gt;&amp;nbsp;return &amp;amp;instance;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=8;fillColor=#E3E3E3;strokeColor=#919191;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-221.5" y="650" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-43" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#919191;entryX=0.384;entryY=-0.003;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0;exitDx=105;exitDy=0;exitPerimeter=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="llV-JPU1NUP95iyjeOVZ-41">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-292.78999999999996" y="741" as="sourcePoint" />
+            <mxPoint x="-362" y="741" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-116.5" y="741" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-44" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#919191;entryX=0.384;entryY=-0.003;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="llV-JPU1NUP95iyjeOVZ-42">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-124.5" y="786" as="sourcePoint" />
+            <mxPoint x="-370" y="727" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-251.5" y="680" />
+              <mxPoint x="-251.5" y="727" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-45" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#919191;" vertex="1" parent="1">
+          <mxGeometry x="-561.5" y="942" width="5" height="5" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-46" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#919191;entryX=0.384;entryY=-0.003;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="llV-JPU1NUP95iyjeOVZ-47">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-311" y="1004" as="sourcePoint" />
+            <mxPoint x="-556.5" y="945" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-352.5" y="945" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-47" value="&lt;font style=&quot;color: rgb(102, 204, 0);&quot;&gt;&amp;nbsp;// Reset the bullet&#39;s state to be reused&lt;/font&gt;&lt;div&gt;&lt;div style=&quot;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp;trackEnemy = nullptr;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp;...&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp;this-&amp;gt;stopAllActions(); &lt;/font&gt;&lt;font style=&quot;color: rgb(102, 204, 0);&quot;&gt;// Stop all actions (if any)&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp;this-&amp;gt;setPosition(Vec2(0, 0)); &lt;/font&gt;&lt;font style=&quot;color: rgb(102, 204, 0);&quot;&gt;// Reset position to some default&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp;this-&amp;gt;setVisible(true); &lt;/font&gt;&lt;font style=&quot;color: rgb(102, 204, 0);&quot;&gt;// Make sure the bullet is visible when reused&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=8;fillColor=#E3E3E3;strokeColor=#919191;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-449.5" y="970" width="298" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-48" value="&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp;&lt;/font&gt;&lt;font style=&quot;color: rgb(102, 204, 0);&quot;&gt;// Create a new Bullet&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(0, 0, 0); font-size: 14px;&quot;&gt;&amp;nbsp;Bullet* bullet = BulletPool::getInstance()-&amp;gt;acquireBullet();&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp;&lt;/font&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;...&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp;&lt;/font&gt;&lt;span style=&quot;color: rgb(102, 204, 0); background-color: transparent;&quot;&gt;//&amp;nbsp;Bullet destruction&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;color: rgb(102, 204, 0); background-color: transparent;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: rgb(102, 204, 0);&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;BulletPool::getInstance()-&amp;gt;releaseBullet(bullet);&amp;nbsp;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=8;fillColor=#E3E3E3;strokeColor=#919191;align=left;" vertex="1" parent="1">
+          <mxGeometry x="429.5" y="760" width="380" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-49" value="&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp;&lt;/font&gt;&lt;font style=&quot;color: rgb(102, 204, 0);&quot;&gt;// Create a new Bullet&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(0, 0, 0); font-size: 14px;&quot;&gt;&amp;nbsp;Bullet* bullet = Bullet::create(&quot;nox.png&quot;);&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp;&lt;/font&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;...&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp;&lt;/font&gt;&lt;span style=&quot;color: rgb(102, 204, 0); background-color: transparent;&quot;&gt;//&amp;nbsp;Bullet destruction&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;color: rgb(102, 204, 0); background-color: transparent;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: rgb(102, 204, 0);&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;bullet-&amp;gt;removeFromParent()&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=8;fillColor=#E3E3E3;strokeColor=#919191;align=left;" vertex="1" parent="1">
+          <mxGeometry x="99.5" y="760" width="280" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-50" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Before&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="189.5" y="710" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="llV-JPU1NUP95iyjeOVZ-51" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;After&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="584.5" y="710" width="70" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
