@@ -21,8 +21,6 @@ Tower::Tower()
 	maxLockNum = 1;
 }
 
-
-
 void Tower::onEnter()
 {
 	Sprite::onEnter();

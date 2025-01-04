@@ -112,77 +112,37 @@ int p::getNoxDamage()
 void p::shootBoomBullet() {
     auto attack_enemy = atk_eny.front();
 
-    auto baseBullet = Bullet::create("nox.png");
+    auto bullet = Bullet::create("nox.png");
 
-    baseBullet->setScale(1);
-    baseBullet->setTrack(attack_enemy);
-    baseBullet->setSpeed(1000);
-    baseBullet->setDamage(damage);
+    bullet->setScale(1);
+    bullet->setTrack(attack_enemy);
+    bullet->setSpeed(1000);
+    bullet->setDamage(damage);
 
-    Bullet* boomBullet = ExplodeDecorator::create("nox.png",baseBullet);
+    bullet = ExplodeDecorator::create("nox.png", bullet, booomDamage);
 
-    //// 动态转换为 ExplodeDecorator 类型来访问特有方法
-    //if (auto explodeBullet = dynamic_cast<ExplodeDecorator*>(boomBullet)) {
-    //    explodeBullet->setBoomDamage(booomDamage); // 设置爆炸伤害
-    //}
-    //else {
-    //    CCLOG("Failed to cast to ExplodeDecorator!");
-    //}
+    bullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
+    this->getParent()->addChild(bullet, 1);//子弹加入场景
 
-    Bullet* noxBullet = NoxDecorator::create("nox.png", boomBullet);
-
-    noxBullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
-    this->getParent()->addChild(noxBullet, 1);//子弹加入场景
-
-    noxBullet->scheduleUpdate();//子弹开始锁敌
+    bullet->scheduleUpdate();//子弹开始锁敌
 }
 
 void p::shootNoxBullet() {
     auto attack_enemy = atk_eny.front();
 
-    auto baseBullet = Bullet::create("nox.png");
+    auto bullet = Bullet::create("nox.png");
 
-    baseBullet->setScale(1);
-    baseBullet->setTrack(attack_enemy);
-    baseBullet->setSpeed(1000);
-    baseBullet->setDamage(damage);
+    bullet->setScale(1);
+    bullet->setTrack(attack_enemy);
+    bullet->setSpeed(1000);
+    bullet->setDamage(damage);
 
-    Bullet* noxBullet = NoxDecorator::create("nox.png", baseBullet);
+    bullet = NoxDecorator::create("nox.png", bullet, noxDamage);
 
-    if (auto nBullet = dynamic_cast<NoxDecorator*>(noxBullet)) {
-        nBullet->setNoxDamage(noxDamage); // 设置毒气伤害
-    }
-    else {
-        CCLOG("Failed to cast to ExplodeDecorator!");
-    }
+    bullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
+    this->getParent()->addChild(bullet, 1);//子弹加入场景
 
-    noxBullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
-    this->getParent()->addChild(noxBullet, 1);//子弹加入场景
-
-    noxBullet->scheduleUpdate();//子弹开始锁敌
+    bullet->scheduleUpdate();//子弹开始锁敌
 }
 
-void p::shootBoomAndNoxBullet() {
-    auto attack_enemy = atk_eny.front();
-
-    auto baseBullet = Bullet::create("nox.png");
-
-    baseBullet->setScale(1);
-    baseBullet->setTrack(attack_enemy);
-    baseBullet->setSpeed(1000);
-    baseBullet->setDamage(damage);
-
-    ExplodeDecorator* boomBullet = ExplodeDecorator::create("nox.png", baseBullet);
-
-    boomBullet->setBoomDamage(booomDamage); // 设置爆炸伤害
-
-    NoxDecorator* noxBullet = NoxDecorator::create("nox.png",boomBullet);
-
-    noxBullet->setNoxDamage(noxDamage);
-
-    noxBullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
-    this->getParent()->addChild(noxBullet, 1);//子弹加入场景
-
-    noxBullet->scheduleUpdate();//子弹开始锁敌
-}
 

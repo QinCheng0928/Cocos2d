@@ -4,13 +4,13 @@
 USING_NS_CC;
 
 // ExplodeDecorator ¹¹Ôìº¯Êý
-ExplodeDecorator::ExplodeDecorator(Bullet* wrappee) : Bullet(*wrappee) {
-    boomDamage = 0;  // ÉèÖÃ³õÊ¼±¬Õ¨ÉËº¦
+ExplodeDecorator::ExplodeDecorator(Bullet* wrappee, int damage) : Bullet(*wrappee) {
+    boomDamage = damage;  // ÉèÖÃ³õÊ¼±¬Õ¨ÉËº¦
 }
 
-ExplodeDecorator* ExplodeDecorator::create(const std::string& filename, Bullet* wrappee)
+ExplodeDecorator* ExplodeDecorator::create(const std::string& filename, Bullet* wrappee, int damage)
 {
-    ExplodeDecorator* sprite = new (std::nothrow) ExplodeDecorator(wrappee);
+    ExplodeDecorator* sprite = new (std::nothrow) ExplodeDecorator(wrappee, damage);
     if (sprite && sprite->initWithFile(filename))
     {
         sprite->autorelease();
@@ -18,11 +18,6 @@ ExplodeDecorator* ExplodeDecorator::create(const std::string& filename, Bullet* 
     }
     CC_SAFE_DELETE(sprite);
     return nullptr;
-}
-
-
-void ExplodeDecorator::setBoomDamage(int damage) {
-    boomDamage = damage;
 }
 
 //ËÑË÷µÐÈË£¬¹¥»÷

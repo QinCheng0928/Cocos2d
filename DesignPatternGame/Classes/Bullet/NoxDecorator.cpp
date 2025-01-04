@@ -3,14 +3,14 @@
 #include "../Tower/p.h"
 USING_NS_CC;
 //构造函数
-NoxDecorator::NoxDecorator(Bullet* wrappee): Bullet(*wrappee){
-    noxDamage = 0; // ——毒气
+NoxDecorator::NoxDecorator(Bullet* wrappee, int damage): Bullet(*wrappee){
+    noxDamage = damage; // ——毒气
 }
 
 //创建函数——公共
-NoxDecorator* NoxDecorator::create(const std::string& filename, Bullet* wrappee)
+NoxDecorator* NoxDecorator::create(const std::string& filename, Bullet* wrappee, int damage)
 {
-    NoxDecorator* sprite = new (std::nothrow) NoxDecorator(wrappee);
+    NoxDecorator* sprite = new (std::nothrow) NoxDecorator(wrappee, damage);
     if (sprite && sprite->initWithFile(filename))
     {
         sprite->autorelease();
@@ -18,10 +18,6 @@ NoxDecorator* NoxDecorator::create(const std::string& filename, Bullet* wrappee)
     }
     CC_SAFE_DELETE(sprite);
     return nullptr;
-}
-
-void NoxDecorator::setNoxDamage(int damage) {
-    noxDamage = damage;
 }
 
 //搜索敌人，攻击

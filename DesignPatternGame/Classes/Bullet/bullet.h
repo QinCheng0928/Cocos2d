@@ -6,15 +6,6 @@
 USING_NS_CC;
 /*子弹类实现*/
 
-//// 组件接口
-//class bulletComponent : public Sprite {
-//public:
-//	virtual void causeDamage() = 0;
-//	virtual void update(float dt) = 0;
-//	virtual void trackAndAttack(float dt) = 0;
-//	virtual float get_distance(enemy* enemy, bulletComponent* bullet) = 0;//计算子弹与敌人的距离
-//};
-
 // 具体组件——普通子弹
 class Bullet :public Sprite {
 protected:
@@ -38,33 +29,12 @@ public:
 	virtual void causeDamage();// 重写，每种子弹伤害方式不同
 };
 
-//// 装饰器抽象类
-//class BulletDecorator :public bulletComponent {
-//protected:
-//	bulletComponent* baseBullet;
-//public:
-//	BulletDecorator(bulletComponent* baseBullet): baseBullet(baseBullet){}
-//	virtual void causeDamage() override {
-//		baseBullet->causeDamage();
-//	}
-//	void update(float dt) override {
-//		baseBullet->update(dt);
-//	}
-//	void trackAndAttack(float dt) override {
-//		baseBullet->trackAndAttack(dt);
-//	}
-//	float get_distance(enemy* enemy, bulletComponent* bullet) override {
-//		return baseBullet->get_distance(enemy, bullet);
-//	}
-//};
-
 class ExplodeDecorator :public Bullet {
 	int boomDamage;
 public:
-	ExplodeDecorator(Bullet* wrappee);
-	static ExplodeDecorator* create(const std::string& filename, Bullet* wrappee);
+	ExplodeDecorator(Bullet* wrappee, int damage);
+	static ExplodeDecorator* create(const std::string& filename, Bullet* wrappee, int damage);
 	void causeDamage() override;
-	void setBoomDamage(int damage);
 	Vector<Enemy*> multiSearch();
 	void booom();
 };
@@ -72,9 +42,8 @@ public:
 class NoxDecorator :public Bullet {
 	int noxDamage;
 public:
-	NoxDecorator(Bullet* wrappee);
-	static NoxDecorator* create(const std::string& filename, Bullet* wrappee);//创建函数
-	void setNoxDamage(int damage);
+	NoxDecorator(Bullet* wrappee, int damage);
+	static NoxDecorator* create(const std::string& filename, Bullet* wrappee, int damage);//创建函数
 	void causeDamage() override;
 };
 
