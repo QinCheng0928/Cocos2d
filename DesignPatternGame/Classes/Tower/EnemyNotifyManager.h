@@ -13,6 +13,7 @@ class EnemyNotifyManager {
 private:
     static EnemyNotifyManager* instance;
     std::vector<IEnemyObserver*> observers;
+    std::vector<Enemy*> currentEnemies; // 新增：存活敌人列表
 
     // Fix the constructor to remove recursive creation
     EnemyNotifyManager() {}
@@ -27,6 +28,10 @@ public:
 
     void addObserver(IEnemyObserver* observer) {
         observers.push_back(observer);
+        // 将现有敌人通知给新观察者
+        for (auto e : currentEnemies) {
+            observer->updateEnemyList(e, true);
+        }
         CCLOG("EnemyNotifyManager: addObserver");
     }
 
@@ -38,6 +43,16 @@ public:
     }
 
     void notifyObservers(Enemy* enemy, bool isCreated) {
+        // 同步维护 currentEnemies
+        if (isCreated) {
+            currentEnemies.push_back(enemy);
+        } else {
+            auto it = std::find(currentEnemies.begin(), currentEnemies.end(), enemy);
+            if (it != currentEnemies.end()) {
+                currentEnemies.erase(it);
+            }
+        }
+
         for (auto observer : observers) {
             observer->updateEnemyList(enemy, isCreated);
             CCLOG("EnemyNotifyManager: notifyObservers");
