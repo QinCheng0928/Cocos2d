@@ -14,7 +14,7 @@ Tower::Tower()
 {
 	level = 1;
 	cost = 1;
-	speed = 1.0f;//�������
+	speed = 1.0f;
 	damage = 60;
 	squart = 500.0f;
 	state = 1;
@@ -30,20 +30,20 @@ void Tower::onEnter()
     EnemyNotifyManager::getInstance()->addObserver(this);
     CCLOG("Tower::onEnter() is running..");
 
-	//����¼��ַ���
+	
 	auto* disp = Director::getInstance()->getEventDispatcher();
 
-	//����һ��������
+	
 	auto listener = EventListenerTouchOneByOne::create();
-	//������û�¼�
+	
 	listener->setSwallowTouches(false);
 
 	listener->onTouchBegan = [](Touch* touch, Event* event) {
 		return true;
 		};
-	listener->onTouchEnded = CC_CALLBACK_2(Tower::judgeListenerCallback, this); //����̧��Żᴥ��
+	listener->onTouchEnded = CC_CALLBACK_2(Tower::judgeListenerCallback, this); 
 
-	//�Ѽ��������ӵ�BaseBlock��
+	
 	disp->addEventListenerWithSceneGraphPriority(listener, this);
 	this->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&Tower::update), speed);
 }
@@ -52,7 +52,7 @@ void Tower::onExit()
     EnemyNotifyManager::getInstance()->removeObserver(this);
 	Sprite::onExit();
 
-	//�Ƴ��ö������еļ���
+	
 	auto* disp = Director::getInstance()->getEventDispatcher();
 	disp->removeEventListenersForTarget(this);
 }
@@ -72,7 +72,7 @@ int Tower::got_level()
 
 void Tower::running_act()
 {
-	//��������
+	
 	auto rotateTo1 = RotateTo::create(0.6f, 5.0f);
 	auto rotateTo2 = RotateTo::create(0.6f, -5.0f);
 	//auto moveBy1 = MoveBy::create(0.3f, Vec2(0, 10));
@@ -87,7 +87,7 @@ void Tower::running_act()
 
 void Tower::attack_act()
 {
-
+	return;
 }
 
 float Tower::get_distance(Enemy* enemy,Tower* Tower)
@@ -107,12 +107,12 @@ int Tower::getCost()
 
 void Tower::clickCallback()
 {
-	// ����һ��DrawNode
+	
 	auto drawNode = cocos2d::DrawNode::create();
 	this->getParent()->addChild(drawNode);
 	drawNode->setName("yuan");
 
-	// ������Բ��ʾ������Χ
+	
 	//drawNode->drawDot(this->getPosition(), this->squart, cocos2d::Color4F::WHITE);
 	//drawNode->drawCircle(this->getPosition(), this->squart, 0, segments, false, lineWidth, cocos2d::Color4F::WHITE);
 	drawNode->drawCircle(this->getPosition(), this->squart, 0, 100, false, cocos2d::Color4F::WHITE);
@@ -223,25 +223,25 @@ void Tower::clickCallback()
 
 bool Tower::judgeListenerCallback(cocos2d::Touch* touch, cocos2d::Event* event)
 {
-	//��ȡ�¼����󣨾���Block�Լ���
+	
 	auto target = static_cast<Sprite*>(event->getCurrentTarget());
-	//��ȡ���������λ��
+	
 	Vec2 tworld = touch->getLocation();
-	//������λ��ת��Ϊ����λ�ã�Block�����λ�ã�
+	
 	Vec2 tlocal = target->convertToNodeSpace(tworld);
 
-	//��ȡ����ĳߴ�
+	
 	auto size = target->getContentSize();
 	auto rect = Rect(0, 0, size.width, size.height);
 
-	//��������λ������Block�ϣ�������������ص�
+	
 	if (rect.containsPoint(tlocal)) {
 		clickCallback();
 		return true;
 	}
 	return false;
 }
-//�����������ˣ����ã�
+
 Enemy* Tower::search()
 {
 	auto cur_baseLevel = dynamic_cast<baseLevel*>(this->getParent());
@@ -265,7 +265,7 @@ Enemy* Tower::search()
 	}
 	return nullptr;
 }
-//����һ���������
+
 Vector<Enemy*> Tower::multiSearch()
 {
 	Vector<Enemy*> temp;
@@ -279,42 +279,42 @@ Vector<Enemy*> Tower::multiSearch()
 }
 void Tower::updateEnemyList(Enemy* enemy, bool isCreated)
 {
-    
+	return;
 }
 
 
 void Tower::update(float dt)
 {
-	//�жϵ�ǰ������ʲô״̬
+	
 	//if (attack_enemy == nullptr || attack_enemy->getParent() == nullptr || get_distance(attack_enemy, this) > this->squart)//
 	//	state = 1;
 	int flag1 = 0, flag2 = 0;
 	for (auto i = atk_eny.begin(); i != atk_eny.end(); i++)
 	{
 		if ((*i)->getParent() != nullptr)
-			flag1 = 1;//���ڹ���
+			flag1 = 1;
 	}
 	if (flag1 == 0)
 		state = 1;
 	for (auto i = atk_eny.begin(); i != atk_eny.end(); i++)
 	{
 		if (get_distance((*i), this) > this->squart)
-			flag2 = 1;//���ڷ�Χ�ڹ���
+			flag2 = 1;
 	}
 	if (flag2 == 0)
 		state = 1;
 
-	if ((atk_eny.empty() == 1) || flag1 == 0 || flag2 == 0)//�����ǰ���δ��ڹ�����������״̬
+	if ((atk_eny.empty() == 1) || flag1 == 0 || flag2 == 0)
 		state = 1;
 
 	if (state == 1)
 	{
 		//CCLOG("enemy::state==1 searching...\n");
-		Vector<Enemy*> cur_enemy = this->multiSearch();//��������
+		Vector<Enemy*> cur_enemy = this->multiSearch();
 		if (cur_enemy.size()!=0)
 		{
 			state = 2;
-			atk_eny = cur_enemy;//�������������б�
+			atk_eny = cur_enemy;
 		}
 		else
 		{
@@ -326,13 +326,13 @@ void Tower::update(float dt)
 	{
 		if (atk_eny.size() < maxLockNum)
 		{
-			Vector<Enemy*> cur_enemy = this->multiSearch();//���µ����б�
+			Vector<Enemy*> cur_enemy = this->multiSearch();
 			atk_eny = cur_enemy;
 		}
 		CCLOG("attack %d enemy...\n", atk_eny.size());
 		this->stopAllActions();
 		this->attack_act();
-		atk_eny.clear();//ÿ�ι���֮�����
+		atk_eny.clear();
 	}
 }
 

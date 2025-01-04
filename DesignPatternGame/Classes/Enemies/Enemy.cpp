@@ -9,9 +9,7 @@ Enemy::Enemy() : value(1000), hp(100), speed(5), maxHp(hp), speedScale(1), nextP
 
 bool Enemy::init() {
     if (!Sprite::init()) 
-        return false;
-    // The this pointer points to the subclass object, when creating a subclass.
-    
+        return false;    
     return true;
 }
 
