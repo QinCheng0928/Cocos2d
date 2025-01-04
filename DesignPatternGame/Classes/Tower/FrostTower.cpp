@@ -78,7 +78,6 @@ void FrostTower::attackOneEnemy(Enemy* attack_enemy)
 {
     shootBoomBullet();
     // shootNoxBullet();
-    // shootBoomAndNoxBullet();
 }
 
 int FrostTower::getBooomDamage()
@@ -116,77 +115,37 @@ int FrostTower::getNoxDamage()
 void FrostTower::shootBoomBullet() {
     auto attack_enemy = atk_eny.front();
 
-    auto baseBullet = Bullet::create("nox.png");
+    auto bullet = Bullet::create("nox.png");
 
-    baseBullet->setScale(1);
-    baseBullet->setTrack(attack_enemy);
-    baseBullet->setSpeed(1000);
-    baseBullet->setDamage(damage);
+    bullet->setScale(1);
+    bullet->setTrack(attack_enemy);
+    bullet->setSpeed(1000);
+    bullet->setDamage(damage);
 
-    Bullet* boomBullet = ExplodeDecorator::create("nox.png",baseBullet);
+    bullet = ExplodeDecorator::create("nox.png", bullet, booomDamage);
 
-    //// ��̬ת��Ϊ ExplodeDecorator �������������з���
-    //if (auto explodeBullet = dynamic_cast<ExplodeDecorator*>(boomBullet)) {
-    //    explodeBullet->setBoomDamage(booomDamage); // ���ñ�ը�˺�
-    //}
-    //else {
-    //    CCLOG("Failed to cast to ExplodeDecorator!");
-    //}
+    bullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
+    this->getParent()->addChild(bullet, 1);//子弹加入场景
 
-    Bullet* noxBullet = NoxDecorator::create("nox.png", boomBullet);
-
-    noxBullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
-    this->getParent()->addChild(noxBullet, 1);//�ӵ����볡��
-
-    noxBullet->scheduleUpdate();//�ӵ���ʼ����
+    bullet->scheduleUpdate();//子弹开始锁敌
 }
 
 void FrostTower::shootNoxBullet() {
     auto attack_enemy = atk_eny.front();
 
-    auto baseBullet = Bullet::create("nox.png");
+    auto bullet = Bullet::create("nox.png");
 
-    baseBullet->setScale(1);
-    baseBullet->setTrack(attack_enemy);
-    baseBullet->setSpeed(1000);
-    baseBullet->setDamage(damage);
+    bullet->setScale(1);
+    bullet->setTrack(attack_enemy);
+    bullet->setSpeed(1000);
+    bullet->setDamage(damage);
 
-    Bullet* noxBullet = NoxDecorator::create("nox.png", baseBullet);
+    bullet = NoxDecorator::create("nox.png", bullet, noxDamage);
 
-    if (auto nBullet = dynamic_cast<NoxDecorator*>(noxBullet)) {
-        nBullet->setNoxDamage(noxDamage); // ���ö����˺�
-    }
-    else {
-        CCLOG("Failed to cast to ExplodeDecorator!");
-    }
+    bullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
+    this->getParent()->addChild(bullet, 1);//子弹加入场景
 
-    noxBullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
-    this->getParent()->addChild(noxBullet, 1);//�ӵ����볡��
-
-    noxBullet->scheduleUpdate();//�ӵ���ʼ����
+    bullet->scheduleUpdate();//子弹开始锁敌
 }
 
-void FrostTower::shootBoomAndNoxBullet() {
-    auto attack_enemy = atk_eny.front();
-
-    auto baseBullet = Bullet::create("nox.png");
-
-    baseBullet->setScale(1);
-    baseBullet->setTrack(attack_enemy);
-    baseBullet->setSpeed(1000);
-    baseBullet->setDamage(damage);
-
-    ExplodeDecorator* boomBullet = ExplodeDecorator::create("nox.png", baseBullet);
-
-    boomBullet->setBoomDamage(booomDamage); // ���ñ�ը�˺�
-
-    NoxDecorator* noxBullet = NoxDecorator::create("nox.png",boomBullet);
-
-    noxBullet->setNoxDamage(noxDamage);
-
-    noxBullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
-    this->getParent()->addChild(noxBullet, 1);//�ӵ����볡��
-
-    noxBullet->scheduleUpdate();//�ӵ���ʼ����
-}
 

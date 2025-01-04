@@ -62,10 +62,9 @@ public:
 class ExplodeDecorator :public Bullet {
 	int boomDamage;
 public:
-	ExplodeDecorator(Bullet* wrappee);
-	static ExplodeDecorator* create(const std::string& filename, Bullet* wrappee);
+	ExplodeDecorator(Bullet* wrappee, int damage);
+	static ExplodeDecorator* create(const std::string& filename, Bullet* wrappee, int damage);
 	void causeDamage() override;
-	void setBoomDamage(int damage);
 	Vector<Enemy*> multiSearch();
 	void booom();
 };
@@ -73,9 +72,8 @@ public:
 class NoxDecorator :public Bullet {
 	int noxDamage;
 public:
-	NoxDecorator(Bullet* wrappee);
-	static NoxDecorator* create(const std::string& filename, Bullet* wrappee);//创建函数
-	void setNoxDamage(int damage);
+	NoxDecorator(Bullet* wrappee, int damage);
+	static NoxDecorator* create(const std::string& filename, Bullet* wrappee, int damage);//创建函数
 	void causeDamage() override;
 };
 
