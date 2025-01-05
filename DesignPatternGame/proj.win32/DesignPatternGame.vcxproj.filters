@@ -105,9 +105,6 @@
     <ClCompile Include="..\Classes\Tower\Tower.cpp">
       <Filter>src\Tower</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Bullet\BulletPool.cpp">
-      <Filter>src\Bullet</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
