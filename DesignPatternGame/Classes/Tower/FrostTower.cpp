@@ -115,19 +115,19 @@ int FrostTower::getNoxDamage()
 void FrostTower::shootBoomBullet() {
     auto attack_enemy = atk_eny.front();
 
-    auto bullet = Bullet::create("nox.png");
+    Bullet* bullet = Bullet::create("nox.png");
 
     bullet->setScale(1);
     bullet->setTrack(attack_enemy);
     bullet->setSpeed(1000);
     bullet->setDamage(damage);
 
-    bullet = ExplodeDecorator::create("nox.png", bullet, booomDamage);
+    ExplodeDecorator* bullet = new ExplodeDecorator(bullet, booomDamage); // Added an explosive decorator to the base bullet
 
     bullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
-    this->getParent()->addChild(bullet, 1);//子弹加入场景
+    this->getParent()->addChild(bullet, 1); // Bullets join the scene
 
-    bullet->scheduleUpdate();//子弹开始锁敌
+    bullet->scheduleUpdate(); // Bullets begin to track the enemy
 }
 
 void FrostTower::shootNoxBullet() {
@@ -140,12 +140,31 @@ void FrostTower::shootNoxBullet() {
     bullet->setSpeed(1000);
     bullet->setDamage(damage);
 
-    bullet = NoxDecorator::create("nox.png", bullet, noxDamage);
+    NoxDecorator* bullet = new NoxDecorator(bullet, noxDamage); // Added an nox decorator to the base bullet
 
     bullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
-    this->getParent()->addChild(bullet, 1);//子弹加入场景
+    this->getParent()->addChild(bullet, 1); // Bullets join the scene
 
-    bullet->scheduleUpdate();//子弹开始锁敌
+    bullet->scheduleUpdate(); // Bullets begin to track the enemy
+}
+
+void FrostTower::shootNoxAndBoomBullet() {
+    auto attack_enemy = atk_eny.front();
+
+    Bullet* bullet = Bullet::create("nox.png");
+
+    bullet->setScale(1);
+    bullet->setTrack(attack_enemy);
+    bullet->setSpeed(1000);
+    bullet->setDamage(damage);
+
+    ExplodeDecorator* bullet = new ExplodeDecorator(bullet, booomDamage); // Added an explosive decorator to the base bullet
+    NoxDecorator* bullet = new NoxDecorator(bullet, noxDamage); // Added an nox decorator to the base bullet
+    // Now the bullet can simultaniously cause boom and nox damage 
+    bullet->setPosition(Vec2(this->getPosition().x, this->getPosition().y));
+    this->getParent()->addChild(bullet, 1); // Bullets join the scene
+
+    bullet->scheduleUpdate(); // Bullets begin to track the enemy
 }
 
 

@@ -7,19 +7,19 @@
 
 class BulletPool {
 private:
-    std::queue<Bullet*> pool;  // 用于存放空闲的Bullet对象
+    std::queue<Bullet*> pool;  // store idle Bullet object
     int poolSize;
 
     BulletPool(int size) : poolSize(size) {
-        // 初始化时预先创建一定数量的Bullet对象
+        // A certain number of Bullet objects are pre-created during initialization
         for (int i = 0; i < poolSize; ++i) {
             Bullet* bullet = Bullet::create("shuiguai.png");
-            pool.push(bullet); // 将每个新创建的Bullet对象推入池中
+            pool.push(bullet); // Push each newly created Bullet object into the pool
         }
     }
 
     ~BulletPool() {
-        // 清理池中的Bullet对象
+        // Clean up the Bullet objects in the pool
         while (!pool.empty()) {
             Bullet* bullet = pool.front();
             pool.pop();
@@ -28,9 +28,9 @@ private:
     }
 
 public:
-    // 获取单例
+    // Get singleton
     static BulletPool* getInstance() {
-        static BulletPool instance(100); // 创建一个池，大小为100
+        static BulletPool instance(100); // Create a pool with a size of 100
         return &instance;
     }
 
@@ -45,10 +45,10 @@ public:
         return bullet;
     }
 
-    // 将Bullet对象返回到池中
+    // Return the Bullet object to the pool
     void releaseBullet(Bullet* bullet) {
-        bullet->reset(); // 重置子弹状态
-        pool.push(bullet); // 将使用完成的Bullet对象推回池中
+        bullet->reset(); // Reset bullet status
+        pool.push(bullet); // Push the finished Bullet object back into the pool
     }
 };
 

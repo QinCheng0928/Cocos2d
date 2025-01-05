@@ -3,6 +3,7 @@
 #include "cocos2d.h"
 #include "../Tower/ElectroTower.h"
 #include "../Tower/FrostTower.h"
+#include "BulletPool.h"
 USING_NS_CC;
 
 Bullet::Bullet()
@@ -52,6 +53,10 @@ void Bullet::setTrack(Enemy* trackIt)
     trackEnemy = trackIt;
 }
 
+Enemy* Bullet::getTrackEnemy() {
+    return trackEnemy;
+}
+
 // Set bullet speed
 void Bullet::setSpeed(int newSpeed)
 {
@@ -77,8 +82,9 @@ void Bullet::trackAndAttack(float dt)
     if (trackEnemy->getParent() == nullptr)
     {
         state = 0;
-        this->removeFromParent();
-        CCLOG("track_enemy is empty!");
+        // The bullet disappears and returns to the object pool(Object Pool Pattern)
+        BulletPool::getInstance()->releaseBullet(this); 
+        CCLOG("track_enemy is empty!"); 
     }
     else
     {
@@ -88,17 +94,18 @@ void Bullet::trackAndAttack(float dt)
         float enemyY = trackEnemy->getPosition().y;
 
         // Basic damage logic
-        if (fabs(bulletX - enemyX) < 100 && fabs(bulletY - enemyY) < 100)//¼ÆËã·¶Î§
+        if (fabs(bulletX - enemyX) < 100 && fabs(bulletY - enemyY) < 100) // calculate range
         {
             causeDamage();              // Apply damage and effect
             state = 1;                  // Update state to hit
-            this->removeFromParent();   // Remove bullet
+            // The bullet disappears and returns to the object pool(Object Pool Pattern)
+            BulletPool::getInstance()->releaseBullet(this); 
             CCLOG("bullet boom!");
         }
         else
         {
             state = 2;
-            auto move1 = MoveTo::create(speed / 1000, trackEnemy->getPosition());//×·×Ù
+            auto move1 = MoveTo::create(speed / 1000, trackEnemy->getPosition()); // track
             this->runAction(move1);
         }
         
@@ -117,7 +124,7 @@ void Bullet::causeDamage() {
 }
 
 // Function to calculate the distance between a bullet and an enemy
-float Bullet::get_distance(Enemy* enemy, Bullet* bullet)
+float Bullet::get_distance(Enemy* enemy, BulletComponent* bullet)
 {
     Vec2 enemyPosition = convertToWorldSpaceAR(enemy->getPosition());
     Vec2 bulletPosition = convertToWorldSpaceAR(bullet->getParent()->getPosition());
@@ -128,4 +135,15 @@ float Bullet::get_distance(Enemy* enemy, Bullet* bullet)
     
     float distance = std::sqrt((fabs(enemy_x - bullet_x)) * (fabs(enemy_x - bullet_x)) + (fabs(enemy_y - bullet_y)) * (fabs(enemy_y - bullet_y)));
     return distance;
+}
+
+// Reset the bullet's state to be reused
+void Bullet::reset() {
+    trackEnemy = nullptr;
+    speed = 1000;
+    state = 0;  // Bullet is inactive
+    damage = 0;
+    this->stopAllActions(); // Stop all actions (if any)
+    this->setPosition(Vec2(0, 0)); // Reset position to some default
+    this->setVisible(true); // Make sure the bullet is visible when reused
 }

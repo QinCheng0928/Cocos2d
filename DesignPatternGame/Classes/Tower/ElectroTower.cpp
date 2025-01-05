@@ -2,6 +2,7 @@
 #include "cocos2d.h"
 #include "../Enemies/Enemy.h"
 #include "../Bullet/Bullet.h"
+#include "../Bullet/BulletPool.h"
 
 USING_NS_CC;
 
@@ -83,7 +84,14 @@ void ElectroTower::shoot()
 {
     auto attack_enemy = atk_eny.front(); // Get the first enemy in the list
 
-    auto baseBullet = Bullet::create("shuiguai.png"); // Create a bullet
+    //auto baseBullet = Bullet::create("shuiguai.png"); // Create a bullet
+    Bullet* baseBullet = BulletPool::getInstance()->acquireBullet(); // Acquire a bullet from object pool (Object Pool Pattern)
+
+    if (baseBullet == nullptr) {
+        CCLOG("Error: Failed to acquire bullet from pool.");
+        return; 
+    }
+
     baseBullet->setScale(0.5);
     baseBullet->setTrack(attack_enemy);
     baseBullet->setDamage(damage);

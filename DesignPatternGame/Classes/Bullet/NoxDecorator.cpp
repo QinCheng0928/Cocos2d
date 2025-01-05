@@ -3,41 +3,28 @@
 #include "../Tower/FrostTower.h"
 USING_NS_CC;
 // Constructor for the NoxDecorator class
-NoxDecorator::NoxDecorator(Bullet* wrappee, int damage): Bullet(*wrappee){
+NoxDecorator::NoxDecorator(BulletComponent* wrappee, int damage) {
     // Initialize poison gas damage
+    baseBullet = wrappee;
     noxDamage = damage; 
 }
 
-// Factory method to create a NoxDecorator object with the specified texture and wrapped bullet
-NoxDecorator* NoxDecorator::create(const std::string& filename, Bullet* wrappee, int damage)
-{
-    NoxDecorator* sprite = new (std::nothrow) NoxDecorator(wrappee, damage);
-    if (sprite && sprite->initWithFile(filename))
-    {
-        sprite->autorelease();
-        return sprite;
-    }
-    CC_SAFE_DELETE(sprite);
-    return nullptr;
-}
-
 // Searches for an enemy and applies poison gas damage and effects
-//ËÑË÷µÐÈË£¬¹¥»÷
 void NoxDecorator::causeDamage()
 {
-    Bullet::causeDamage();
+    baseBullet->causeDamage(); // Execute the basic damage logic
     // Create poison gas effect (smoke particle effect)
     auto emitter = ParticleSmoke::create();
     emitter->setColor(Color3B(0, 0, 0));
-    emitter->setPosition(Vec2(trackEnemy->getContentSize().width / 2, trackEnemy->getContentSize().height+50));
-    trackEnemy->addChild(emitter, 10);
+    emitter->setPosition(Vec2(getTrackEnemy()->getContentSize().width / 2, getTrackEnemy()->getContentSize().height + 50));
+    getTrackEnemy()->addChild(emitter, 10);
 
     auto nox = Nox::create("nox.png");
     nox->setScale(1);
     nox->setNoxDamage(noxDamage);
-    nox->setTrack(trackEnemy);
-    nox->setPosition(Vec2(trackEnemy->getContentSize().width / 2, trackEnemy->getContentSize().height+50));
-    trackEnemy->addChild(nox, 1);
+    nox->setTrack(getTrackEnemy());
+    nox->setPosition(Vec2(getTrackEnemy()->getContentSize().width / 2, getTrackEnemy()->getContentSize().height+50));
+    getTrackEnemy()->addChild(nox, 1);
 
     // Schedule poison damage to occur every 0.5 seconds
     nox->schedule(static_cast<cocos2d::SEL_SCHEDULE>(&Nox::noxHit), 0.5f);
