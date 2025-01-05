@@ -65,7 +65,6 @@ void Enemy::onEnter() {
 
     // Notify the observers
     EnemyNotifyManager::getInstance()->notifyObservers(this, true);
-    CCLOG("Enemy::init() is running..Trying to notify observers..");
 }
 
 // Display health bar

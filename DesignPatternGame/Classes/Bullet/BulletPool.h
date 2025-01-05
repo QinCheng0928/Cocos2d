@@ -7,11 +7,13 @@
 
 class BulletPool {
 private:
-    std::queue<Bullet*> pool;  // store idle Bullet object
+    std::queue<Bullet*> pool;  // Queue to store idle Bullet objects
     int poolSize;
+    int maxPoolSize;  // Maximum number of bullets the pool can hold
 
-    BulletPool(int size) : poolSize(size) {
-        // A certain number of Bullet objects are pre-created during initialization
+    BulletPool(int initialSize, int maxSize)
+        : poolSize(initialSize), maxPoolSize(maxSize) {
+        // Pre-create a set number of Bullet objects during initialization
         for (int i = 0; i < poolSize; ++i) {
             Bullet* bullet = Bullet::create("shuiguai.png");
             pool.push(bullet); // Push each newly created Bullet object into the pool
@@ -19,7 +21,7 @@ private:
     }
 
     ~BulletPool() {
-        // Clean up the Bullet objects in the pool
+        // Clean up Bullet objects in the pool
         while (!pool.empty()) {
             Bullet* bullet = pool.front();
             pool.pop();
@@ -28,27 +30,37 @@ private:
     }
 
 public:
-    // Get singleton
+    // Get the singleton instance
     static BulletPool* getInstance() {
-        static BulletPool instance(100); // Create a pool with a size of 100
+        static BulletPool instance(10, 200); // Create a pool with an initial size of 10 and a maximum size of 200
         return &instance;
     }
 
-    // 从池中获取一个Bullet对象
+    // Acquire a Bullet object from the pool
     Bullet* acquireBullet() {
         if (pool.empty()) {
-            CCLOG("Error: Bullet pool is empty.");
-            return nullptr;
+            CCLOG("Bullet pool is empty. Expanding pool...");
+            // If the pool is empty and the size hasn't exceeded the max size, create a new bullet and add it
+            if (poolSize < maxPoolSize) {
+                Bullet* bullet = Bullet::create("shuiguai.png");
+                pool.push(bullet);
+                poolSize++;
+            }
+            else {
+                CCLOG("Error: Bullet pool has reached its maximum size.");
+                return nullptr;
+            }
         }
+
         Bullet* bullet = pool.front();
         pool.pop();
         return bullet;
     }
 
-    // Return the Bullet object to the pool
+    // Return a Bullet object to the pool
     void releaseBullet(Bullet* bullet) {
-        bullet->reset(); // Reset bullet status
-        pool.push(bullet); // Push the finished Bullet object back into the pool
+        bullet->reset(); // Reset the bullet's state
+        pool.push(bullet); // Push the used Bullet object back into the pool
     }
 };
 
